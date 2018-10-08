@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author jakec
  */
-public class GameStorePageInfo {
+public class GameStorePageInfo implements StoreListing  {
     
     private int gameID;
     private int ageRating;
@@ -21,6 +21,7 @@ public class GameStorePageInfo {
     private String minimumSpecs;
     private String region;
     private List<String> genres;
+    private double price;
     
     
     public GameStorePageInfo(int gameID){
@@ -54,4 +55,19 @@ public class GameStorePageInfo {
     public void setRegion(String Region){
         this.region = region;
     }
+    
+    public void price(double price){
+        this.price = price;
+    }
+
+    @Override
+    public String displayStorePage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String displayListing() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

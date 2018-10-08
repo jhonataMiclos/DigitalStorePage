@@ -12,13 +12,14 @@ import java.util.List;
  *
  * @author jakec
  */
-public class MovieStorePageInfo {
+public class MovieStorePageInfo implements StoreListing {
     
     private int movieID;
     private int ageRating;
     private String movieName;
     private String description;
     private int runtime;
+    private double price;
     private List<String> genres;
     
     public MovieStorePageInfo(int movieID){
@@ -46,5 +47,19 @@ public class MovieStorePageInfo {
     
     public void setRuntime(int runtime){
         this.runtime = runtime;
+    }
+    
+    public void price(double price){
+        this.price = price;
+    }
+
+    @Override
+    public String displayStorePage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String displayListing() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
