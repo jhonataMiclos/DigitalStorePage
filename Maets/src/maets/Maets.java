@@ -5,6 +5,12 @@
  */
 package maets;
 
+import StoreInfo.StoreListing;
+import StoreInfo.StoreListingFactory;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 /**
  *
  * @author jakec
@@ -15,7 +21,14 @@ public class Maets {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        List<StoreListing> listings = StoreListingFactory.getAllGames();
+        for(int x = 0; x < listings.size();x++){
+            System.out.println(""+x+".)\n"+listings.get(x).displayListing());
+        }
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter a listing number for more info:   ");
+        int input = Integer.parseInt(in.nextLine());
+        System.out.println(listings.get(input).displayStorePage());
     }
     
 }

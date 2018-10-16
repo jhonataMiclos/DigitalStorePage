@@ -5,7 +5,13 @@
  */
 package StoreInfo;
 
+import StoreInfo.DBHandler.DBQueryParser;
+import StoreInfo.DBHandler.RepositoryAccess;
+import StoreInfo.DBHandler.RepositoryAccessMethodFactory;
+import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -17,8 +23,18 @@ public class StoreListingFactory {
          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    List<StoreListing> getAllGames(){
-         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static List<StoreListing> getAllGames(){
+        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+         JSONArray array = rA.getAllGames();
+         List<StoreListing> sLArrList = new ArrayList<StoreListing>();
+         for(int x = 0; x < array.length(); x++){
+             try{
+                sLArrList.add(GameStorePageInfoFactory.create(array.getJSONObject(x)));
+             } catch(Exception e){
+                 System.out.println("Error : "+e.toString());
+             }
+         }
+         return sLArrList;
     }
     
     List<StoreListing> getAllMovies(){

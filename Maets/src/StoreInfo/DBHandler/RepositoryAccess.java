@@ -5,10 +5,12 @@
  */
 package StoreInfo.DBHandler;
 
+import org.json.JSONArray;
+
 /**
  *
  * @author jakec
  */
 public interface RepositoryAccess {
-    
+    JSONArray getAllGames();
 }

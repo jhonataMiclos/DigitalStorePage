@@ -10,7 +10,7 @@ package StoreInfo.DBHandler;
  * @author jakec
  */
 public class RepositoryAccessMethodFactory {
-    RepositoryAccess getRepoAccess(){
+    public static RepositoryAccess getRepoAccess(){
         return new DBQueryParser();
     }
 }

@@ -22,6 +22,7 @@ public class GameStorePageInfo implements StoreListing  {
     private String region;
     private List<String> genres;
     private double price;
+    private int publisherID;
     
     
     public GameStorePageInfo(int gameID){
@@ -56,18 +57,27 @@ public class GameStorePageInfo implements StoreListing  {
         this.region = region;
     }
     
-    public void price(double price){
+    public void setPrice(double price){
         this.price = price;
     }
 
     @Override
     public String displayStorePage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String listing = "";
+        listing += gameName+"\n"+description+"\n"+price+"\n"+minimumSpecs+"\n"+region;
+        return listing;
     }
 
     @Override
     public String displayListing() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String listing = "";
+        listing += gameName+"\t"+description+"\t"+price;
+        return listing;
     }
+
+    void setPublisherID(int publisherID) {
+        this.publisherID = publisherID;
+    }
+
     
 }

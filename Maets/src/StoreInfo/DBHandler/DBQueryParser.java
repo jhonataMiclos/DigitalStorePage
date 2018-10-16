@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 
 
@@ -27,27 +29,28 @@ public class DBQueryParser implements RepositoryAccess {
         DBConnector.getInstance().connectDataBase();
     }
     
-  
-  public List<String[]> getAllTeams(){//Gets a list of all the teams in a two-dimensional array.
+  @Override
+  public JSONArray getAllGames(){
       try {
-        ArrayList<String[]> arr = new ArrayList<String[]>();
-        ResultSet resultSet = DBConnector.getInstance().execute("select * from "+dbName+".gameStoreInfo");
+        JSONArray array = new JSONArray();
+        ResultSet resultSet = DBConnector.getInstance().execute("select * from "+dbName+".gamesStoreInfo");
         while(resultSet.next()){
-            String[] sArr = new String[8];
-            sArr[0] = ""+resultSet.getInt("productID");
-            sArr[1] = resultSet.getString("name");
-            sArr[2] = ""+resultSet.getDouble("price");
-            sArr[3] = ""+resultSet.getInt("ageRating");
-            sArr[4] = resultSet.getString("description");
-            sArr[5] = resultSet.getString("minimumSpecs");
-            sArr[6] = resultSet.getString("genre");
-            sArr[7] = ""+resultSet.getInt("publisherID");
-            arr.add(sArr);
+            JSONObject gameJSON = new JSONObject();
+            gameJSON.put("productID", resultSet.getInt("productID"));
+            gameJSON.put("name", resultSet.getString("name"));
+            gameJSON.put("price", resultSet.getDouble("price"));
+            gameJSON.put("ageRating", resultSet.getInt("ageRating"));
+            gameJSON.put("description", resultSet.getString("description"));
+            gameJSON.put("minimumSpecs", resultSet.getString("minimumSpecs"));
+            gameJSON.put("genre", resultSet.getString("genres"));
+            gameJSON.put("publisherID", resultSet.getInt("publisherID"));
+            array.put(gameJSON);
         }
-        return arr;
+        return array;
     }
     catch(Exception e){
-        return new ArrayList<String[]>();
+        System.out.println("Error retrieving store info: "+e.toString());
+        return new JSONArray();
     }
   }
   
