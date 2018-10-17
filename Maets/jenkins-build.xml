@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--- Ant "preloader" script for running on Jenkins -->
+<project name="Kestrel Stub on Jenkins" default="build">
+    <!-- create private folders -->
+    <mkdir dir="nbproject/private"/>
+    <!-- You'll also need this for each referenced project. For example: -->
+    <!-- mkdir dir="../kestrel-utils/nbproject/private"/-->
+    <!--- set variables needed by Ant when outside of Netbeans -->
+    <propertyfile file="nbproject/private/private.properties">
+        <entry key="user.properties.file" value="/opt/NetBeans8/build.properties"/>
+        <!-- Add any project references here -->
+        <!--entry key="reference.kestrel-utils.jar" value="${basedir}/../kestrel-utils/dist/kestrel-utils.jar"/-->
+        <!--entry key="project.kestrel-utils" value="${basedir}/../kestrel-utils"/-->
+    </propertyfile>
+    <!-- If you have any referenced projects, you'll need to set their 
+         private.properties here too.  Again, here's a-->
+    <!--propertyfile file="../kestrel-utils/nbproject/private/private.properties">
+        <entry key="user.properties.file" value="/opt/NetBeans8/build.properties"/>
+    </propertyfile-->
+    <!-- Build targets - these just chain a call to the original build file-->
+    <target name="build">
+            <ant dir="${basedir}" target="build"/>
+    </target>
+    <target name="clean">
+            <ant dir="${basedir}" target="clean"/>
+    </target>
+</project>
