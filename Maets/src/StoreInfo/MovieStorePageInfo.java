@@ -21,6 +21,7 @@ public class MovieStorePageInfo implements StoreListing {
     private int runtime;
     private double price;
     private List<String> genres;
+    private int publisherID;
     
     public MovieStorePageInfo(int movieID){
         this.movieID = movieID;
@@ -49,7 +50,7 @@ public class MovieStorePageInfo implements StoreListing {
         this.runtime = runtime;
     }
     
-    public void price(double price){
+    public void setPrice(double price){
         this.price = price;
     }
 
@@ -61,5 +62,9 @@ public class MovieStorePageInfo implements StoreListing {
     @Override
     public String displayListing() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setPublisherID(int publisherID) {
+        this.publisherID = publisherID;
     }
 }

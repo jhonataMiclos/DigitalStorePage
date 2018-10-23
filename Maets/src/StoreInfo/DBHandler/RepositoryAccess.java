@@ -13,4 +13,5 @@ import org.json.JSONArray;
  */
 public interface RepositoryAccess {
     JSONArray getAllGames();
+    JSONArray getAllMovies();
 }

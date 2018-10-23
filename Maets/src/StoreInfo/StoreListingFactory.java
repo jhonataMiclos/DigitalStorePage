@@ -38,6 +38,16 @@ public class StoreListingFactory {
     }
     
     List<StoreListing> getAllMovies(){
-         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+         JSONArray array = rA.getAllMovies();
+         List<StoreListing> sLArrList = new ArrayList<StoreListing>();
+         for(int x = 0; x < array.length(); x++){
+             try{
+                sLArrList.add(GameStorePageInfoFactory.create(array.getJSONObject(x)));
+             } catch(Exception e){
+                 System.out.println("Error : "+e.toString());
+             }
+         }
+         return sLArrList;
     }
 }

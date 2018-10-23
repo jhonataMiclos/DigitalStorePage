@@ -54,4 +54,28 @@ public class DBQueryParser implements RepositoryAccess {
     }
   }
   
+   @Override
+    public JSONArray getAllMovies(){
+        try {
+          JSONArray array = new JSONArray();
+          ResultSet resultSet = DBConnector.getInstance().execute("select * from "+dbName+".gamesStoreInfo");
+          while(resultSet.next()){
+              JSONObject movieJSON = new JSONObject();
+              movieJSON.put("productID", resultSet.getInt("productID"));
+              movieJSON.put("name", resultSet.getString("name"));
+              movieJSON.put("price", resultSet.getDouble("price"));
+              movieJSON.put("ageRating", resultSet.getInt("ageRating"));
+              movieJSON.put("description", resultSet.getString("description"));
+              movieJSON.put("runtime", resultSet.getInt("runtime"));
+              movieJSON.put("genre", resultSet.getString("genres"));
+              movieJSON.put("publisherID", resultSet.getInt("publisherID"));
+              array.put(movieJSON);
+          }
+          return array;
+      }
+      catch(Exception e){
+          System.out.println("Error retrieving store info: "+e.toString());
+          return new JSONArray();
+      }
+    }
 }
