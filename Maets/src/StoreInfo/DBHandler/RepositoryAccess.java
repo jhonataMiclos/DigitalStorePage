@@ -6,6 +6,7 @@
 package StoreInfo.DBHandler;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -14,4 +15,5 @@ import org.json.JSONArray;
 public interface RepositoryAccess {
     JSONArray getAllGames();
     JSONArray getAllMovies();
+    JSONObject getLoginInfo(String userName);
 }

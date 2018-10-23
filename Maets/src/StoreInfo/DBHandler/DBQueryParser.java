@@ -78,4 +78,22 @@ public class DBQueryParser implements RepositoryAccess {
           return new JSONArray();
       }
     }
+    @Override
+    public JSONObject getLoginInfo(String userName){
+        try {
+            JSONObject obj = new JSONObject();
+            ResultSet resultSet = DBConnector.getInstance().execute("select * from "+dbName+".userlogin where userName = '" + userName+"'");
+            if(resultSet.next()){
+                obj.put("userName", resultSet.getString("userName"));
+                obj.put("password", resultSet.getString("password"));
+                obj.put("typeID", resultSet.getInt("typeID"));
+            }
+            
+            return obj;
+        }
+        catch(Exception e){
+          System.out.println("Error retrieving user Login: "+e.toString());
+          return new JSONObject();
+      }
+    }
 }

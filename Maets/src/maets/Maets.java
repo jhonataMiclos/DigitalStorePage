@@ -5,11 +5,13 @@
  */
 package maets;
 
+import StoreInfo.LoginPannel;
 import StoreInfo.StoreListing;
 import StoreInfo.StoreListingFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JFrame;
 
 /**
  *
@@ -22,6 +24,11 @@ public class Maets {
      */
     public static void main(String[] args) {
         List<StoreListing> listings = StoreListingFactory.getAllGames();
+        JFrame mainFrame = new JFrame();
+        LoginPannel loginPannel = new LoginPannel();
+        mainFrame.add(loginPannel);
+        mainFrame.setSize(500, 500);
+        mainFrame.setVisible(true);
         for(int x = 0; x < listings.size();x++){
             System.out.println(""+x+".)\n"+listings.get(x).displayListing());
         }
