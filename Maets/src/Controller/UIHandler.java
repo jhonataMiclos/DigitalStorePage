@@ -1,7 +1,7 @@
 package Controller;
 
-import StoreInfo.DBHandler.RepositoryAccess;
-import StoreInfo.DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.RepositoryAccess;
+import DBHandler.RepositoryAccessMethodFactory;
 import StoreInfo.GameStorePageInfoFactory;
 import StoreInfo.StoreListing;
 import UI.LoginPanel;

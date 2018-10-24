@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package StoreInfo.DBHandler;
+package Launchers;
 
 /**
  *
  * @author jakec
  */
-public class RepositoryAccessMethodFactory {
-    public static RepositoryAccess getRepoAccess(){
-        return new DBQueryParser();
-    }
+public interface Launcher {
+    String getFileLocation();
+    double getRevisionNumber();
+    int getProductID();
 }

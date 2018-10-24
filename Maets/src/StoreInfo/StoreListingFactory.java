@@ -5,9 +5,9 @@
  */
 package StoreInfo;
 
-import StoreInfo.DBHandler.DBQueryParser;
-import StoreInfo.DBHandler.RepositoryAccess;
-import StoreInfo.DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.DBQueryParser;
+import DBHandler.RepositoryAccess;
+import DBHandler.RepositoryAccessMethodFactory;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;

@@ -1,7 +1,7 @@
 package Controller;
 
-import StoreInfo.DBHandler.RepositoryAccess;
-import StoreInfo.DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.RepositoryAccess;
+import DBHandler.RepositoryAccessMethodFactory;
 import org.json.JSONObject;
 
 /**
