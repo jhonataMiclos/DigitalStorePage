@@ -3,21 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package StoreInfo;
+package UI;
 
-import StoreInfo.LoginHandler;
+import Controller.LoginHandler;
+import Controller.LoginHandler;
+import Controller.UIHandler;
 import java.awt.event.ActionListener;
 
 /**
  *
  * @author jhonata
  */
-public class LoginPannel extends javax.swing.JPanel {
+public class LoginPanel extends javax.swing.JPanel {
 
+    public UIHandler uiHandler;
+    private LoginHandler handler = new LoginHandler();
+    
     /**
      * Creates new form Login
      */
-    public LoginPannel() {
+    public LoginPanel() {
         initComponents();
         
     }
@@ -51,6 +56,11 @@ public class LoginPannel extends javax.swing.JPanel {
         });
 
         signUpB.setText("Sign up");
+        signUpB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpBActionPerformed(evt);
+            }
+        });
 
         userNameF.setToolTipText("");
         userNameF.addActionListener(new java.awt.event.ActionListener() {
@@ -66,9 +76,9 @@ public class LoginPannel extends javax.swing.JPanel {
 
         passwordF.setToolTipText("password");
 
-        jLabel3.setText("passwrod");
+        jLabel3.setText("password");
 
-        jLabel4.setText("user name");
+        jLabel4.setText("username");
         jLabel4.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -147,7 +157,10 @@ public class LoginPannel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_loginBActionPerformed
 
-   private LoginHandler handler = new LoginHandler();
+    private void signUpBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBActionPerformed
+        uiHandler.displaySignUpPanel();
+    }//GEN-LAST:event_signUpBActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel errorL;
     private javax.swing.JLabel jLabel1;

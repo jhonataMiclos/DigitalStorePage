@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package StoreInfo;
+package Controller;
 
 import StoreInfo.DBHandler.RepositoryAccess;
 import StoreInfo.DBHandler.RepositoryAccessMethodFactory;
@@ -15,6 +15,7 @@ import org.json.JSONObject;
  */
 public class LoginHandler {
     private RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+    
     public String validateLogin(String userName, String password)
     {
         if (validateUserName(userName) && validatePassword(password)){

@@ -5,7 +5,8 @@
  */
 package maets;
 
-import StoreInfo.LoginPannel;
+import Controller.UIHandler;
+import UI.LoginPanel;
 import StoreInfo.StoreListing;
 import StoreInfo.StoreListingFactory;
 import java.util.ArrayList;
@@ -24,11 +25,9 @@ public class Maets {
      */
     public static void main(String[] args) {
         List<StoreListing> listings = StoreListingFactory.getAllGames();
-        JFrame mainFrame = new JFrame();
-        LoginPannel loginPannel = new LoginPannel();
-        mainFrame.add(loginPannel);
-        mainFrame.setSize(500, 500);
-        mainFrame.setVisible(true);
+        
+        UIHandler ui = new UIHandler();
+        
         for(int x = 0; x < listings.size();x++){
             System.out.println(""+x+".)\n"+listings.get(x).displayListing());
         }
@@ -37,5 +36,4 @@ public class Maets {
         int input = Integer.parseInt(in.nextLine());
         System.out.println(listings.get(input).displayStorePage());
     }
-    
 }

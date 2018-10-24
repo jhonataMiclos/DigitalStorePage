@@ -103,6 +103,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Sign up"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signUpBActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="userNameF">
       <Properties>
@@ -132,12 +135,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="passwrod"/>
+        <Property name="text" type="java.lang.String" value="password"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="user name"/>
+        <Property name="text" type="java.lang.String" value="username"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>

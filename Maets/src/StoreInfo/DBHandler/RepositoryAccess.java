@@ -15,5 +15,6 @@ import org.json.JSONObject;
 public interface RepositoryAccess {
     JSONArray getAllGames();
     JSONArray getAllMovies();
+    JSONArray getAllUserTypes();
     JSONObject getLoginInfo(String userName);
 }
