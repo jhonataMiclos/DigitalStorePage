@@ -2,6 +2,7 @@ package Controller;
 
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.DBWriter;
 import org.json.JSONObject;
 
 /**
@@ -11,8 +12,13 @@ import org.json.JSONObject;
 public class SignUpHandler {
 
     private RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+    private DBWriter dbWriter;
+    
+    public SignUpHandler() {
+        dbWriter = new DBWriter();
+    }
 
-    public String validateSignUp(String username, String password, String userType, String publisherName) {
+    public String validateSignUp(String username, String password, int userType, String publisherName) {
         if (!validateUserName(username)) {
             return "Invalid Username";
         }
@@ -26,16 +32,20 @@ public class SignUpHandler {
             return "Invalid Password";
         }
 
-        if (!userType.equals("Publisher")) {
-            // Register user/admin
+        if (userType == 1) {
+            // Register user
+            dbWriter.insertUser(username, password, userType);
             return "Success";
         }
-        
-        if (publisherName.isEmpty()) {
-            return "Must provide a publisher name";
+        else if (userType == 2) {
+            if (publisherName.isEmpty()) {
+                return "Must provide a publisher name";
+            }
+            
+            // Register publisher
+            dbWriter.insertUser(username, password, userType);
         }
         
-        // Register publisher
         
         return "Success";
     }
