@@ -26,14 +26,15 @@ public class DBWriter {
     }
     
     
-    public boolean insertUser(String username, String password){
+    public boolean insertUser(String username, String password, int type){
          try {
-             String sql = "Insert into  "+dbName+".userLogin (userLogin, password) values (? , ?)";
+             String sql = "Insert into  "+dbName+".userlogin (userName, password, typeID) values (? , ?, ?)";
              
              PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
              
              preparedStatement.setString(1, username);
              preparedStatement.setString(2, password);
+             preparedStatement.setInt(3, type);
              
              int rowsAffected = preparedStatement.executeUpdate();
              return true;

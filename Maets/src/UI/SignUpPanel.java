@@ -27,10 +27,9 @@ public class SignUpPanel extends javax.swing.JPanel {
         userTypeList.removeAllItems();
         
         for (String item : userTypes) {
+            if (item.equals("Admin")) continue;
             userTypeList.addItem(item);
         }
-        
-        
     }
 
     /**
@@ -210,7 +209,7 @@ public class SignUpPanel extends javax.swing.JPanel {
         
         String usernameText = userNameF.getText();
         String passwordText = String.valueOf(passwordF.getPassword());
-        String userType = (String) userTypeList.getSelectedItem();
+        int userType = userTypeList.getSelectedIndex() + 1;
         String publisherName = (String) publisherNameF.getText();
         
         String message = handler.validateSignUp(usernameText, passwordText, userType, publisherName);
