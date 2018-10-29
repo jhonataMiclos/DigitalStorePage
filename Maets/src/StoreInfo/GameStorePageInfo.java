@@ -57,6 +57,7 @@ public class GameStorePageInfo implements StoreListing  {
         this.region = region;
     }
     
+    @Override
     public void setPrice(double price){
         this.price = price;
     }

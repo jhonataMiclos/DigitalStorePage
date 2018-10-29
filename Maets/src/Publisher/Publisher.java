@@ -7,6 +7,7 @@ package Publisher;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONObject;
 
 /**
  *
@@ -38,7 +39,12 @@ public class Publisher {
     
     public void updatePrice(Double updatedPrice){
         if(selectedItem >= 0){
-            
+            pPD.get(selectedItem).updatePrice(updatedPrice);
+            changesMade = true;
         }
+    }
+    
+    public void addMovie(JSONObject movieDetails){
+       
     }
 }

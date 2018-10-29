@@ -12,7 +12,7 @@ import org.json.JSONObject;
  *
  * @author jakec
  */
-public class MovieStorePageInfoFactory {
+public class MovieStorePageInfoFactory extends StoreListingFactory{
     public static StoreListing create(JSONObject json) throws JSONException{
         return getMovieInfo(json);
     }

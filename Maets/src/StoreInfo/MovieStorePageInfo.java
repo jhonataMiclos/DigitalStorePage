@@ -50,6 +50,7 @@ public class MovieStorePageInfo implements StoreListing {
         this.runtime = runtime;
     }
     
+    @Override
     public void setPrice(double price){
         this.price = price;
     }

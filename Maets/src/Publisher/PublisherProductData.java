@@ -20,8 +20,9 @@ public class PublisherProductData {
     private Launcher launcher;
 
     
-    public PublisherProductData(){
-        
+    public PublisherProductData(StoreListing storeListing, Launcher launcher){
+        setStoreListing(storeListing);
+        setLauncher(launcher);
     }
     
     void setStoreListing(StoreListing storeListing){
@@ -33,6 +34,10 @@ public class PublisherProductData {
     }
     
     void updatePrice(Double updatedPrice){
-        //storeListing.setPrice(updatedPrice);
+        storeListing.setPrice(updatedPrice);
+    }
+    
+    void play(){
+        launcher.play();
     }
 }

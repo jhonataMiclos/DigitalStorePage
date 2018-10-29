@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package StoreInfo;
+package Launchers;
 
 /**
  *
  * @author jakec
  */
-public interface StoreListing {
-    String displayStorePage();
-    String displayListing();
-    void setPrice(double updatedPrice);
+public interface RunProduct {
+    void play();
 }
