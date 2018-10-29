@@ -105,4 +105,14 @@ public class DBConnector {
     void close() {
     
     }
+
+
+    PreparedStatement getPreparedStatement(String sql) {
+        try {
+            return connect.prepareStatement(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }
