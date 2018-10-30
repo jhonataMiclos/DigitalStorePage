@@ -5,8 +5,10 @@
  */
 package Controller;
 
+import DBHandler.DBWriter;
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
+import java.util.Date;
 import org.json.JSONObject;
 
 /**
@@ -15,7 +17,11 @@ import org.json.JSONObject;
  */
 public class LoginHandler {
     private RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+    private DBWriter dbWriter;
     
+    public LoginHandler() {
+        dbWriter = new DBWriter();
+    }
     public String validateLogin(String userName, String password)
     {
         if (validateUserName(userName) && validatePassword(password)){
@@ -23,8 +29,20 @@ public class LoginHandler {
            if(value == 0 )
                 return "User not in database";
            else
-           {
-               return "Success";
+           {             
+                ConnectionReplyInterceptor cri = new LoggingInterceptor();
+
+                LoggingDispatcher dis = new LoggingDispatcher();
+
+                ConnectionReplyContext context;  
+
+                dis.registerLoggingInterceptor(cri);
+
+                context = new ConnectionReplyContext(new Date()); 
+
+                Date dateTime = dis.preRemoteReply(context); 
+                dbWriter.insertLoginTime(userName, dateTime);
+                return "Success";
            }
         }
         return "Wrong password or user name";

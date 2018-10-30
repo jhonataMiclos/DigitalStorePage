@@ -8,6 +8,8 @@ package DBHandler;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,6 +39,23 @@ public class DBWriter {
              preparedStatement.setInt(3, type);
              
              int rowsAffected = preparedStatement.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+         }
+    }
+    public boolean insertLoginTime(String username, Date dateTime)
+    {
+        try {
+             String sql = "Insert into  "+dbName+".sessionrecords (userName, loginTime) values (? , ?)";
+             Timestamp dateTimeStr = new Timestamp(dateTime.getTime());
+             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             
+             preparedStatement.setString(1, username);
+             preparedStatement.setTimestamp(2, dateTimeStr);
+             
+             preparedStatement.executeUpdate();
              return true;
          } catch (SQLException ex) {
              Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
