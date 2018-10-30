@@ -2,16 +2,9 @@ package Controller;
 
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
-import StoreInfo.GameStorePageInfoFactory;
-import StoreInfo.StoreListing;
 import UI.LoginPanel;
-import UI.SignUpPanel;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  *
@@ -35,36 +28,15 @@ public class UIHandler {
     public void displayLoginPanel() {
         mainFrame.getContentPane().removeAll();
         mainFrame.repaint();
-        LoginPanel loginPanel = new LoginPanel();
+        LoginPanel loginPanel = new LoginPanel(mainFrame);
         loginPanel.uiHandler = this;
         mainFrame.add(loginPanel);
-        mainFrame.setSize(500, 500);
+        mainFrame.setSize(600, 600);
     }
     
     public void displaySignUpPanel() {
-        mainFrame.getContentPane().removeAll();
-        mainFrame.repaint();
-        
-        
-        String[] userTypes = getAllUserTypes();
-        SignUpPanel signUpPanel = new SignUpPanel(userTypes);
-        signUpPanel.uiHandler = this;
-        mainFrame.add(signUpPanel);
-        mainFrame.setSize(500, 501);
+    
     }
     
-    private String[] getAllUserTypes(){
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-         JSONArray array = rA.getAllUserTypes();
-         String[] userTypes = new String[array.length()];
-         for(int x = 0; x < array.length(); x++){
-             try{
-                JSONObject currentObj = array.getJSONObject(x);
-                userTypes[x] = currentObj.getString("type");
-             } catch(Exception e){
-                 System.out.println("Error : "+e.toString());
-             }
-         }
-         return userTypes;
-    }
+    
 }

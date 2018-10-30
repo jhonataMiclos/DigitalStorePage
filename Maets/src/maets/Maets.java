@@ -6,13 +6,10 @@
 package maets;
 
 import Controller.UIHandler;
-import UI.LoginPanel;
 import StoreInfo.StoreListing;
 import StoreInfo.StoreListingFactory;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import javax.swing.JFrame;
 
 /**
  *
