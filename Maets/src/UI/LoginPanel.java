@@ -23,15 +23,18 @@ public class LoginPanel extends javax.swing.JPanel {
     /**
      * Creates new form Login
      */
-    public LoginPanel(JFrame mainFrame) {
+    public LoginPanel(JFrame mainFrame, UIHandler uiHandler) {
         this.frame = mainFrame;
-        signUpB= new CommandJbutton(new NavigateToCommand(new SignUpPanel(frame,this),frame));
+        this.uiHandler = uiHandler;
+        signUpB= new CommandJbutton(new NavigateToCommand(new SignUpPanel(frame,this,uiHandler),frame));
+        loginB= new CommandJbutton(new NavigateToCommand(new AdminPanelAdapted(frame,this,uiHandler),frame));
         initComponents();
         
     }
 
-    LoginPanel(JFrame frame, JPanel panel) {
+    LoginPanel(JFrame frame, JPanel panel, UIHandler uiHandler) {
        this.frame = frame;
+       this.uiHandler = uiHandler;
         signUpB= new CommandJbutton(new NavigateToCommand(panel,frame));
         initComponents();
     }
@@ -44,8 +47,6 @@ public class LoginPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-        
-        loginB  = new javax.swing.JButton();
         userNameF = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -159,10 +160,33 @@ public class LoginPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String usernameText = userNameF.getText();
         String passwordText = String.valueOf(passwordF.getPassword());
-        String errorText = handler.validateLogin(usernameText, passwordText);
-        System.out.println(errorText);
-        errorL.setText(errorText);
+        int loginResult = handler.validateLogin(usernameText, passwordText);
         
+        switch (loginResult) {
+            case -1:
+                System.out.println("Incorrect user login");
+                errorL.setText("Incorrect user login");
+                break;
+            case 0:
+                System.out.println("User not in the database");
+                errorL.setText("User not in the database");
+                break;
+            case 1:
+                // Display user stuff
+                break;
+            case 2:
+                // Display publisher stuff
+                break;
+            case 3:
+                // Display admin stuff
+                loginB.execute();
+                break;
+            default:
+                System.out.println("Failed user login");
+                errorL.setText("Failed user login");
+                break;
+            
+        }
     }                                      
 
     private void signUpBActionPerformed(java.awt.event.ActionEvent evt) {                                        
@@ -177,7 +201,7 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private CommandJbutton signUpB;
     private javax.swing.JPasswordField passwordF;
-    private javax.swing.JButton loginB;
+    private CommandJbutton loginB;
     private javax.swing.JTextField userNameF;
     private javax.swing.JFrame frame;
        

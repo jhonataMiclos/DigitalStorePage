@@ -11,7 +11,9 @@ import javax.swing.JButton;
  * @author Dev Mode
  */
 public class CommandJbutton extends JButton implements Command {
-    private Command command;
+    
+    public Command command;
+    
   public CommandJbutton(){
       super();
       this.command = null;

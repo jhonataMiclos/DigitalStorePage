@@ -16,5 +16,6 @@ public interface RepositoryAccess {
     JSONArray getAllGames();
     JSONArray getAllMovies();
     JSONArray getAllUserTypes();
+    JSONArray getAllUsers();
     JSONObject getLoginInfo(String userName);
 }

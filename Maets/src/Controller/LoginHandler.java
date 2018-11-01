@@ -22,12 +22,13 @@ public class LoginHandler {
     public LoginHandler() {
         dbWriter = new DBWriter();
     }
-    public String validateLogin(String userName, String password)
+    public int validateLogin(String userName, String password)
     {
         if (validateUserName(userName) && validatePassword(password)){
            int value = getUserLogin(userName);
-           if(value == 0 )
-                return "User not in database";
+           if(value == 0) {
+               return value;
+           }
            else
            {             
                 ConnectionReplyInterceptor cri = new LoggingInterceptor();
@@ -42,11 +43,13 @@ public class LoginHandler {
 
                 Date dateTime = dis.preRemoteReply(context); 
                 dbWriter.insertLoginTime(userName, dateTime);
-                return "Success";
+                return value;
            }
         }
-        return "Wrong password or user name";
+        
+        return -1;
     }
+    
     private int getUserLogin(String userName){
         try{
             JSONObject obj = rA.getLoginInfo(userName);

@@ -45,6 +45,23 @@ public class DBWriter {
              return false;
          }
     }
+    
+    public boolean promoteUserToAdmin(String username){
+         try {
+             String sql = "UPDATE "+dbName+".userlogin SET typeID = 3 WHERE userName = ?";
+             
+             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             
+             preparedStatement.setString(1, username);
+             
+             int rowsAffected = preparedStatement.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+         }
+    }
+    
     public boolean insertLoginTime(String username, Date dateTime)
     {
         try {

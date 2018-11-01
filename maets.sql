@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2018 at 07:58 PM
+-- Generation Time: Nov 01, 2018 at 01:39 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -116,7 +116,11 @@ CREATE TABLE `sessionrecords` (
 --
 
 INSERT INTO `sessionrecords` (`userName`, `loginTime`, `LogoutTime`) VALUES
-('jhon_1', '2018-10-30 18:49:20.000000', NULL);
+('jhon_1', '2018-10-30 18:49:20.000000', NULL),
+('asdd', '2018-11-01 12:34:57.000000', NULL),
+('asdd', '2018-11-01 12:35:40.000000', NULL),
+('asdd', '2018-11-01 12:37:27.000000', NULL),
+('admin', '2018-11-01 12:38:45.000000', NULL);
 
 -- --------------------------------------------------------
 
@@ -135,7 +139,8 @@ CREATE TABLE `userlogin` (
 --
 
 INSERT INTO `userlogin` (`userName`, `password`, `typeID`) VALUES
-('jhon_1', 'Ab12345678@', 1);
+('jhon_1', 'Ab12345678@', 1),
+('admin', 'Adm1nI@m', 3);
 
 -- --------------------------------------------------------
 

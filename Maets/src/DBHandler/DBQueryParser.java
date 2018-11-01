@@ -98,6 +98,8 @@ public class DBQueryParser implements RepositoryAccess {
       }
     }
     
+    
+    
     @Override
     public JSONObject getLoginInfo(String userName){
         try {
@@ -114,6 +116,26 @@ public class DBQueryParser implements RepositoryAccess {
         catch(Exception e){
           System.out.println("Error retrieving user Login: "+e.toString());
           return new JSONObject();
+      }
+    }
+
+    @Override
+    public JSONArray getAllUsers() {
+        try {
+          JSONArray array = new JSONArray();
+          ResultSet resultSet = DBConnector.getInstance().execute("select * from "+dbName+".userlogin");
+          while(resultSet.next()){
+              JSONObject userTypeJSON = new JSONObject();
+              userTypeJSON.put("userName", resultSet.getString("userName"));
+              userTypeJSON.put("password", resultSet.getString("password"));
+              userTypeJSON.put("typeID", resultSet.getString("typeID"));
+              array.put(userTypeJSON);
+          }
+          return array;
+      }
+      catch(Exception e){
+          System.out.println("Error retrieving user login info: "+e.toString());
+          return new JSONArray();
       }
     }
 }

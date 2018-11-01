@@ -29,27 +29,29 @@ public class SignUpPanel extends javax.swing.JPanel {
     /**
      * Creates new form SignUpPanel2
      */
-    public SignUpPanel(JFrame mainFrame) {
+    public SignUpPanel(JFrame mainFrame, UIHandler uiHandler) {
         this.frame = mainFrame;
-        Back = new CommandJbutton (new NavigateToCommand(new LoginPanel(frame,this),frame));
+        this.uiHandler = uiHandler;
+        Back = new CommandJbutton (new NavigateToCommand(new LoginPanel(frame,this, uiHandler),frame));
         initComponents();
         
         userTypeList.removeAllItems();
               
-        String[] userTypes = getAllUserTypes();
+        String[] userTypes = uiHandler.getAllAvailableUserTypes();
         for (String item : userTypes) {
             if (item.equals("Admin")) continue;
             userTypeList.addItem(item);
         }
     }
 
-    SignUpPanel(JFrame frame, JPanel panel) {
+    SignUpPanel(JFrame frame, JPanel panel, UIHandler uiHandler) {
          this.frame = frame;
+         this.uiHandler = uiHandler;
         Back= new CommandJbutton(new NavigateToCommand(panel,frame));
         initComponents();
         userTypeList.removeAllItems();
               
-        String[] userTypes = getAllUserTypes();
+        String[] userTypes = uiHandler.getAllAvailableUserTypes();
         for (String item : userTypes) {
             if (item.equals("Admin")) continue;
             userTypeList.addItem(item);
@@ -225,20 +227,7 @@ public class SignUpPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
     }                                         
-        private String[] getAllUserTypes(){
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-         JSONArray array = rA.getAllUserTypes();
-         String[] userTypes = new String[array.length()];
-         for(int x = 0; x < array.length(); x++){
-             try{
-                JSONObject currentObj = array.getJSONObject(x);
-                userTypes[x] = currentObj.getString("type");
-             } catch(Exception e){
-                 System.out.println("Error : "+e.toString());
-             }
-         }
-         return userTypes;
-    }
+        
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {                                     
         Back.execute();
     }                                    
