@@ -15,7 +15,7 @@ import org.json.JSONObject;
  * @author jakec
  */
 public class LauncherFactory {
-    public Launcher makeGameLauncher(JSONObject launcherInfo){
+    public static Launcher makeGameLauncher(JSONObject launcherInfo){
         try {
             Launcher launcher = new Launcher();
             launcher.setFileLocation(launcherInfo.getString("fileLocation"));

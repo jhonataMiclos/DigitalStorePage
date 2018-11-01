@@ -7,6 +7,8 @@ package Publisher;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONObject;
 
 /**
@@ -45,6 +47,20 @@ public class Publisher {
     }
     
     public void addMovie(JSONObject movieDetails){
-       
+        try {
+            pPD.add(PublisherProductFactory.makeNewMovie(movieDetails));
+        } catch (Exception ex) {
+            Logger.getLogger(Publisher.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.print("Error: Movie data formatted incorrectly");
+        }
+    }
+    
+    public void addGame(JSONObject gameDetails){
+        try {
+            pPD.add(PublisherProductFactory.makeNewGame(gameDetails));
+        } catch (Exception ex) {
+            Logger.getLogger(Publisher.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.print("Error: Movie data formatted incorrectly");
+        }
     }
 }

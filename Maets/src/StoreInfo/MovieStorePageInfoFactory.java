@@ -18,7 +18,7 @@ public class MovieStorePageInfoFactory extends StoreListingFactory{
     }
     
     
-    private static MovieStorePageInfo getMovieInfo(JSONObject json) throws JSONException{
+    public static MovieStorePageInfo getMovieInfo(JSONObject json) throws JSONException{
         MovieStorePageInfo mspi = new MovieStorePageInfo(json.getInt("productID"));
         mspi.setMovieName(json.getString("name"));
         mspi.setPrice(json.getDouble("price"));

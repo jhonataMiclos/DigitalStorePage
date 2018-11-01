@@ -18,7 +18,7 @@ public class GameStorePageInfoFactory extends StoreListingFactory{
     }
     
     
-    private static GameStorePageInfo getGameInfo(JSONObject json) throws JSONException{
+    public static GameStorePageInfo getGameInfo(JSONObject json) throws JSONException{
         GameStorePageInfo gspi = new GameStorePageInfo(json.getInt("productID"));
         gspi.setGameName(json.getString("name"));
         gspi.setPrice(json.getDouble("price"));
