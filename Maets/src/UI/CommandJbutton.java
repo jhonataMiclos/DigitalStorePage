@@ -14,10 +14,6 @@ public class CommandJbutton extends JButton implements Command {
     
     public Command command;
     
-  public CommandJbutton(){
-      super();
-      this.command = null;
-  }
   public CommandJbutton(Command command){
       super();
       this.command = command;

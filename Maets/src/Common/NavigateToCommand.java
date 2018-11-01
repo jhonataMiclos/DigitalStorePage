@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Common;
+import Memento.CareTaker;
+import Memento.Memento;
 import UI.LoginPanel;
 import javax.swing.*;
 /**
@@ -27,6 +29,8 @@ public class NavigateToCommand implements Command {
         mainFrame.add(location);
         mainFrame.setSize(601, 600);
         mainFrame.setSize(600, 600);
+        
+        CareTaker.getInstance().add(new Memento(location));
     }
     
 }

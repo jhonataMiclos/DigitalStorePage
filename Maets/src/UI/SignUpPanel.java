@@ -10,6 +10,7 @@ import Controller.SignUpHandler;
 import Controller.UIHandler;
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
+import Memento.CareTaker;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -31,8 +32,9 @@ public class SignUpPanel extends javax.swing.JPanel {
      */
     public SignUpPanel(JFrame mainFrame, UIHandler uiHandler) {
         this.frame = mainFrame;
-        this.uiHandler = uiHandler;
-        Back = new CommandJbutton (new NavigateToCommand(new LoginPanel(frame,this, uiHandler),frame));
+
+        Back = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),mainFrame));
+
         initComponents();
         
         userTypeList.removeAllItems();
