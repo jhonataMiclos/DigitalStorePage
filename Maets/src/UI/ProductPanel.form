@@ -66,11 +66,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="cartB">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add to cart"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cartBActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="logoutB">
       <Properties>

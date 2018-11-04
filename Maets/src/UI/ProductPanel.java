@@ -36,8 +36,18 @@ public class ProductPanel extends javax.swing.JPanel {
         productInfoLabel.setText("Product Info");
 
         backB.setText("Back");
+        backB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBActionPerformed(evt);
+            }
+        });
 
         cartB.setText("Add to cart");
+        cartB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cartBActionPerformed(evt);
+            }
+        });
 
         logoutB.setText("Logout");
 
@@ -73,6 +83,14 @@ public class ProductPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backBActionPerformed
+
+    private void cartBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cartBActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

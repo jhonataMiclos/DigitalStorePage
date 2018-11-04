@@ -1,5 +1,6 @@
 package UI;
 
+import Common.AddToCartCommand;
 import Common.DoNothingCommand;
 import Common.NavigateToCommand;
 import Controller.UIHandler;
@@ -22,8 +23,9 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
         this.uiHandler = uiHandler;
         this.productName = productName;
          
-        cartB = new CommandJbutton (new DoNothingCommand());
+        cartB = new CommandJbutton (new AddToCartCommand(uiHandler, productName));
         backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),mainFrame));
+        logoutB = new CommandJbutton (new DoNothingCommand());
         initComponents();
         
         listProductInfo(productName);
@@ -34,8 +36,9 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
         this.uiHandler = uiHandler;
         this.productName = productName;
         
-        cartB = new CommandJbutton (new DoNothingCommand());
-        backB = new CommandJbutton(new NavigateToCommand(panel,frame));
+        cartB = new CommandJbutton (new AddToCartCommand(uiHandler, productName));
+        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),frame));
+        logoutB = new CommandJbutton (new DoNothingCommand());
         initComponents();
         
         listProductInfo(productName);
@@ -44,7 +47,7 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
     public void listProductInfo(String productName) {
         String productInfo = uiHandler.getProductInfo(productName);
         productInfo = "<html>" + productInfo + "</html>";
-        //productInfo.replaceAll("\n", "<br/>");
+        
         productInfoLabel.setText(productInfo);
     }
 
@@ -58,17 +61,30 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
     private void initComponents() {
 
         productInfoLabel = new javax.swing.JLabel();
-        backB = new javax.swing.JButton();
-        logoutB = new javax.swing.JButton();
 
         productInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         productInfoLabel.setText("Product Info");
 
         backB.setText("Back");
-
-        logoutB.setText("Add to cart");
-
-        cartB.setText("Logout");
+        backB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBActionPerformed(evt);
+            }
+        });
+        
+        cartB.setText("Add to cart");
+        cartB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cartBActionPerformed(evt);
+            }
+        });
+        
+        logoutB.setText("Logout");
+        logoutB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -84,8 +100,8 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logoutB, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cartB, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(cartB, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(logoutB, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -96,19 +112,29 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
                     .addComponent(productInfoLabel)
                     .addComponent(backB))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cartB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
                 .addComponent(logoutB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                .addComponent(cartB)
                 .addContainerGap())
         );
     }// </editor-fold>                        
 
+    private void backBActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        backB.execute();
+    }      
+    
+    private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        
+    }      
+    
+    private void cartBActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        cartB.execute();
+    }      
 
     // Variables declaration - do not modify    
-    private CommandJbutton Back;
-    private javax.swing.JButton backB;
-    private javax.swing.JButton logoutB;
+    private CommandJbutton backB;
     private CommandJbutton cartB;
+    private CommandJbutton logoutB;
     private javax.swing.JLabel productInfoLabel;
     // End of variables declaration                   
 }

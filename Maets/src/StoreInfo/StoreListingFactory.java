@@ -22,7 +22,6 @@ public class StoreListingFactory {
     public static List<StoreListing> getAll(){
          List<StoreListing> allList = getAllGames();
          List<StoreListing> movieList = getAllMovies();
-         System.out.println("Movie list count = " + movieList.size());
          allList.addAll(movieList);
          
          return allList;
@@ -46,7 +45,6 @@ public class StoreListingFactory {
         RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
          JSONArray array = rA.getAllMovies();
          List<StoreListing> sLArrList = new ArrayList<StoreListing>();
-         System.out.println("movie count = " + array.length());
          for(int x = 0; x < array.length(); x++){
              try{
                 sLArrList.add(MovieStorePageInfoFactory.create(array.getJSONObject(x)));

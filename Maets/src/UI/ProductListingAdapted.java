@@ -4,6 +4,7 @@ import Common.DoNothingCommand;
 import Common.NavigateToCommand;
 import Controller.StorePageHandler;
 import Controller.UIHandler;
+import Memento.CareTaker;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
@@ -69,7 +70,6 @@ public class ProductListingAdapted extends javax.swing.JPanel {
 
         productScrollPane = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
-        backB = new javax.swing.JButton();
         logoutB = new javax.swing.JButton();
         libraryB = new javax.swing.JButton();
         storeLabel = new javax.swing.JLabel();
@@ -117,13 +117,6 @@ public class ProductListingAdapted extends javax.swing.JPanel {
             }
         });
 
-        backB.setText("Back");
-        backB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBActionPerformed(evt);
-            }
-        });
-
         logoutB.setText("Logout");
 
         libraryB.setText("Library");
@@ -148,7 +141,6 @@ public class ProductListingAdapted extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(productPageB, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(backB, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(logoutB, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(libraryB, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cartB, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -159,7 +151,6 @@ public class ProductListingAdapted extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backB)
                     .addComponent(storeLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -183,15 +174,10 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         String selectedProduct = (String) productTable.getValueAt(selectedRow, 0);
         productPageB = new CommandJbutton(new NavigateToCommand(new ProductPanelAdapted(frame,this,uiHandler,selectedProduct),frame));
         productPageB.execute();
-    }                                            
-
-    private void backBActionPerformed(java.awt.event.ActionEvent evt) {                                      
-        // TODO add your handling code here:
-    }                                     
+    }
 
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton backB;
     private javax.swing.JButton cartB;
     private javax.swing.JButton libraryB;
     private javax.swing.JButton logoutB;

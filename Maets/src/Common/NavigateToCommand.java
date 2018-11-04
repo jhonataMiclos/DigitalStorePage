@@ -21,10 +21,6 @@ public class NavigateToCommand implements Command {
         this.mainFrame = mainFrame;
     }
     
-    public void setLocation(JPanel location) {
-        this.location = location;
-    }
-    
     @Override
     public void execute() {
       mainFrame.getContentPane().removeAll();

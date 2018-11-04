@@ -5,6 +5,7 @@ import DBHandler.RepositoryAccessMethodFactory;
 import StoreInfo.StoreListing;
 import StoreInfo.StoreListingFactory;
 import UI.LoginPanel;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -23,6 +24,7 @@ public class UIHandler {
     private List<String> cart;
 
     public UIHandler() {
+        cart = new ArrayList<String>();
         mainFrame = new JFrame();
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
