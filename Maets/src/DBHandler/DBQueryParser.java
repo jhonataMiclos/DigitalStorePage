@@ -58,7 +58,7 @@ public class DBQueryParser implements RepositoryAccess {
     public JSONArray getAllMovies(){
         try {
           JSONArray array = new JSONArray();
-          ResultSet resultSet = DBConnector.getInstance().execute("select * from "+dbName+".gamesStoreInfo");
+          ResultSet resultSet = DBConnector.getInstance().execute("select * from "+dbName+".movieStoreInfo");
           while(resultSet.next()){
               JSONObject movieJSON = new JSONObject();
               movieJSON.put("productID", resultSet.getInt("productID"));

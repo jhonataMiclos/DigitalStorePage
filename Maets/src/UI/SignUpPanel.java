@@ -32,18 +32,13 @@ public class SignUpPanel extends javax.swing.JPanel {
      */
     public SignUpPanel(JFrame mainFrame, UIHandler uiHandler) {
         this.frame = mainFrame;
+        this.uiHandler = uiHandler;
 
         Back = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),mainFrame));
 
         initComponents();
         
-        userTypeList.removeAllItems();
-              
-        String[] userTypes = uiHandler.getAllAvailableUserTypes();
-        for (String item : userTypes) {
-            if (item.equals("Admin")) continue;
-            userTypeList.addItem(item);
-        }
+        displayUserTypes();
     }
 
     SignUpPanel(JFrame frame, JPanel panel, UIHandler uiHandler) {
@@ -51,6 +46,11 @@ public class SignUpPanel extends javax.swing.JPanel {
          this.uiHandler = uiHandler;
         Back= new CommandJbutton(new NavigateToCommand(panel,frame));
         initComponents();
+        
+        displayUserTypes();
+    }
+
+    private void displayUserTypes() {
         userTypeList.removeAllItems();
               
         String[] userTypes = uiHandler.getAllAvailableUserTypes();
@@ -59,8 +59,6 @@ public class SignUpPanel extends javax.swing.JPanel {
             userTypeList.addItem(item);
         }
     }
-
-   
 
     /**
      * This method is called from within the constructor to initialize the form.

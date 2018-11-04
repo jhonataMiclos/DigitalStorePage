@@ -57,15 +57,25 @@ public class MovieStorePageInfo implements StoreListing {
 
     @Override
     public String displayStorePage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String listing = "";
+        listing += "Name: "+movieName+"<br/>Description: "+description+"<br/>Price: "+
+                price+"<br/>Runtime: "+runtime+"<br/>Age Rating: "+ageRating;
+        return listing;
     }
 
     @Override
     public String displayListing() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String listing = "";
+        listing += movieName+"\t"+description+"\t"+price;
+        return listing;
     }
 
     void setPublisherID(int publisherID) {
         this.publisherID = publisherID;
+    }
+
+    @Override
+    public String getName() {
+        return movieName;
     }
 }

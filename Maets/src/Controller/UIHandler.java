@@ -2,7 +2,10 @@ package Controller;
 
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
+import StoreInfo.StoreListing;
+import StoreInfo.StoreListingFactory;
 import UI.LoginPanel;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import org.json.JSONArray;
@@ -17,6 +20,7 @@ public class UIHandler {
     private RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
     private JFrame mainFrame;
     private LoginHandler loginHandler;
+    private List<String> cart;
 
     public UIHandler() {
         mainFrame = new JFrame();
@@ -36,8 +40,19 @@ public class UIHandler {
         mainFrame.setSize(600, 600);
     }
     
-    public void displaySignUpPanel() {
+    public String getProductInfo(String productName) {
+        List<StoreListing> listings = StoreListingFactory.getAll();
+        for (StoreListing listing : listings) {
+            if (listing.getName().equals(productName)) {
+                return listing.displayStorePage();
+            }
+        }
+        
+        return null;
+    }
     
+    public void addToCart(String productName) {
+        cart.add(productName);
     }
     
     public String[] getAllAvailableUserTypes(){

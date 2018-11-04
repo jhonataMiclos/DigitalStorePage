@@ -29,16 +29,7 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
         promoteB = new CommandJbutton(new PromoteToAdminCommand());
         initComponents();
         
-        // Diplay all users that are non Admin and non Publisher
-        userDropdown.removeAllItems();
-        
-        String[] userNames = uiHandler.getAllUserNames();
-        String[] userTypes = uiHandler.getAllAvailableUserTypes();
-        for (int i = 0; i < userNames.length; i++) {
-            if (userTypes[i].equals("Admin")) continue;
-            if (userTypes[i].equals("Publisher")) continue;
-            userDropdown.addItem(userNames[i]);
-        }
+        displayAllUsers();
     }
     
     public AdminPanelAdapted(JFrame frame, JPanel panel, UIHandler uiHandler) {
@@ -47,7 +38,11 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
         promoteB = new CommandJbutton(new PromoteToAdminCommand());
         initComponents();
         
-        // Diplay all users that are non Admin and non Publisher
+        displayAllUsers();
+    }
+    
+    // Diplay all users that are non Admin and non Publisher
+    private void displayAllUsers() {
         userDropdown.removeAllItems();
         
         String[] userNames = uiHandler.getAllUserNames();
@@ -56,7 +51,7 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
             if (userTypes[i] == 3) continue;
             if (userTypes[i] == 2) continue;
             userDropdown.addItem(userNames[i]);
-        }   
+        } 
     }
 
     /**

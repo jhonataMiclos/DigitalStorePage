@@ -65,7 +65,8 @@ public class GameStorePageInfo implements StoreListing  {
     @Override
     public String displayStorePage() {
         String listing = "";
-        listing += gameName+"\n"+description+"\n"+price+"\n"+minimumSpecs+"\n"+region;
+        listing += "Name: "+gameName+"<br/>Description: "+description+"<br/>Price: "+price+
+                "<br/>Min Specs: "+minimumSpecs+"<br/>Age Rating: "+ageRating;
         return listing;
     }
 
@@ -78,6 +79,11 @@ public class GameStorePageInfo implements StoreListing  {
 
     void setPublisherID(int publisherID) {
         this.publisherID = publisherID;
+    }
+
+    @Override
+    public String getName() {
+        return gameName;
     }
 
     

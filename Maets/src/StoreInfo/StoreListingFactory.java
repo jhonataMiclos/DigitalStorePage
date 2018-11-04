@@ -19,8 +19,13 @@ import org.json.JSONObject;
  */
 public class StoreListingFactory {
     
-    List<StoreListing> getAll(){
-         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static List<StoreListing> getAll(){
+         List<StoreListing> allList = getAllGames();
+         List<StoreListing> movieList = getAllMovies();
+         System.out.println("Movie list count = " + movieList.size());
+         allList.addAll(movieList);
+         
+         return allList;
     }
     
     public static List<StoreListing> getAllGames(){
@@ -37,13 +42,14 @@ public class StoreListingFactory {
          return sLArrList;
     }
     
-    List<StoreListing> getAllMovies(){
+    public static List<StoreListing> getAllMovies(){
         RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
          JSONArray array = rA.getAllMovies();
          List<StoreListing> sLArrList = new ArrayList<StoreListing>();
+         System.out.println("movie count = " + array.length());
          for(int x = 0; x < array.length(); x++){
              try{
-                sLArrList.add(GameStorePageInfoFactory.create(array.getJSONObject(x)));
+                sLArrList.add(MovieStorePageInfoFactory.create(array.getJSONObject(x)));
              } catch(Exception e){
                  System.out.println("Error : "+e.toString());
              }

@@ -12,5 +12,6 @@ package StoreInfo;
 public interface StoreListing {
     String displayStorePage();
     String displayListing();
+    String getName();
     void setPrice(double updatedPrice);
 }

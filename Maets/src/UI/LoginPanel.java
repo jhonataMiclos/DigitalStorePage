@@ -161,6 +161,7 @@ public class LoginPanel extends javax.swing.JPanel {
         String usernameText = userNameF.getText();
         String passwordText = String.valueOf(passwordF.getPassword());
         int loginResult = handler.validateLogin(usernameText, passwordText);
+        NavigateToCommand navigateCommand = (NavigateToCommand) loginB.command;
         
         switch (loginResult) {
             case -1:
@@ -173,12 +174,15 @@ public class LoginPanel extends javax.swing.JPanel {
                 break;
             case 1:
                 // Display user stuff
+                navigateCommand.setLocation(new ProductListingAdapted(frame,this,uiHandler));
+                loginB.execute();
                 break;
             case 2:
                 // Display publisher stuff
                 break;
             case 3:
                 // Display admin stuff
+                navigateCommand.setLocation(new AdminPanelAdapted(frame,this,uiHandler));
                 loginB.execute();
                 break;
             default:
