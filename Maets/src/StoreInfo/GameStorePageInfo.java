@@ -5,6 +5,9 @@
  */
 package StoreInfo;
 
+import DBHandler.DBWriter;
+import DBHandler.RepositoryAccess;
+import DBHandler.RepositoryAccessMethodFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +31,16 @@ public class GameStorePageInfo implements StoreListing  {
     public GameStorePageInfo(int gameID){
         this.gameID = gameID;
         genres = new ArrayList<String>();
+    }
+
+    public GameStorePageInfo(String name, Double price, int ageRating, String genre, String desc, String minSpecs) {
+        this.ageRating = ageRating;
+        this.genres= new ArrayList<String>();
+        this.genres.add(genre);
+        this.description = desc;
+        this.gameName = name;
+        this.minimumSpecs = minSpecs;
+        this.price= price;
     }
     
     public void setAgeRating(int ageRating){
@@ -77,13 +90,31 @@ public class GameStorePageInfo implements StoreListing  {
         return listing;
     }
 
-    void setPublisherID(int publisherID) {
+    
+    @Override
+    public void setPublisherID(int publisherID) {
         this.publisherID = publisherID;
     }
 
     @Override
     public String getName() {
         return gameName;
+    }
+
+    @Override
+    public int addToRepo() {
+        DBWriter w = new DBWriter();
+        if(w.insertNewGame(gameID, gameName, price, ageRating, description, minimumSpecs, genres.get(genres.size()-1), publisherID)){
+            RepositoryAccess ra = RepositoryAccessMethodFactory.getRepoAccess();
+            return ra.getGameID(publisherID);
+        } else{
+           return -1;
+        }
+    }
+
+    @Override
+    public void setID(int id) {
+        this.gameID = id;
     }
 
     

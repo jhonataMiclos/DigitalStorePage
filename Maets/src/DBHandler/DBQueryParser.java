@@ -8,9 +8,13 @@ package DBHandler;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -138,6 +142,7 @@ public class DBQueryParser implements RepositoryAccess {
           return new JSONArray();
       }
     }
+    
     @Override
     public JSONArray getAllUsersData(){
         
@@ -157,5 +162,132 @@ public class DBQueryParser implements RepositoryAccess {
             System.out.println("Error retrieving user login info: "+e.toString());
             return new JSONArray();
        }
+    }
+    
+    @Override
+    public JSONArray getAllGamesByPublisher(int publisherID){
+        try {
+          JSONArray array = new JSONArray();
+          ResultSet resultSet = DBConnector.getInstance().execute("select * from "+dbName+".gamesStoreInfo where publisherID = "+publisherID);
+          
+          return compileGamesResultSet(resultSet);
+      }
+      catch(Exception e){
+          System.out.println("Error retrieving store info: "+e.toString());
+          return new JSONArray();
+      }
+    }  
+    
+    @Override
+    public int getGameID(int publisherID){
+        try {
+          ResultSet resultSet = DBConnector.getInstance().execute("select MAX(productID) from "+dbName+".gamesStoreInfo where publisherID = "+publisherID);
+          if(resultSet.next()){
+              return resultSet.getInt("MAX(productID)");
+          }
+          return -1;
+      }
+      catch(Exception e){
+          System.out.println("Error retrieving store info: "+e.toString());
+          return -1;
+      }
+    }
+    
+    public JSONArray compileGamesResultSet(ResultSet resultSet){
+        JSONArray array = new JSONArray();
+        try {
+        while(resultSet.next()){
+            JSONObject gameJSON = new JSONObject();
+            gameJSON.put("productID", resultSet.getInt("productID"));
+            gameJSON.put("name", resultSet.getString("name"));
+            gameJSON.put("price", resultSet.getDouble("price"));
+            gameJSON.put("ageRating", resultSet.getInt("ageRating"));
+            gameJSON.put("description", resultSet.getString("description"));
+            gameJSON.put("minimumSpecs", resultSet.getString("minimumSpecs"));
+            gameJSON.put("genre", resultSet.getString("genres"));
+            gameJSON.put("publisherID", resultSet.getInt("publisherID"));
+            array.put(gameJSON);
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBQueryParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
+            Logger.getLogger(DBQueryParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return array;
+    }
+    
+    public JSONArray compileMoviesResultSet(ResultSet resultSet){
+        JSONArray array = new JSONArray();
+        try {
+        while(resultSet.next()){
+            JSONObject movieJSON = new JSONObject();
+            movieJSON.put("productID", resultSet.getInt("productID"));
+            movieJSON.put("name", resultSet.getString("name"));
+            movieJSON.put("price", resultSet.getDouble("price"));
+            movieJSON.put("ageRating", resultSet.getInt("ageRating"));
+            movieJSON.put("description", resultSet.getString("description"));
+            movieJSON.put("runtime", resultSet.getInt("runtime"));
+            movieJSON.put("genre", resultSet.getString("genres"));
+            movieJSON.put("publisherID", resultSet.getInt("publisherID"));
+            array.put(movieJSON);
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBQueryParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
+            Logger.getLogger(DBQueryParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return array;
+    }
+
+    @Override
+    public JSONArray getAllMoviesByPublisher(int publisherID) {
+        try {
+          JSONArray array = new JSONArray();
+          ResultSet resultSet = DBConnector.getInstance().execute("select * from "+dbName+".movieStoreInfo where publisherID = "+publisherID);
+          
+          return compileMoviesResultSet(resultSet);
+      }
+      catch(Exception e){
+          System.out.println("Error retrieving store info: "+e.toString());
+          return new JSONArray();
+      }
+    }
+
+    @Override
+    public int addProduct(String name, int publisherID) {try {
+             String sql = "Insert into  "+dbName+".products (publisherID, name) values (? , ?)";
+             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             
+             
+             preparedStatement.setInt(1, publisherID);
+             preparedStatement.setString(2, name);
+             
+                 preparedStatement.executeUpdate();
+          ResultSet resultSet = DBConnector.getInstance().execute("select MAX(productID) from "+dbName+".products where publisherID = "+publisherID);
+          
+          if(resultSet.next()){
+              return resultSet.getInt("MAX(productID)");
+          }
+          return -1;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return -1;
+         }
+    }
+    
+    
+    @Override
+    public int getPubID(String name) {
+        try {
+          ResultSet resultSet = DBConnector.getInstance().execute("select publisherID from "+dbName+".publisherinfo where userName = '"+name+"'");
+          
+          if(resultSet.next()){
+              return resultSet.getInt("publisherID");
+          }
+          return -1;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return -1;
+         }
     }
 }

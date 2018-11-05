@@ -20,22 +20,22 @@ import org.json.JSONObject;
  * @author jakec
  */
 public class PublisherProductFactory {
-    public static PublisherProductData makeNewGame(JSONObject info) throws Exception{
+    public static PublisherProductData makeNewGame(JSONObject info, int id) throws Exception{
         try {
             Launcher launcher = LauncherFactory.makeGameLauncher(info.getJSONObject("Launcher"));
             StoreListing sL = GameStorePageInfoFactory.getGameInfo(info.getJSONObject("StoreInfo"));
-            return new PublisherProductData(sL, launcher);
+            return new PublisherProductData(sL, launcher, id);
         } catch (JSONException ex) {
             Logger.getLogger(PublisherProductFactory.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
     }
     
-    public static PublisherProductData makeNewMovie(JSONObject info) throws Exception{
+    public static PublisherProductData makeNewMovie(JSONObject info, int id) throws Exception{
         try {
             Launcher launcher = LauncherFactory.makeGameLauncher(info.getJSONObject("Launcher"));
             StoreListing sL = MovieStorePageInfoFactory.getMovieInfo(info.getJSONObject("StoreInfo"));
-            return new PublisherProductData(sL, launcher);
+            return new PublisherProductData(sL, launcher, id);
         } catch (JSONException ex) {
             Logger.getLogger(PublisherProductFactory.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;

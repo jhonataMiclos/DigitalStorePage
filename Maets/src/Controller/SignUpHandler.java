@@ -43,7 +43,7 @@ public class SignUpHandler {
             }
             
             // Register publisher
-            dbWriter.insertUser(username, password, userType);
+            dbWriter.insertUser(username, password, userType, publisherName);
         }
         
         

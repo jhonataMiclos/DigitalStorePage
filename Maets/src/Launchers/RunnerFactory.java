@@ -14,7 +14,8 @@ class RunnerFactory {
     static RunProduct getProductRunner(String fileLocation) {
         if(fileLocation.endsWith(".exe")){
             return new RunEXE(fileLocation);
+        } else {
+            return new RunMP4(fileLocation);
         }
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

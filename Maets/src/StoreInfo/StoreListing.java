@@ -14,4 +14,9 @@ public interface StoreListing {
     String displayListing();
     String getName();
     void setPrice(double updatedPrice);
+    int addToRepo();
+
+    public void setPublisherID(int id);
+
+    public void setID(int id);
 }

@@ -110,4 +110,106 @@ public class DBWriter {
          }
     }
     
+    public boolean insertNewGame(int productID, String name, double price, int ageRating, String description,String minimumSpecs, String genres, int publisherID)
+    {
+        try {
+             String sql = "Insert into  "+dbName+".gamesstoreinfo (name,price,ageRating,description,minimumSpecs,genres,publisherID, productID) values (?,? , ?,?,?,?,?,?)";
+             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             
+             preparedStatement.setString(1, name);
+             preparedStatement.setDouble(2, price);
+             preparedStatement.setInt(3, ageRating);
+             preparedStatement.setString(4, description);
+             preparedStatement.setString(5, minimumSpecs);
+             preparedStatement.setString(6, genres);
+             preparedStatement.setInt(7, publisherID);
+             preparedStatement.setInt(8, productID);
+             
+             preparedStatement.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+         }
+    }
+    
+    
+    public boolean insertNewMovie(String name, double price, int ageRating, String description,int runTime, String genres, int publisherID)
+    {
+        try {
+             String sql = "Insert into  "+dbName+".moviestoreinfo (name,price,ageRating,description,runTime,genres,publisherID) values (? , ?,?,?,?,?,?)";
+             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             
+             preparedStatement.setString(1, name);
+             preparedStatement.setDouble(2, price);
+             preparedStatement.setInt(3, ageRating);
+             preparedStatement.setString(4, description);
+             preparedStatement.setInt(5, runTime);
+             preparedStatement.setString(6, genres);
+             preparedStatement.setInt(7, publisherID);
+             
+             preparedStatement.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+         }
+    }
+    
+    
+    public boolean insertNewLauncher(String fileLocation, int productID)
+    {
+        try {
+             String sql = "Insert into  "+dbName+".gamelaunchers (productID, fileLocation) values (? , ?)";
+             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             
+             
+             preparedStatement.setInt(1, productID);
+             preparedStatement.setString(2, fileLocation);
+             
+                 preparedStatement.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+         }
+    }
+    
+    
+    public boolean updateLauncher(String fileLocation, int productID)
+    {
+        try {
+             String sql = "Update "+dbName+".gameslaunchers set revision = revision + 1 AND fileLocation = ? where productID = ?";
+             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             
+          
+             preparedStatement.setString(1, fileLocation);
+             preparedStatement.setInt(2, productID);
+             
+             preparedStatement.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+         }
+    }
+
+    public boolean insertUser(String username, String password, int userType, String publisherName) {
+        insertUser(username, password, userType);
+        try {
+             String sql = "Insert into  "+dbName+".publisherInfo (userName, publisherName) values (? , ?)";
+             
+             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             
+             preparedStatement.setString(1, username);
+             preparedStatement.setString(2, publisherName);
+             
+             int rowsAffected = preparedStatement.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+         }
+    }
+    
 }

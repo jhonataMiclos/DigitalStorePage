@@ -70,12 +70,24 @@ public class MovieStorePageInfo implements StoreListing {
         return listing;
     }
 
-    void setPublisherID(int publisherID) {
+    
+    @Override
+    public void setPublisherID(int publisherID) {
         this.publisherID = publisherID;
     }
 
     @Override
     public String getName() {
         return movieName;
+    }
+
+    @Override
+    public int addToRepo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setID(int id) {
+        this.movieID = id;
     }
 }

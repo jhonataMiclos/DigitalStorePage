@@ -19,4 +19,10 @@ public interface RepositoryAccess {
     JSONArray getAllUsers();
     JSONObject getLoginInfo(String userName);
     JSONArray getAllUsersData();
+    JSONArray getAllGamesByPublisher(int publisherID);
+    JSONArray getAllMoviesByPublisher(int publisherID);
+    public int getGameID(int publisherID);
+
+    public int addProduct(String name, int publisherID);
+    public int getPubID(String userName);
 }

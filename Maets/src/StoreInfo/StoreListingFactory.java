@@ -54,4 +54,28 @@ public class StoreListingFactory {
          }
          return sLArrList;
     }
+    
+    public static List<StoreListing> getAllbyPublisher(int id){
+        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+        JSONArray array = rA.getAllMoviesByPublisher(id);
+        List<StoreListing> sLArrList = new ArrayList<StoreListing>();
+        for(int x = 0; x < array.length(); x++){
+            try{
+               sLArrList.add(MovieStorePageInfoFactory.create(array.getJSONObject(x)));
+            } catch(Exception e){
+                System.out.println("Error : "+e.toString());
+            }
+        }
+        array = rA.getAllGames();
+        for(int x = 0; x < array.length(); x++){
+            try{
+               sLArrList.add(GameStorePageInfoFactory.create(array.getJSONObject(x)));
+            } catch(Exception e){
+                System.out.println("Error : "+e.toString());
+            }
+        }
+
+        return sLArrList;
+
+    }
 }

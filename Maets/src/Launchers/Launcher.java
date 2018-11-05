@@ -5,6 +5,8 @@
  */
 package Launchers;
 
+import DBHandler.DBWriter;
+
 /**
  *
  * @author jakec
@@ -50,5 +52,16 @@ public class Launcher {
     
     public void setProductID(int productID) {
         this.productID = productID;
+    }
+    
+    
+    public boolean addToRepo(){
+        if(productID >= 0 && fileLocation.length() > 0){
+            DBWriter w = new DBWriter();
+            w.insertNewLauncher(fileLocation, productID);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
