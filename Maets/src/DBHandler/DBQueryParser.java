@@ -138,4 +138,24 @@ public class DBQueryParser implements RepositoryAccess {
           return new JSONArray();
       }
     }
+    @Override
+    public JSONArray getAllUsersData(){
+        
+        try {
+          JSONArray array = new JSONArray();
+          ResultSet resultSet = DBConnector.getInstance().execute("select * from "+dbName+".sessionrecords where LogoutTime IS NOT NULL");
+          while(resultSet.next()){
+              JSONObject userTypeJSON = new JSONObject();
+              userTypeJSON.put("userName", resultSet.getString("userName"));
+              userTypeJSON.put("loginTime", resultSet.getTimestamp("loginTime"));
+              userTypeJSON.put("logoutTime", resultSet.getTimestamp("LogoutTime"));
+              array.put(userTypeJSON);
+          }
+          return array;
+        }
+        catch(Exception e){
+            System.out.println("Error retrieving user login info: "+e.toString());
+            return new JSONArray();
+       }
+    }
 }

@@ -20,11 +20,12 @@ public class LoggingInterceptor implements ConnectionReplyInterceptor {
     }
 
     @Override
-    public void postRemoteReply(ConnectionReplyContext context) {
+    public Date postRemoteReply(ConnectionReplyContext context) {
         Date endTime = new Date();
         
         long timeDifference = endTime.getTime() - context.getStartTime().getTime(); 
         System.out.println("User spent " + timeDifference + " logged in.");
+        return  endTime;
     }
     
 }

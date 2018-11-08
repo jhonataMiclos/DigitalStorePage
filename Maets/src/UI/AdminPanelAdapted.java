@@ -5,8 +5,10 @@
  */
 package UI;
 
+import Common.LogoutCommand;
 import Common.NavigateToCommand;
 import Common.PromoteToAdminCommand;
+import Common.RemoveGameCommand;
 import Controller.UIHandler;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,20 +29,39 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
         this.frame = mainFrame;
         this.uiHandler = uiHandler;
         promoteB = new CommandJbutton(new PromoteToAdminCommand());
+        logoutB = new CommandJbutton(new LogoutCommand());
+        removeB = new CommandJbutton(new RemoveGameCommand());
         initComponents();
         
         displayAllUsers();
+        displayAllGames();
+        displayData();
     }
     
     public AdminPanelAdapted(JFrame frame, JPanel panel, UIHandler uiHandler) {
          this.frame = frame;
          this.uiHandler = uiHandler;
         promoteB = new CommandJbutton(new PromoteToAdminCommand());
+        logoutB = new CommandJbutton(new LogoutCommand());
+        removeB = new CommandJbutton(new RemoveGameCommand());
         initComponents();
         
         displayAllUsers();
+        displayAllGames();
+        displayData();
     }
-    
+    private void displayData(){
+        userDataPane.removeAll();
+        
+        String[] data = uiHandler.getAllData();
+         userDataPane.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = data;
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(userDataPane);
+        
+    }
     // Diplay all users that are non Admin and non Publisher
     private void displayAllUsers() {
         userDropdown.removeAllItems();
@@ -51,6 +72,14 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
             if (userTypes[i] == 3) continue;
             if (userTypes[i] == 2) continue;
             userDropdown.addItem(userNames[i]);
+        } 
+    }
+    private void displayAllGames() {
+        gamesDropdown.removeAllItems();
+        
+        String[] games = uiHandler.getAllGames();
+        for (int i = 0; i < games.length; i++) {
+            gamesDropdown.addItem(games[i]);
         } 
     }
 
@@ -66,7 +95,11 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
         selectUserLabel = new javax.swing.JLabel();
         userDropdown = new javax.swing.JComboBox<>();
         backB = new javax.swing.JButton();
-
+        gamesDropdown = new javax.swing.JComboBox<>();
+        SelectGame = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        userDataPane = new javax.swing.JList<>();
+         
         selectUserLabel.setText("Select user");
 
         userDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -85,6 +118,31 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
             }
         });
 
+        removeB.setText("Remove");
+        removeB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBActionPerformed(evt);
+            }
+        });
+
+        gamesDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        logoutB.setText("Log out");
+        logoutB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBActionPerformed(evt);
+            }
+        });
+
+        SelectGame.setText("Select Game");
+        
+       /* userDataPane.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(userDataPane);*/
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,30 +151,52 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(promoteB)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
-                        .addComponent(backB))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(selectUserLabel)
-                            .addComponent(userDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(promoteB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(backB))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(selectUserLabel)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(userDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(SelectGame, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(logoutB))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(gamesDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(removeB))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(selectUserLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(selectUserLabel)
+                    .addComponent(logoutB)
+                    .addComponent(SelectGame))
                 .addGap(18, 18, 18)
-                .addComponent(userDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gamesDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeB))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(promoteB)
                     .addComponent(backB))
                 .addContainerGap())
         );
-    }// </editor-fold>                        
+    }// </editor-fold>                         
 
     private void promoteBActionPerformed(java.awt.event.ActionEvent evt) {                                         
         String selectedUser = (String) userDropdown.getSelectedItem();
@@ -128,14 +208,36 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
         
         userDropdown.removeItem(selectedUser);
     }                                        
-
+    private void removeBActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        String selectedUser = (String) gamesDropdown.getSelectedItem();
+        if (selectedUser == null || selectedUser.isEmpty()) return;
+        
+        RemoveGameCommand removeCommand = (RemoveGameCommand) removeB.command;
+        removeCommand.setUserSelected(selectedUser);
+        removeCommand.execute();
+        
+        gamesDropdown.removeItem(selectedUser);
+        System.out.println("Game removed");
+    }          
     private void backBActionPerformed(java.awt.event.ActionEvent evt) {                                      
         // TODO add your handling code here:
     }
-    
-    
+    public void logoutBActionPerformed(java.awt.event.ActionEvent evt) {   
+        
+        LogoutCommand logoutCommand =  (LogoutCommand) logoutB.command;
+        logoutCommand.execute();
+        logoutB.setCommand(new NavigateToCommand(new LoginPanel(frame,this,uiHandler),frame));
+        logoutB.execute();
+        // TODO add your handling code here:
+    }
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> userDataPane;
+    private javax.swing.JLabel SelectGame;
     private javax.swing.JButton backB;
     private CommandJbutton promoteB;
+    private CommandJbutton logoutB;
+    private CommandJbutton removeB;
     private javax.swing.JLabel selectUserLabel;
     private javax.swing.JComboBox<String> userDropdown;
+    private javax.swing.JComboBox<String> gamesDropdown;
 }

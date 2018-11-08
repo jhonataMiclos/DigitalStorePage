@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class LoginHandler {
     private RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
     private DBWriter dbWriter;
-    
+    private static String userLoggedIn ="";
     public LoginHandler() {
         dbWriter = new DBWriter();
     }
@@ -32,7 +32,7 @@ public class LoginHandler {
            else
            {             
                 ConnectionReplyInterceptor cri = new LoggingInterceptor();
-
+                
                 LoggingDispatcher dis = new LoggingDispatcher();
 
                 ConnectionReplyContext context;  
@@ -43,13 +43,16 @@ public class LoginHandler {
 
                 Date dateTime = dis.preRemoteReply(context); 
                 dbWriter.insertLoginTime(userName, dateTime);
+                userLoggedIn = userName;
                 return value;
            }
         }
         
         return -1;
     }
-    
+    public static String getUserLoggedIn(){
+        return userLoggedIn;
+    }
     private int getUserLogin(String userName){
         try{
             JSONObject obj = rA.getLoginInfo(userName);

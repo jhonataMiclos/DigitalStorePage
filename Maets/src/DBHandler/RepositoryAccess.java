@@ -18,4 +18,5 @@ public interface RepositoryAccess {
     JSONArray getAllUserTypes();
     JSONArray getAllUsers();
     JSONObject getLoginInfo(String userName);
+    JSONArray getAllUsersData();
 }

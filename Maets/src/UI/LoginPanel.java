@@ -36,8 +36,9 @@ public class LoginPanel extends javax.swing.JPanel {
     LoginPanel(JFrame frame, JPanel panel, UIHandler uiHandler) {
        this.frame = frame;
        this.uiHandler = uiHandler;
-        signUpB= new CommandJbutton(new NavigateToCommand(panel,frame));
-        initComponents();
+       signUpB= new CommandJbutton(new NavigateToCommand(panel,frame));
+       loginB= new CommandJbutton(new DoNothingCommand());
+       initComponents();
     }
 
     /**

@@ -39,6 +39,12 @@ public class AdminPanel extends javax.swing.JPanel {
         userDropdown = new javax.swing.JComboBox<>();
         promoteB = new javax.swing.JButton();
         backB = new javax.swing.JButton();
+        removeB = new javax.swing.JButton();
+        gamesDropdown = new javax.swing.JComboBox<>();
+        logoutB = new javax.swing.JButton();
+        SelectGame = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        usersDataPane = new javax.swing.JList<>();
 
         selectUserLabel.setText("Select user");
 
@@ -58,6 +64,31 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         });
 
+        removeB.setText("Remove");
+        removeB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBActionPerformed(evt);
+            }
+        });
+
+        gamesDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        logoutB.setText("Log out");
+        logoutB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBActionPerformed(evt);
+            }
+        });
+
+        SelectGame.setText("Select Game");
+
+        usersDataPane.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(usersDataPane);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,24 +97,46 @@ public class AdminPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(promoteB)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
-                        .addComponent(backB))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(selectUserLabel)
-                            .addComponent(userDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(promoteB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(backB))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(selectUserLabel)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(userDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(SelectGame, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(logoutB))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(gamesDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(removeB))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(selectUserLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(selectUserLabel)
+                    .addComponent(logoutB)
+                    .addComponent(SelectGame))
                 .addGap(18, 18, 18)
-                .addComponent(userDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gamesDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeB))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(promoteB)
                     .addComponent(backB))
@@ -91,19 +144,33 @@ public class AdminPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void promoteBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_promoteBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_promoteBActionPerformed
-
     private void backBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_backBActionPerformed
 
+    private void promoteBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_promoteBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_promoteBActionPerformed
+
+    private void removeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeBActionPerformed
+
+    private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutBActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel SelectGame;
     private javax.swing.JButton backB;
+    private javax.swing.JComboBox<String> gamesDropdown;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logoutB;
     private javax.swing.JButton promoteB;
+    private javax.swing.JButton removeB;
     private javax.swing.JLabel selectUserLabel;
     private javax.swing.JComboBox<String> userDropdown;
+    private javax.swing.JList<String> usersDataPane;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,8 +5,11 @@ import DBHandler.RepositoryAccessMethodFactory;
 import StoreInfo.StoreListing;
 import StoreInfo.StoreListingFactory;
 import UI.LoginPanel;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import org.json.JSONArray;
@@ -52,6 +55,16 @@ public class UIHandler {
         
         return null;
     }
+    public String[] getAllGames(){
+        ;
+        List<StoreListing> listings = StoreListingFactory.getAll();
+        String[] results = new String[listings.size()];
+        int counter = 0;
+        for (StoreListing listing : listings) {
+            results[counter] = listing.getName();  
+        }
+        return results;
+    }
     
     public void addToCart(String productName) {
         cart.add(productName);
@@ -72,7 +85,58 @@ public class UIHandler {
          
          return userTypes;
     }
-    
+    public String[] getAllData(){
+        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+        JSONArray array = rA.getAllUsersData();
+        String[] result =  new String[array.length()];
+        result = getAvarages(array);
+        
+        
+        return result;
+    }
+    private String[] getAvarages(JSONArray array){
+        Map usersAvg = new HashMap<String, Double>();
+        Map usersCount = new HashMap<String, Integer>();
+        for(int x = 0; x < array.length(); x++){
+            try{
+               JSONObject currentObj = array.getJSONObject(x);
+               String key = currentObj.getString("userName");
+               double time = calcTime( (Timestamp)currentObj.get("loginTime"), (Timestamp)currentObj.get("logoutTime"));
+               if (usersAvg.containsKey(key)){
+                   usersAvg.put(key,(double)usersAvg.get(key) + time );
+                   usersCount.put(key,(int)usersCount.get(key) + 1);        
+               }
+               else{
+                   usersAvg.put(key,time );
+                   usersCount.put(key,1); 
+               }
+                    
+                
+               //double time = calcTime( (Timestamp)currentObj.get("loginTime"), (Timestamp)currentObj.get("logoutTime"));
+               //result[x] = String.format("%s: %f", currentObj.getString("userName"), time);
+            } catch(Exception e){
+                System.out.println("Error : "+e.toString());
+            }
+        }
+        String[] result = new String[usersAvg.size()];
+        int x = 0;
+        for (Object key: usersAvg.keySet()) {
+            usersAvg.put(key,(double)usersAvg.get(key) / (int)usersCount.get(key));
+            result[x] = String.format("%s: %f", key,(((double)usersAvg.get(key)/1000)/60));
+            // ...
+        }
+        return result;
+    }
+    private double calcTime(Timestamp start, Timestamp end){
+        
+        //Timestamp startTs = Timestamp.valueOf(start);
+        //Timestamp endTs = Timestamp.valueOf(end);
+        System.out.println(end.getTime());
+        System.out.println(start.getTime());
+        double result = end.getTime() - start.getTime();
+        //double result = 1.0;
+        return result;
+    }
     public String[] getAllUserNames() {
         RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
          JSONArray array = rA.getAllUsers();

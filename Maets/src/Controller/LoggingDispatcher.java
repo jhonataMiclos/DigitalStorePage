@@ -32,10 +32,9 @@ public class LoggingDispatcher implements ConnectionReplyInterceptor {
     }
 
     @Override
-    public void postRemoteReply(ConnectionReplyContext context) {
-         for(ConnectionReplyInterceptor interceptor:interceptors){
-            interceptor.postRemoteReply(context);
-        }
+    public Date postRemoteReply(ConnectionReplyContext context) {
+        ConnectionReplyInterceptor interceptor = interceptors.get(interceptors.size() - 1);
+        return interceptor.preRemoteReply(context);
     }
     
    public static LoggingDispatcher getDispatcher(){

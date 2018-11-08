@@ -61,7 +61,37 @@ public class DBWriter {
              return false;
          }
     }
-    
+    public boolean RemoveGame(String gameName){
+        try{
+            String sql = "DELETE from  "+dbName+".gamesstoreinfo WHERE name = ?";
+            PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             
+            preparedStatement.setString(1, gameName);
+            int rowsAffected = preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+        }
+    }
+    public boolean insertLogoutTime(String username, Date dateTime)
+    {
+        
+        try {
+             String sql = "UPDATE "+dbName+".sessionrecords SET LogoutTime = ? WHERE userName = ? AND LogoutTime IS NULL";
+             Timestamp dateTimeStr = new Timestamp(dateTime.getTime());
+             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             
+             preparedStatement.setTimestamp(1, dateTimeStr);
+             preparedStatement.setString(2, username);
+             
+             preparedStatement.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+         }
+    }
     public boolean insertLoginTime(String username, Date dateTime)
     {
         try {
