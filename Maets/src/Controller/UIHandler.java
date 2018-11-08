@@ -1,5 +1,6 @@
 package Controller;
 
+import DBHandler.DBWriter;
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
 import StoreInfo.StoreListing;
@@ -24,10 +25,11 @@ public class UIHandler {
     private RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
     private JFrame mainFrame;
     private LoginHandler loginHandler;
-    private List<String> cart;
+    public JSONArray cart;
+    private String username;
 
     public UIHandler() {
-        cart = new ArrayList<String>();
+        cart = null;
         mainFrame = new JFrame();
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
@@ -68,9 +70,16 @@ public class UIHandler {
     }
     
     public void addToCart(String productName) {
-        cart.add(productName);
+        DBWriter dbWriter= new DBWriter();
+        StoreListing x;
+        x = getFullProductInfo(productName);
+        dbWriter.insertIntoCart(username, x.getProductID());
+        
     }
-    
+    public void pullDownCart(){
+        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+        cart= rA.getCart(username);
+    }
     public String[] getAllAvailableUserTypes(){
         RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
          JSONArray array = rA.getAllUserTypes();
@@ -156,5 +165,47 @@ public class UIHandler {
              }
          }
          return userTypes;
+    }
+
+    public void setUsername(String usernameText) {
+        username=usernameText;
+    }
+    public String getUsername() {
+        return username;
+    }
+
+    public Object[][] getCart() {
+        pullDownCart();
+        Object[][] cartItems;
+        if(cart != null || cart.length() > 0){
+         cartItems = new Object[cart.length()][2];
+         for(int x =0 ;x< cart.length();x++)
+         {
+            try{
+             JSONObject currentObj = cart.getJSONObject(x);
+             cartItems[x][0]=currentObj.getString("name");
+             cartItems[x][1]=currentObj.getDouble("price");
+            } catch(Exception e){
+                 System.out.println("Error s: "+e.toString());
+             }
+        }
+        }
+        else{
+             cartItems = new String[1][2];
+             cartItems[0][0]="No";
+             cartItems[0][1]="Products";
+         }
+        return cartItems;
+        
+    }
+
+    private StoreListing getFullProductInfo(String productName) {
+        List<StoreListing> listings = StoreListingFactory.getAll();
+        for (StoreListing listing : listings) {
+            if (listing.getName().equals(productName)) {
+                return listing;
+            }
+        }
+        return null;
     }
 }

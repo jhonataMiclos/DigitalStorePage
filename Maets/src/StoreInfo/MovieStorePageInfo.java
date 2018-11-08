@@ -80,6 +80,7 @@ public class MovieStorePageInfo implements StoreListing {
     public String getName() {
         return movieName;
     }
+
     @Override
     public int getProductID(){
         return movieID;

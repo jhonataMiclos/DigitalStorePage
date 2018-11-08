@@ -34,8 +34,7 @@ public class SignUpPanel extends javax.swing.JPanel {
         this.frame = mainFrame;
         this.uiHandler = uiHandler;
 
-        Back = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),mainFrame));
-
+        Back = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),mainFrame));
         initComponents();
         
         displayUserTypes();

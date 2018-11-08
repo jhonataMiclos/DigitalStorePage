@@ -35,7 +35,7 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
         this.handler = handler;
         
         logoutB = new CommandJbutton(new LogoutCommand());
-        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),mainFrame));
+        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),mainFrame));
         initComponents();
         
         // Display product info in the table
@@ -47,7 +47,7 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
         this.handler = handler;
         
         logoutB = new CommandJbutton(new LogoutCommand());
-        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),frame));
+        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),frame));
         initComponents();
         
         // Display product info in the table

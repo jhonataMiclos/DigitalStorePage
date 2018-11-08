@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class GameStorePageInfo implements StoreListing  {
     
-    private int gameID;
+    public int gameID;
     private int ageRating;
     private String gameName;
     private String description;
@@ -118,7 +118,5 @@ public class GameStorePageInfo implements StoreListing  {
     @Override
     public void setID(int id) {
         this.gameID = id;
-    }
-
-    
+    }    
 }

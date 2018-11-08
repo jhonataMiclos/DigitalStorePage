@@ -34,7 +34,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
         
-        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),mainFrame));
+        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),mainFrame));
         initComponents();
         
         // Display product info in the table
@@ -48,7 +48,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         
         logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
-        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),frame));
+        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),frame));
         initComponents();
         
         // Display product info in the table
@@ -63,7 +63,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         
         logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
-        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),frame));
+        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),frame));
         initComponents();
         
         // Display product info in the table

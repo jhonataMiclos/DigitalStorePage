@@ -288,4 +288,24 @@ public class DBQueryParser implements RepositoryAccess {
              return -1;
          }
     }
+    @Override
+    public JSONArray getCart(String userName){
+        try {
+            JSONArray array = new JSONArray();
+            ResultSet resultSet = DBConnector.getInstance().execute("select productID,name, price from "+dbName+".gamesStoreinfo where productID in (select productID from "+dbName+".carts where userName = '" + userName+"') union select  productID, name, price from "+dbName+".movieStoreinfo where productID in (select productID from "+dbName+".carts where userName = '" + userName+"')");
+            if(resultSet.next()){
+                JSONObject obj = new JSONObject();
+                obj.put("productID", resultSet.getInt("productID"));
+                obj.put("name", resultSet.getString("name"));
+                obj.put("price", resultSet.getDouble("price"));
+                array.put(obj);   
+            }
+            
+            return array;
+        }
+        catch(Exception e){
+          System.out.println("Error retrieving cartInfo: "+e.toString());
+          return new JSONArray();
+      }
+    }
 }

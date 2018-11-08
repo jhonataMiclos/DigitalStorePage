@@ -178,6 +178,7 @@ public class LoginPanel extends javax.swing.JPanel {
                 break;
             case 1:
                 // Display user stuff
+                uiHandler.setUsername(usernameText);
                 loginB.setCommand(new NavigateToCommand(new ProductListingAdapted(frame,this,uiHandler),frame));
                 loginB.execute();
                 break;
@@ -190,6 +191,7 @@ public class LoginPanel extends javax.swing.JPanel {
                 break;
             case 3:
                 // Display admin stuff
+                uiHandler.setUsername(usernameText);
                 loginB.setCommand(new NavigateToCommand(new AdminPanelAdapted(frame,this,uiHandler),frame));
                 loginB.execute();
                 break;

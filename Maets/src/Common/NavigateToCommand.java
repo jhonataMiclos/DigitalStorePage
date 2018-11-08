@@ -15,11 +15,19 @@ import javax.swing.*;
 public class NavigateToCommand implements Command {
     private JPanel location;
     private JFrame mainFrame;
+    private int type;
     
     public NavigateToCommand(JPanel location,JFrame mainFrame){
         this.location = location;
         this.mainFrame = mainFrame;
+        type =0;
     }
+    public NavigateToCommand(Memento location,JFrame mainFrame){
+        this.location = location.getState();
+        this.mainFrame = mainFrame;
+        type =1;
+    }
+    
     
     @Override
     public void execute() {
@@ -29,8 +37,8 @@ public class NavigateToCommand implements Command {
         mainFrame.add(location);
         mainFrame.setSize(601, 600);
         mainFrame.setSize(600, 600);
-        
-        CareTaker.getInstance().add(new Memento(location));
+        if(type == 0)
+            CareTaker.getInstance().add(new Memento(location));
     }
     
 }

@@ -23,8 +23,7 @@ public class ProductListingAdapted extends javax.swing.JPanel {
     
     public ProductListingAdapted(JFrame mainFrame, UIHandler uiHandler) {
         this.frame = mainFrame;
-        this.uiHandler = uiHandler;
-        
+        this.uiHandler = uiHandler;       
         logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
         initComponents();
@@ -35,8 +34,7 @@ public class ProductListingAdapted extends javax.swing.JPanel {
     
     public ProductListingAdapted(JFrame frame, JPanel panel, UIHandler uiHandler) {
         this.frame = frame;
-        this.uiHandler = uiHandler;
-        
+        this.uiHandler = uiHandler;        
         logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
         initComponents();
@@ -70,13 +68,12 @@ public class ProductListingAdapted extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
+                cartB = new CommandJbutton(new DoNothingCommand());
         productScrollPane = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
         //logoutB = new javax.swing.JButton();
         libraryB = new javax.swing.JButton();
         storeLabel = new javax.swing.JLabel();
-        cartB = new javax.swing.JButton();
 
         productTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,6 +129,11 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         storeLabel.setText("Store");
 
         cartB.setText("Cart");
+        cartB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cartBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -182,6 +184,7 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         productPageB = new CommandJbutton(new NavigateToCommand(new ProductPanelAdapted(frame,this,uiHandler,selectedProduct),frame));
         productPageB.execute();
     }
+
     private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {   
         
         LogoutCommand logoutCommand =  (LogoutCommand) logoutB.command;
@@ -190,9 +193,15 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         logoutB.execute();
         // TODO add your handling code here:
     }
+    
+    private void cartBActionPerformed(java.awt.event.ActionEvent evt) {
+       cartB.setCommand( new NavigateToCommand(new CheckoutPanel(frame,this,uiHandler),frame));
+        cartB.execute();
+    }
+
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton cartB;
+    private CommandJbutton cartB;
     private javax.swing.JButton libraryB;
     private CommandJbutton logoutB;
     private CommandJbutton productPageB;

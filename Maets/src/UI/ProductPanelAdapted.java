@@ -25,8 +25,8 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
         this.productName = productName;
          
         cartB = new CommandJbutton (new AddToCartCommand(uiHandler, productName));
-        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),mainFrame));
-        logoutB = new CommandJbutton(new LogoutCommand());
+        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),frame));
+        logoutB = new CommandJbutton (new DoNothingCommand());
         initComponents();
         
         listProductInfo(productName);
@@ -38,8 +38,9 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
         this.productName = productName;
         
         cartB = new CommandJbutton (new AddToCartCommand(uiHandler, productName));
-        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),frame));
-        logoutB = new CommandJbutton(new LogoutCommand());
+
+        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),frame));
+        logoutB = new CommandJbutton (new DoNothingCommand());
         initComponents();
         
         listProductInfo(productName);
@@ -134,6 +135,8 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
     }     
     
     private void cartBActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        cartB.execute();
+        cartB.setCommand(new NavigateToCommand(new ProductListingAdapted(frame,this,uiHandler),frame));
         cartB.execute();
     }      
 

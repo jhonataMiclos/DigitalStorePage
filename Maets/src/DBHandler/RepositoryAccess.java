@@ -25,4 +25,5 @@ public interface RepositoryAccess {
 
     public int addProduct(String name, int publisherID);
     public int getPubID(String userName);
+    JSONArray getCart(String userName);
 }

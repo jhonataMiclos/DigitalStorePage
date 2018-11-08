@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.26-MariaDB, for Win32 (AMD64)
+-- MySQL dump 10.16  Distrib 10.1.28-MariaDB, for Win32 (AMD64)
 --
 -- Host: localhost    Database: maets
 -- ------------------------------------------------------
--- Server version	10.1.26-MariaDB
+-- Server version	10.1.28-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -114,6 +114,29 @@ LOCK TABLES `gamesstoreinfo` WRITE;
 /*!40000 ALTER TABLE `gamesstoreinfo` DISABLE KEYS */;
 INSERT INTO `gamesstoreinfo` VALUES (0,'Game_Name',69.99,12,'This is a video game.','You\'ll need a lot to run this bad boy.','Horror',1),(7,'Diablo Immortal',0,12,'We milking you bois','Credit Card','MicroTransaction',1),(8,'Diablo Immortal',0,12,'We milking you bois','Credit Card','MicroTransaction',1);
 /*!40000 ALTER TABLE `gamesstoreinfo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `history`
+--
+
+DROP TABLE IF EXISTS `history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `history` (
+  `userName` varchar(32) NOT NULL,
+  `productID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `history`
+--
+
+LOCK TABLES `history` WRITE;
+/*!40000 ALTER TABLE `history` DISABLE KEYS */;
+INSERT INTO `history` VALUES ('jhon_1',0),('jhon_1',0);
+/*!40000 ALTER TABLE `history` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -278,4 +301,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-08 12:48:44
+-- Dump completed on 2018-11-13 15:43:47

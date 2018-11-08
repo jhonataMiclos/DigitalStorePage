@@ -155,6 +155,24 @@ public class DBWriter {
              preparedStatement.executeUpdate();
              return true;
          } catch (SQLException ex) {
+             
+           Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+         }
+    }
+        
+    public boolean insertIntoCart(String username, int productID){
+         try {
+             String sql = "Insert into  "+dbName+".carts (userName, productID ) values (? , ?)";
+             
+             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             
+             preparedStatement.setString(1, username);
+             preparedStatement.setInt(2, productID);
+             
+             int rowsAffected = preparedStatement.executeUpdate();
+             return true;
+            } catch (SQLException ex) {
              Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
              return false;
          }
@@ -191,13 +209,29 @@ public class DBWriter {
              preparedStatement.setInt(2, productID);
              
              preparedStatement.executeUpdate();
+
              return true;
          } catch (SQLException ex) {
              Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
              return false;
          }
     }
-
+    
+    public boolean insertHistory(String username,int ProductID){
+         try {
+             String sql = "Insert into  "+dbName+".history (userName,productID) values (? , ?)";
+             
+             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             preparedStatement.setString(1, username);
+             preparedStatement.setInt(2, ProductID);
+             
+             int rowsAffected = preparedStatement.executeUpdate();
+            return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+         }
+    }
     public boolean insertUser(String username, String password, int userType, String publisherName) {
         insertUser(username, password, userType);
         try {
@@ -207,6 +241,20 @@ public class DBWriter {
              
              preparedStatement.setString(1, username);
              preparedStatement.setString(2, publisherName);
+              int rowsAffected = preparedStatement.executeUpdate();
+            return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+         }
+    }
+    
+    public boolean clearCart(String username) {
+        try {
+             String sql = "DELETE from  "+dbName+".carts WHERE username = ?";             
+             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+             
+             preparedStatement.setString(1, username);
              
              int rowsAffected = preparedStatement.executeUpdate();
              return true;
@@ -215,5 +263,4 @@ public class DBWriter {
              return false;
          }
     }
-    
 }

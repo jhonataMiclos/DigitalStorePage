@@ -27,7 +27,12 @@ public class CareTaker {
       mementoList.add(state);
    }
 
-   public JPanel get(){
-      return (mementoList.get(mementoList.size()-1)).getState();
+   public Memento get(int n){
+        Memento x;
+        x = mementoList.get(mementoList.size()-n);
+        for(int i=1 ;i<n;i++){
+            mementoList.remove(mementoList.size()-i);
+        }
+      return (x);
    }
 }
