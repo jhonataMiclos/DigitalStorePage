@@ -2,6 +2,7 @@ package UI;
 
 import Common.AddToCartCommand;
 import Common.DoNothingCommand;
+import Common.LogoutCommand;
 import Common.NavigateToCommand;
 import Controller.UIHandler;
 import Memento.CareTaker;
@@ -25,7 +26,7 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
          
         cartB = new CommandJbutton (new AddToCartCommand(uiHandler, productName));
         backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),mainFrame));
-        logoutB = new CommandJbutton (new DoNothingCommand());
+        logoutB = new CommandJbutton(new LogoutCommand());
         initComponents();
         
         listProductInfo(productName);
@@ -38,7 +39,7 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
         
         cartB = new CommandJbutton (new AddToCartCommand(uiHandler, productName));
         backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),frame));
-        logoutB = new CommandJbutton (new DoNothingCommand());
+        logoutB = new CommandJbutton(new LogoutCommand());
         initComponents();
         
         listProductInfo(productName);
@@ -123,9 +124,14 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
         backB.execute();
     }      
     
-    private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {                                      
+    private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {   
         
-    }      
+        LogoutCommand logoutCommand =  (LogoutCommand) logoutB.command;
+        logoutCommand.execute();
+        logoutB.setCommand(new NavigateToCommand(new LoginPanel(frame,this,uiHandler),frame));
+        logoutB.execute();
+        // TODO add your handling code here:
+    }     
     
     private void cartBActionPerformed(java.awt.event.ActionEvent evt) {                                      
         cartB.execute();

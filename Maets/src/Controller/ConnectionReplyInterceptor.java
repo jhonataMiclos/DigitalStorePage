@@ -1,12 +1,13 @@
 
 package Controller;
 
-import java.util.Date;
-
-
+/**
+ *
+ * @author jhonata
+ */
 public interface ConnectionReplyInterceptor {
-    
-    public Date preRemoteReply(ConnectionReplyContext context); 
-    public Date postRemoteReply(ConnectionReplyContext context); 
+
+    public void preRemoteReply(ConnectionReplyContext context); 
+    public void postRemoteReply(ConnectionReplyContext context); 
     
 }

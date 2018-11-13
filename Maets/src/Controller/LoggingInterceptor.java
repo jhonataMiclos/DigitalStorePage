@@ -5,27 +5,30 @@
  */
 package Controller;
 
-import java.util.Date;
+import DBHandler.DBWriter;
 
 /**
  *
- * @author New User
+ * @author jhonata
  */
 public class LoggingInterceptor implements ConnectionReplyInterceptor {
-
+    private DBWriter dbWriter = new DBWriter();
+    static LoggingInterceptor interceptor = new LoggingInterceptor();
     @Override
-    public Date preRemoteReply(ConnectionReplyContext context) {
+    public void preRemoteReply(ConnectionReplyContext context) {
         System.out.println("User connected at time - " + context.getStartTime());
-        return context.getStartTime();
+        dbWriter.insertLoginTime(context.getUserName(), context.getStartTime());
+        
     }
 
     @Override
-    public Date postRemoteReply(ConnectionReplyContext context) {
-        Date endTime = new Date();
-        
-        long timeDifference = endTime.getTime() - context.getStartTime().getTime(); 
-        System.out.println("User spent " + timeDifference + " logged in.");
-        return  endTime;
+    public void postRemoteReply(ConnectionReplyContext context) {
+      
+        System.out.println(context.getUserName());
+        dbWriter.insertLogoutTime(context.getUserName(), context.getStartTime());
     }
-    
+     public static LoggingInterceptor getInterceptor(){
+       return interceptor;
+       
+   }
 }

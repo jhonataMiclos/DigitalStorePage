@@ -39,10 +39,10 @@ public class LoginHandler {
 
                 dis.registerLoggingInterceptor(cri);
 
-                context = new ConnectionReplyContext(new Date()); 
+                context = new ConnectionReplyContext(new Date(), userName); 
 
-                Date dateTime = dis.preRemoteReply(context); 
-                dbWriter.insertLoginTime(userName, dateTime);
+                dis.preRemoteReply(context); 
+                
                 userLoggedIn = userName;
                 return value;
            }

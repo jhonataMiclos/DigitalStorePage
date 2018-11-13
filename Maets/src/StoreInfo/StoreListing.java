@@ -13,6 +13,7 @@ public interface StoreListing {
     String displayStorePage();
     String displayListing();
     String getName();
+    int getProductID();
     void setPrice(double updatedPrice);
     int addToRepo();
 

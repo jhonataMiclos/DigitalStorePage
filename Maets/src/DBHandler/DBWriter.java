@@ -61,13 +61,17 @@ public class DBWriter {
              return false;
          }
     }
-    public boolean RemoveGame(String gameName){
+    public boolean RemoveGame(int gameID){
         try{
-            String sql = "DELETE from  "+dbName+".gamesstoreinfo WHERE name = ?";
+            String sql = "DELETE from  "+dbName+".gamesstoreinfo WHERE productID = ?";
+            String sql2 = "DELETE from  "+dbName+".moviestoreinfo WHERE productID = ?";
             PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
+            PreparedStatement preparedStatement2 = DBConnector.getInstance().getPreparedStatement(sql2);
              
-            preparedStatement.setString(1, gameName);
+            preparedStatement.setInt(1, gameID);
+            preparedStatement2.setInt(1, gameID);
             int rowsAffected = preparedStatement.executeUpdate();
+            rowsAffected = preparedStatement2.executeUpdate();
             return true;
         } catch (SQLException ex) {
              Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);

@@ -9,20 +9,24 @@ import java.util.Date;
 
 /**
  *
- * @author New User
+ * @author jhonata
  */
 public class ConnectionReplyContext {
     
     private Date startTime;
+    private String userName;
     
-    public ConnectionReplyContext(Date startTime){
+    public ConnectionReplyContext(Date startTime, String name){
         this.startTime = startTime; 
+        this.userName = name;
     }
     
     public Date getStartTime(){
         return startTime; 
     }
-    
+    public String getUserName(){
+        return userName;
+    }
     
     
 }

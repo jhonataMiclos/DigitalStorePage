@@ -55,13 +55,14 @@ public class UIHandler {
         
         return null;
     }
-    public String[] getAllGames(){
-        ;
+    public int[] getAllGames(){
+        
         List<StoreListing> listings = StoreListingFactory.getAll();
-        String[] results = new String[listings.size()];
-        int counter = 0;
+        int[]  results = new int[listings.size()];
+        int x = 0;
         for (StoreListing listing : listings) {
-            results[counter] = listing.getName();  
+            results[x] = listing.getProductID();  
+            x++;
         }
         return results;
     }
@@ -110,10 +111,6 @@ public class UIHandler {
                    usersAvg.put(key,time );
                    usersCount.put(key,1); 
                }
-                    
-                
-               //double time = calcTime( (Timestamp)currentObj.get("loginTime"), (Timestamp)currentObj.get("logoutTime"));
-               //result[x] = String.format("%s: %f", currentObj.getString("userName"), time);
             } catch(Exception e){
                 System.out.println("Error : "+e.toString());
             }
@@ -123,18 +120,11 @@ public class UIHandler {
         for (Object key: usersAvg.keySet()) {
             usersAvg.put(key,(double)usersAvg.get(key) / (int)usersCount.get(key));
             result[x] = String.format("%s: %f", key,(((double)usersAvg.get(key)/1000)/60));
-            // ...
         }
         return result;
     }
     private double calcTime(Timestamp start, Timestamp end){
-        
-        //Timestamp startTs = Timestamp.valueOf(start);
-        //Timestamp endTs = Timestamp.valueOf(end);
-        System.out.println(end.getTime());
-        System.out.println(start.getTime());
         double result = end.getTime() - start.getTime();
-        //double result = 1.0;
         return result;
     }
     public String[] getAllUserNames() {
@@ -165,7 +155,6 @@ public class UIHandler {
                  System.out.println("Error : "+e.toString());
              }
          }
-         
          return userTypes;
     }
 }

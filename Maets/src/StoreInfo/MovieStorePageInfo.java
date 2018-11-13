@@ -80,7 +80,10 @@ public class MovieStorePageInfo implements StoreListing {
     public String getName() {
         return movieName;
     }
-
+    @Override
+    public int getProductID(){
+        return movieID;
+    }
     @Override
     public int addToRepo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

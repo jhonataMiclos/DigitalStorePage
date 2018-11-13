@@ -1,6 +1,7 @@
 package UI;
 
 import Common.DoNothingCommand;
+import Common.LogoutCommand;
 import Common.NavigateToCommand;
 import Controller.StorePageHandler;
 import Controller.UIHandler;
@@ -24,6 +25,7 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         this.frame = mainFrame;
         this.uiHandler = uiHandler;
         
+        logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
         initComponents();
         
@@ -35,6 +37,7 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         this.frame = frame;
         this.uiHandler = uiHandler;
         
+        logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
         initComponents();
         
@@ -70,7 +73,7 @@ public class ProductListingAdapted extends javax.swing.JPanel {
 
         productScrollPane = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
-        logoutB = new javax.swing.JButton();
+        //logoutB = new javax.swing.JButton();
         libraryB = new javax.swing.JButton();
         storeLabel = new javax.swing.JLabel();
         cartB = new javax.swing.JButton();
@@ -118,7 +121,11 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         });
 
         logoutB.setText("Logout");
-
+        logoutB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBActionPerformed(evt);
+            }
+        });
         libraryB.setText("Library");
 
         storeLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -175,12 +182,19 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         productPageB = new CommandJbutton(new NavigateToCommand(new ProductPanelAdapted(frame,this,uiHandler,selectedProduct),frame));
         productPageB.execute();
     }
-
+    private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {   
+        
+        LogoutCommand logoutCommand =  (LogoutCommand) logoutB.command;
+        logoutCommand.execute();
+        logoutB.setCommand(new NavigateToCommand(new LoginPanel(frame,this,uiHandler),frame));
+        logoutB.execute();
+        // TODO add your handling code here:
+    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton cartB;
     private javax.swing.JButton libraryB;
-    private javax.swing.JButton logoutB;
+    private CommandJbutton logoutB;
     private CommandJbutton productPageB;
     private javax.swing.JScrollPane productScrollPane;
     private javax.swing.JTable productTable;

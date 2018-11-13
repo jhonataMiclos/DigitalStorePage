@@ -6,12 +6,11 @@
 package Controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author New User
+ * @author jhonta
  */
 public class LoggingDispatcher implements ConnectionReplyInterceptor {
     
@@ -25,16 +24,16 @@ public class LoggingDispatcher implements ConnectionReplyInterceptor {
     }
     
     @Override
-    public Date preRemoteReply(ConnectionReplyContext context) {
+    public void preRemoteReply(ConnectionReplyContext context) {
         ConnectionReplyInterceptor interceptor = interceptors.get(interceptors.size() - 1);
-        return interceptor.preRemoteReply(context);
+        interceptor.preRemoteReply(context);
         
     }
 
     @Override
-    public Date postRemoteReply(ConnectionReplyContext context) {
+    public void postRemoteReply(ConnectionReplyContext context) {
         ConnectionReplyInterceptor interceptor = interceptors.get(interceptors.size() - 1);
-        return interceptor.preRemoteReply(context);
+        interceptor.postRemoteReply(context);
     }
     
    public static LoggingDispatcher getDispatcher(){

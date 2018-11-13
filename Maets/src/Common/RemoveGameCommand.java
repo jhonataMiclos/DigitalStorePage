@@ -12,16 +12,16 @@ import DBHandler.DBWriter;
  * @author jhonata
  */
 public class RemoveGameCommand implements Command{
-    private String gameSelected;
+    private int gameSelected;
     private DBWriter dbWriter;
     
     public RemoveGameCommand() {
-        gameSelected = "";
+        gameSelected = 0;
         dbWriter = new DBWriter();
     }
     
-    public void setUserSelected(String game) {
-        gameSelected = game;
+    public void setUserSelected(int gameId) {
+        gameSelected = gameId;
     }
     
     @Override

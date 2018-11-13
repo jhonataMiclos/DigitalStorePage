@@ -10,7 +10,6 @@ import Controller.ConnectionReplyInterceptor;
 import Controller.LoggingDispatcher;
 import Controller.LoggingInterceptor;
 import Controller.LoginHandler;
-import Controller.SingletonDispatcher;
 import DBHandler.DBWriter;
 import java.util.Date;
 
@@ -19,22 +18,15 @@ import java.util.Date;
  * @author jhonata
  */
 public class LogoutCommand implements Command{
-    //private String gameSelected;
     private DBWriter dbWriter;
     
     public LogoutCommand() {
-        //gameSelected = "";
         dbWriter = new DBWriter();
     }
-    
-    public void setUserSelected(String game) {
-       // gameSelected = game;
-    }
-    
     @Override
     public void execute() {
         
-        ConnectionReplyInterceptor cri = new LoggingInterceptor();
+        ConnectionReplyInterceptor cri = LoggingInterceptor.getInterceptor();
                 
         LoggingDispatcher dis = LoggingDispatcher.getDispatcher();
 
@@ -42,12 +34,10 @@ public class LogoutCommand implements Command{
 
         dis.registerLoggingInterceptor(cri);
 
-        context = new ConnectionReplyContext(new Date()); 
+        context = new ConnectionReplyContext(new Date(),LoginHandler.getUserLoggedIn()); 
 
-        Date dateTime = dis.preRemoteReply(context); 
-        dbWriter.insertLogoutTime(LoginHandler.getUserLoggedIn(), dateTime);
+        dis.postRemoteReply(context);
         
-        //dbWriter.RemoveGame(gameSelected);
     } 
     
 }

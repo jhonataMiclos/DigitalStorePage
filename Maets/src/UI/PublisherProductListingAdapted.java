@@ -6,6 +6,7 @@
 package UI;
 
 import Common.DoNothingCommand;
+import Common.LogoutCommand;
 import Common.NavigateToCommand;
 import Controller.PublisherUIHandler;
 import Controller.StorePageHandler;
@@ -30,6 +31,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         this.uiHandler = uiHandler;
         handler = new PublisherUIHandler(1);
         
+        logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
         
         backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),mainFrame));
@@ -44,6 +46,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         this.uiHandler = uiHandler;
         handler = new PublisherUIHandler(1);
         
+        logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
         backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),frame));
         initComponents();
@@ -58,6 +61,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         this.uiHandler = uiHandler;
         handler = new PublisherUIHandler(id);
         
+        logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
         backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),frame));
         initComponents();
@@ -95,7 +99,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         
         productInfoLabel = new javax.swing.JLabel();
         addGameButton = new CommandJbutton(new NavigateToCommand(new PublisherGameDataInputAdapted(frame,this,uiHandler, handler),frame));
-        logoutB = new javax.swing.JButton();
+        //logoutB = new javax.swing.JButton();
         addMovieButton = new javax.swing.JButton();
         productScrollPane = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
@@ -118,7 +122,11 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         });
 
         logoutB.setText("Logout");
-
+        logoutB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBActionPerformed(evt);
+            }
+        });
         addMovieButton.setText("Add new Movie");
         addMovieButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,11 +232,19 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         productPageB = new CommandJbutton(new NavigateToCommand(new ProductPanelAdapted(frame,this,uiHandler,selectedProduct),frame));
         productPageB.execute();
     }
+    private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {   
+        
+        LogoutCommand logoutCommand =  (LogoutCommand) logoutB.command;
+        logoutCommand.execute();
+        logoutB.setCommand(new NavigateToCommand(new LoginPanel(frame,this,uiHandler),frame));
+        logoutB.execute();
+        // TODO add your handling code here:
+    }
     // Variables declaration - do not modify                     
     private CommandJbutton addGameButton;
     private javax.swing.JButton addMovieButton;
     private CommandJbutton backB;
-    private javax.swing.JButton logoutB;
+    private CommandJbutton logoutB;
     private javax.swing.JLabel productInfoLabel;
     private CommandJbutton productPageB;
     private javax.swing.JScrollPane productScrollPane;

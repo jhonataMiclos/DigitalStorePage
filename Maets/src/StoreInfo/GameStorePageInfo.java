@@ -100,7 +100,10 @@ public class GameStorePageInfo implements StoreListing  {
     public String getName() {
         return gameName;
     }
-
+    @Override
+    public int getProductID() {
+        return gameID;
+    }
     @Override
     public int addToRepo() {
         DBWriter w = new DBWriter();

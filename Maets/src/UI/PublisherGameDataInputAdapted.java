@@ -6,6 +6,7 @@
 package UI;
 
 import Common.DoNothingCommand;
+import Common.LogoutCommand;
 import Common.NavigateToCommand;
 import Controller.PublisherUIHandler;
 import Controller.UIHandler;
@@ -32,6 +33,8 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
         this.frame = mainFrame;
         this.uiHandler = uiHandler;
         this.handler = handler;
+        
+        logoutB = new CommandJbutton(new LogoutCommand());
         backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),mainFrame));
         initComponents();
         
@@ -42,6 +45,8 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
         this.frame = frame;
         this.uiHandler = uiHandler;
         this.handler = handler;
+        
+        logoutB = new CommandJbutton(new LogoutCommand());
         backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),frame));
         initComponents();
         
@@ -73,8 +78,7 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
             }
         });
         
-                jLabel1 = new javax.swing.JLabel();
-        logoutB = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         nameTf = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         priceTf = new javax.swing.JTextField();
@@ -101,6 +105,11 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
         });
 
         logoutB.setText("Logout");
+        logoutB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBActionPerformed(evt);
+            }
+        });
 
         nameTf.setText("");
         nameTf.addActionListener(new java.awt.event.ActionListener() {
@@ -291,7 +300,14 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
     private void minSpecTfActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
     }                                         
-
+    private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {   
+        
+        LogoutCommand logoutCommand =  (LogoutCommand) logoutB.command;
+        logoutCommand.execute();
+        logoutB.setCommand(new NavigateToCommand(new LoginPanel(frame,this,uiHandler),frame));
+        logoutB.execute();
+        // TODO add your handling code here:
+    }
     private void proceed() {
         String name, price, ageRating, genre, desc, minSpecs, file;
         name = nameTf.getText();
@@ -326,7 +342,7 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JButton logoutB;
+    private CommandJbutton logoutB;
     private javax.swing.JTextField minSpecTf;
     private javax.swing.JTextField nameTf;
     private javax.swing.JTextField priceTf;
