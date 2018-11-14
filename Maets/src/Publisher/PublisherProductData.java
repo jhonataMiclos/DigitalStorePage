@@ -13,6 +13,7 @@ package Publisher;
 import DBHandler.RepositoryAccessMethodFactory;
 import Launchers.Launcher;
 import StoreInfo.GameStorePageInfo;
+import StoreInfo.MovieStorePageInfo;
 import StoreInfo.StoreListing;
 
 public class PublisherProductData {
@@ -72,5 +73,9 @@ public class PublisherProductData {
     
     public void setPubID(int id){
         storeListing.setPublisherID(id);
+    }
+
+    public void setMovieStoreListing(String name, double price, int ageRating, String genre, String desc, int runtime) {
+        this.storeListing = new MovieStorePageInfo( name,  price,  ageRating,  genre, desc, runtime);
     }
 }

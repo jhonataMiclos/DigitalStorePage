@@ -34,7 +34,8 @@ public class PublisherProductFactory {
     public static PublisherProductData makeNewMovie(JSONObject info, int id) throws Exception{
         try {
             Launcher launcher = LauncherFactory.makeGameLauncher(info.getJSONObject("Launcher"));
-            StoreListing sL = MovieStorePageInfoFactory.getMovieInfo(info.getJSONObject("StoreInfo"));
+            MovieStorePageInfoFactory mspi = new MovieStorePageInfoFactory();
+            StoreListing sL = mspi.getMovieInfo(info.getJSONObject("StoreInfo"));
             return new PublisherProductData(sL, launcher, id);
         } catch (JSONException ex) {
             Logger.getLogger(PublisherProductFactory.class.getName()).log(Level.SEVERE, null, ex);

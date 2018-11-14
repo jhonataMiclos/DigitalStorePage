@@ -38,19 +38,19 @@ public class PublisherUIHandler {
     
     public String verifyGameDataInput(String name, String price, String ageRating, String genre,String desc, String minSpecs, String file){
         String error = "";
-        /*if(!name.matches("^[a-z0-9_ -]") && name.length() <= 0){
+        if(name.length() <= 0){
             error +="\n Game name incorrect";
         }
-        if(!price.matches("[0-9]+.?[0-9]{2}$") && price.length() > 0){
+        if(!price.matches("[0-9]+.?[0-9]{2}$") || price.length() <= 0){
             error +="\n Input valid Price";
         }
-        if(!ageRating.matches("[0-9]+") && ageRating.length() > 0){
+        if(!ageRating.matches("[0-9]+") || ageRating.length() <= 0){
             error +="\n Input valid age";
         }
-        if(!genre.matches("[a-zA-Z]+") && genre.length() > 0){
+        if(genre.length() <= 0){
             error +="\n Input valid genre";
         }
-        if(desc.length() > 0){
+        if(desc.length() <= 0){
             error +="\n Input description";
         }
         if(minSpecs.length() <= 0){
@@ -59,7 +59,34 @@ public class PublisherUIHandler {
             File checkFile = new File(file);
             if(!checkFile.exists()){
                 error += "\n File not found";
-            }*/
+            }
+        return error;
+    }
+    
+    public String verifyMovieDataInput(String name, String price, String ageRating, String genre,String desc, String runtime, String file){
+        String error = "";
+        if(name.length() <= 0){
+            error +="\n Game name incorrect";
+        }
+        if(!price.matches("[0-9]+.?[0-9]{2}$") || price.length() <= 0){
+            error +="\n Input valid Price";
+        }
+        if(!ageRating.matches("[0-9]+") || ageRating.length() <= 0){
+            error +="\n Input valid age";
+        }
+        if(genre.length() <= 0){
+            error +="\n Input valid genre";
+        }
+        if(desc.length() <= 0){
+            error +="\n Input description";
+        }
+        if(!runtime.matches("[0-9]+") || runtime.length() <= 0){
+            error +="\n Input valid runtime (minutes)";
+        }
+            File checkFile = new File(file);
+            if(!checkFile.exists()){
+                error += "\n File not found";
+            }
         return error;
     }
 

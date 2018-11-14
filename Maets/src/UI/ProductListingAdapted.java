@@ -6,6 +6,7 @@ import Common.NavigateToCommand;
 import Controller.StorePageHandler;
 import Controller.UIHandler;
 import Memento.CareTaker;
+import Memento.Memento;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
@@ -180,6 +181,8 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         int selectedRow = productTable.getSelectedRow();
         if (selectedRow == -1) return;
         
+        
+        CareTaker.getInstance().add(new Memento(this));
         String selectedProduct = (String) productTable.getValueAt(selectedRow, 0);
         productPageB = new CommandJbutton(new NavigateToCommand(new ProductPanelAdapted(frame,this,uiHandler,selectedProduct),frame));
         productPageB.execute();

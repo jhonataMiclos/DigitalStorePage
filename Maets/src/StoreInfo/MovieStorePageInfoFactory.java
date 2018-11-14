@@ -13,12 +13,12 @@ import org.json.JSONObject;
  * @author jakec
  */
 public class MovieStorePageInfoFactory extends StoreListingFactory{
-    public static StoreListing create(JSONObject json) throws JSONException{
+    public StoreListing create(JSONObject json) throws JSONException{
         return getMovieInfo(json);
     }
     
     
-    public static MovieStorePageInfo getMovieInfo(JSONObject json) throws JSONException{
+    public  MovieStorePageInfo getMovieInfo(JSONObject json) throws JSONException{
         MovieStorePageInfo mspi = new MovieStorePageInfo(json.getInt("productID"));
         mspi.setMovieName(json.getString("name"));
         mspi.setPrice(json.getDouble("price"));

@@ -138,10 +138,10 @@ public class DBWriter {
     }
     
     
-    public boolean insertNewMovie(String name, double price, int ageRating, String description,int runTime, String genres, int publisherID)
+    public boolean insertNewMovie(int productID, String name, double price, int ageRating, String description,int runTime, String genres, int publisherID)
     {
         try {
-             String sql = "Insert into  "+dbName+".moviestoreinfo (name,price,ageRating,description,runTime,genres,publisherID) values (? , ?,?,?,?,?,?)";
+             String sql = "Insert into  "+dbName+".moviestoreinfo (name,price,ageRating,description,runTime,genres,publisherID, productID) values (? , ?,?,?,?,?,?,?)";
              PreparedStatement preparedStatement = DBConnector.getInstance().getPreparedStatement(sql);
              
              preparedStatement.setString(1, name);
@@ -151,6 +151,7 @@ public class DBWriter {
              preparedStatement.setInt(5, runTime);
              preparedStatement.setString(6, genres);
              preparedStatement.setInt(7, publisherID);
+             preparedStatement.setInt(8, productID);
              
              preparedStatement.executeUpdate();
              return true;
