@@ -45,9 +45,11 @@ public class StoreListingFactory {
         RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
          JSONArray array = rA.getAllMovies();
          List<StoreListing> sLArrList = new ArrayList<StoreListing>();
+         MovieStorePageInfoFactory mspif = new MovieStorePageInfoFactory();
+         
          for(int x = 0; x < array.length(); x++){
              try{
-                sLArrList.add(MovieStorePageInfoFactory.create(array.getJSONObject(x)));
+                sLArrList.add(mspif.create(array.getJSONObject(x)));
              } catch(Exception e){
                  System.out.println("Error : "+e.toString());
              }
@@ -59,9 +61,10 @@ public class StoreListingFactory {
         RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
         JSONArray array = rA.getAllMoviesByPublisher(id);
         List<StoreListing> sLArrList = new ArrayList<StoreListing>();
+        MovieStorePageInfoFactory mspi = new MovieStorePageInfoFactory();
         for(int x = 0; x < array.length(); x++){
             try{
-               sLArrList.add(MovieStorePageInfoFactory.create(array.getJSONObject(x)));
+               sLArrList.add(mspi.create(array.getJSONObject(x)));
             } catch(Exception e){
                 System.out.println("Error : "+e.toString());
             }

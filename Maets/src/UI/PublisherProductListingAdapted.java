@@ -99,8 +99,8 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         
         productInfoLabel = new javax.swing.JLabel();
         addGameButton = new CommandJbutton(new NavigateToCommand(new PublisherGameDataInputAdapted(frame,this,uiHandler, handler),frame));
-        //logoutB = new javax.swing.JButton();
-        addMovieButton = new javax.swing.JButton();
+        logoutB = new CommandJbutton(new DoNothingCommand());
+        addMovieButton = new CommandJbutton(new NavigateToCommand(new PublisherMovieDataInput(frame,this,uiHandler, handler),frame));
         productScrollPane = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
 
@@ -220,8 +220,8 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         addGameButton.execute();
     }                                             
 
-    private void addMovieButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
+    private void addMovieButtonActionPerformed(java.awt.event.ActionEvent evt) {   
+        addMovieButton.execute();
     }                                              
 
     private void productPageBActionPerformed(java.awt.event.ActionEvent evt) {               
@@ -242,7 +242,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify                     
     private CommandJbutton addGameButton;
-    private javax.swing.JButton addMovieButton;
+    private CommandJbutton addMovieButton;
     private CommandJbutton backB;
     private CommandJbutton logoutB;
     private javax.swing.JLabel productInfoLabel;

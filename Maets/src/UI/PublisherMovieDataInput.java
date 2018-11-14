@@ -6,7 +6,6 @@
 package UI;
 
 import Common.DoNothingCommand;
-import Common.LogoutCommand;
 import Common.NavigateToCommand;
 import Controller.PublisherUIHandler;
 import Controller.UIHandler;
@@ -21,7 +20,7 @@ import javax.swing.JPanel;
  *
  * @author jakec
  */
-public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
+public class PublisherMovieDataInput extends javax.swing.JPanel {
 
     /**
      * Creates new form PublisherGameDataInput
@@ -30,25 +29,21 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
     private PublisherUIHandler handler;
     private javax.swing.JFrame frame;
     
-    public PublisherGameDataInputAdapted(JFrame mainFrame, UIHandler uiHandler, PublisherUIHandler handler) {
+    public PublisherMovieDataInput(JFrame mainFrame, UIHandler uiHandler, PublisherUIHandler handler) {
         this.frame = mainFrame;
         this.uiHandler = uiHandler;
         this.handler = handler;
-        
-        logoutB = new CommandJbutton(new LogoutCommand());
-        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),mainFrame));
+        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),mainFrame));
         initComponents();
         
         // Display product info in the table
     }
     
-    public PublisherGameDataInputAdapted(JFrame frame, JPanel panel, UIHandler uiHandler, PublisherUIHandler handler) {
+    public PublisherMovieDataInput(JFrame frame, JPanel panel, UIHandler uiHandler, PublisherUIHandler handler) {
         this.frame = frame;
         this.uiHandler = uiHandler;
         this.handler = handler;
-        
-        logoutB = new CommandJbutton(new LogoutCommand());
-        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),frame));
+        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(),frame));
         initComponents();
         
         // Display product info in the table
@@ -80,10 +75,7 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
         });
         
         jLabel1 = new javax.swing.JLabel();
-<<<<<<< HEAD
-=======
         logoutB = new javax.swing.JButton();
->>>>>>> Publisher can now add movies
         nameTf = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         priceTf = new javax.swing.JTextField();
@@ -110,11 +102,6 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
         });
 
         logoutB.setText("Logout");
-        logoutB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBActionPerformed(evt);
-            }
-        });
 
         nameTf.setText("");
         nameTf.addActionListener(new java.awt.event.ActionListener() {
@@ -169,7 +156,7 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
             }
         });
 
-        jLabel7.setText("Minimum Specs");
+        jLabel7.setText("Runtime");
 
         proceed.setText("Continue");
 
@@ -298,28 +285,21 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
     private void minSpecTfActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
     }                                         
-    private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {   
-        
-        LogoutCommand logoutCommand =  (LogoutCommand) logoutB.command;
-        logoutCommand.execute();
-        logoutB.setCommand(new NavigateToCommand(new LoginPanel(frame,this,uiHandler),frame));
-        logoutB.execute();
-        // TODO add your handling code here:
-    }
+
     private void proceed() {
-        String name, price, ageRating, genre, desc, minSpecs, file;
+        String name, price, ageRating, genre, desc, runtime, file;
         name = nameTf.getText();
         price = priceTf.getText();
         ageRating = ageTf.getText();
         genre = genreTf.getText();
         desc = descriptionTf.getText();
-        minSpecs = minSpecTf.getText();
+        runtime = minSpecTf.getText();
         file = genreTf1.getText();
-        String error = handler.verifyGameDataInput(name, price, ageRating, genre, desc, minSpecs, file);
+        String error = handler.verifyMovieDataInput(name, price, ageRating, genre, desc, runtime, file);
         if(error.length() <= 0){
             ErrorBox.setText("");
             PublisherProductData ppD = new PublisherProductData(handler.getID());
-            ppD.setGameStoreListing(name, Double.parseDouble(price), Integer.parseInt(ageRating), genre, desc, minSpecs);
+            ppD.setMovieStoreListing(name, Double.parseDouble(price), Integer.parseInt(ageRating), genre, desc, Integer.parseInt(runtime));
             ppD.setLauncher(file);
             ppD.setPubID(handler.getID());
             ppD.store();
@@ -341,7 +321,7 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private CommandJbutton logoutB;
+    private javax.swing.JButton logoutB;
     private javax.swing.JTextField minSpecTf;
     private javax.swing.JTextField nameTf;
     private javax.swing.JTextField priceTf;

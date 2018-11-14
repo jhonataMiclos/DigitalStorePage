@@ -5,6 +5,9 @@
  */
 package StoreInfo;
 
+import DBHandler.DBWriter;
+import DBHandler.RepositoryAccess;
+import DBHandler.RepositoryAccessMethodFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +29,16 @@ public class MovieStorePageInfo implements StoreListing {
     public MovieStorePageInfo(int movieID){
         this.movieID = movieID;
         genres = new ArrayList<String>();
+    }
+
+    public MovieStorePageInfo(String name, double price, int ageRating, String genre, String desc, int runtime) {
+        this.movieName = name;
+        this.price = price;
+        this.ageRating = ageRating;
+        genres = new ArrayList<String>();
+        genres.add(genre);
+        this.description = desc;
+        this.runtime= runtime;
     }
     
     public void setAgeRating(int ageRating){
@@ -87,7 +100,13 @@ public class MovieStorePageInfo implements StoreListing {
     }
     @Override
     public int addToRepo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DBWriter w = new DBWriter();
+        if(w.insertNewMovie(movieID, movieName, price, ageRating, description, runtime, genres.get(genres.size()-1), publisherID)){
+            RepositoryAccess ra = RepositoryAccessMethodFactory.getRepoAccess();
+            return ra.getGameID(publisherID);
+        } else{
+           return -1;
+        }
     }
 
     @Override
