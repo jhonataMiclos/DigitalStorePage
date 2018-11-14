@@ -179,7 +179,7 @@ public class UIHandler {
         Object[][] cartItems;
         if(cart != null || cart.length() > 0){
          cartItems = new Object[cart.length()][2];
-         for(int x =0 ;x< cart.length();x++)
+         for(int x =0 ;x<cart.length();x++)
          {
             try{
              JSONObject currentObj = cart.getJSONObject(x);
