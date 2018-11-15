@@ -8,6 +8,7 @@ package Controller;
 import DBHandler.DBWriter;
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.RepositoryWriter;
 import java.util.Date;
 import org.json.JSONObject;
 
@@ -16,11 +17,14 @@ import org.json.JSONObject;
  * @author jhonata
  */
 public class LoginHandler {
-    private RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-    private DBWriter dbWriter;
+    private RepositoryAccess rA;
+    private RepositoryWriter dbWriter;
     private static String userLoggedIn ="";
     public LoginHandler() {
-        dbWriter = new DBWriter();
+        
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+        rA =  rf.getRepoAccess();
+        dbWriter = rf.getRepoWriter();
     }
     public int validateLogin(String userName, String password)
     {

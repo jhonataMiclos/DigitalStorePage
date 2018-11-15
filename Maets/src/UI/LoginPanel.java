@@ -9,6 +9,7 @@ import Common.DoNothingCommand;
 import Common.NavigateToCommand;
 import Controller.LoginHandler;
 import Controller.UIHandler;
+import DBHandler.RepositoryAccess;
 import Memento.CareTaker;
 import Memento.Memento;
 import DBHandler.RepositoryAccessMethodFactory;
@@ -184,9 +185,10 @@ public class LoginPanel extends javax.swing.JPanel {
                 break;
             case 2:
                 // Display publisher stuff
-                CareTaker.getInstance().add(new Memento(this));
-                int id = RepositoryAccessMethodFactory.getRepoAccess().getPubID(usernameText);
-                loginB.setCommand(new NavigateToCommand(new PublisherProductListingAdapted(frame,this,uiHandler, id),frame));
+                RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+                RepositoryAccess ra =  rf.getRepoAccess();
+                int id = ra.getPubID(usernameText);
+                loginB.setCommand(new NavigateToCommand(new PublisherProductListingAdapted(frame,uiHandler, id),frame));
                 loginB.execute();
                 break;
             case 3:

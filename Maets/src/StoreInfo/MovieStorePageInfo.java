@@ -102,7 +102,9 @@ public class MovieStorePageInfo implements StoreListing {
     public int addToRepo() {
         DBWriter w = new DBWriter();
         if(w.insertNewMovie(movieID, movieName, price, ageRating, description, runtime, genres.get(genres.size()-1), publisherID)){
-            RepositoryAccess ra = RepositoryAccessMethodFactory.getRepoAccess();
+            
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryAccess ra =  rf.getRepoAccess();
             return ra.getGameID(publisherID);
         } else{
            return -1;

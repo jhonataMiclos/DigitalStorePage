@@ -3,6 +3,7 @@ package Controller;
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
 import DBHandler.DBWriter;
+import DBHandler.RepositoryWriter;
 import org.json.JSONObject;
 
 /**
@@ -11,11 +12,14 @@ import org.json.JSONObject;
  */
 public class SignUpHandler {
 
-    private RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-    private DBWriter dbWriter;
+    private RepositoryAccess rA;
+    private RepositoryWriter dbWriter;
     
     public SignUpHandler() {
-        dbWriter = new DBWriter();
+        
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+        rA =  rf.getRepoAccess();
+        dbWriter = rf.getRepoWriter();
     }
 
     public String validateSignUp(String username, String password, int userType, String publisherName) {

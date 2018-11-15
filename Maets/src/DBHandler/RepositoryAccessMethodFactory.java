@@ -10,7 +10,15 @@ package DBHandler;
  * @author jakec
  */
 public class RepositoryAccessMethodFactory {
-    public static RepositoryAccess getRepoAccess(){
+    public RepositoryAccessMethodFactory(){
+        
+    }
+    
+    public RepositoryAccess getRepoAccess(){
         return new DBQueryParser();
+    }
+    
+    public RepositoryWriter getRepoWriter(){
+        return new DBWriter();
     }
 }

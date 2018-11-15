@@ -10,6 +10,7 @@ package Publisher;
 
  */
 
+import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
 import Launchers.Launcher;
 import Launchers.ProductLauncher;
@@ -60,7 +61,9 @@ public class PublisherProductData {
     }
     
     public boolean store(){
-        int id = RepositoryAccessMethodFactory.getRepoAccess().addProduct(storeListing.getName(), publisherID);
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+        RepositoryAccess ra =  rf.getRepoAccess();
+        int id = ra.addProduct(storeListing.getName(), publisherID);
         if(id >= 0){
             storeListing.setID(id);
             storeListing.addToRepo();

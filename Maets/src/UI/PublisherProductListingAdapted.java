@@ -12,6 +12,7 @@ import Controller.PublisherUIHandler;
 import Controller.StorePageHandler;
 import Controller.UIHandler;
 import Memento.CareTaker;
+import Memento.Memento;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -55,7 +56,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         displayProductInfoInTable();
     }
 
-    PublisherProductListingAdapted(JFrame frame, LoginPanel aThis, UIHandler uiHandler, int id) {
+    PublisherProductListingAdapted(JFrame frame, UIHandler uiHandler, int id) {
         
         this.frame = frame;
         this.uiHandler = uiHandler;
@@ -63,7 +64,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         
         logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
-        backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),frame));
+        backB = new CommandJbutton (new DoNothingCommand());
         initComponents();
         
         // Display product info in the table
@@ -99,7 +100,6 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         
         productInfoLabel = new javax.swing.JLabel();
         addGameButton = new CommandJbutton(new NavigateToCommand(new PublisherGameDataInputAdapted(frame,this,uiHandler, handler),frame));
-        logoutB = new CommandJbutton(new DoNothingCommand());
         addMovieButton = new CommandJbutton(new NavigateToCommand(new PublisherMovieDataInput(frame,this,uiHandler, handler),frame));
         productScrollPane = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
@@ -168,6 +168,8 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
                 productPageBActionPerformed(evt);
             }
         });
+        
+        backB.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -182,12 +184,12 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
                         .addComponent(backB))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(productScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addGameButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(addGameButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(logoutB, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(addMovieButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(productPageB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(addMovieButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(productPageB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -201,9 +203,9 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoutB)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                         .addComponent(productPageB)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addMovieButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addGameButton))
@@ -212,15 +214,18 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         );
     }// </editor-fold>                        
 
-     private void backBActionPerformed(java.awt.event.ActionEvent evt) {                                      
+     private void backBActionPerformed(java.awt.event.ActionEvent evt) {
+        backB = new CommandJbutton(new NavigateToCommand(CareTaker.getInstance().get(1),frame));
         backB.execute();
     }                                      
 
-    private void addGameButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    private void addGameButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        CareTaker.getInstance().add(new Memento(this));
         addGameButton.execute();
     }                                             
 
-    private void addMovieButtonActionPerformed(java.awt.event.ActionEvent evt) {   
+    private void addMovieButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        CareTaker.getInstance().add(new Memento(this));   
         addMovieButton.execute();
     }                                              
 

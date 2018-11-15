@@ -24,7 +24,7 @@ import org.json.JSONObject;
  */
 public class UIHandler {
     
-    private RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+    private RepositoryAccess ra;
     private JFrame mainFrame;
     private LoginHandler loginHandler;
     public JSONArray cart;
@@ -36,6 +36,8 @@ public class UIHandler {
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
         
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+        ra =  rf.getRepoAccess();
         loginHandler = new LoginHandler();
         displayLoginPanel();
     }
@@ -79,12 +81,16 @@ public class UIHandler {
         
     }
     public void pullDownCart(){
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-        cart= rA.getCart(username);
+        
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryAccess ra =  rf.getRepoAccess();
+        cart= ra.getCart(username);
     }
     public String[] getAllAvailableUserTypes(){
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-         JSONArray array = rA.getAllUserTypes();
+        
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryAccess ra =  rf.getRepoAccess();
+         JSONArray array = ra.getAllUserTypes();
          String[] userTypes = new String[array.length()];
          for(int x = 0; x < array.length(); x++){
              try{
@@ -98,8 +104,10 @@ public class UIHandler {
          return userTypes;
     }
     public String[] getAllData(){
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-        JSONArray array = rA.getAllUsersData();
+        
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryAccess ra =  rf.getRepoAccess();
+        JSONArray array = ra.getAllUsersData();
         String[] result =  new String[array.length()];
         result = getAvarages(array);
         
@@ -139,8 +147,10 @@ public class UIHandler {
         return result;
     }
     public String[] getAllUserNames() {
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-         JSONArray array = rA.getAllUsers();
+       
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryAccess ra =  rf.getRepoAccess();
+         JSONArray array = ra.getAllUsers();
          String[] userNames = new String[array.length()];
          for(int x = 0; x < array.length(); x++){
              try{
@@ -155,8 +165,10 @@ public class UIHandler {
     }
     
     public int[] getAllUserTypes() {
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-         JSONArray array = rA.getAllUsers();
+        
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryAccess ra =  rf.getRepoAccess();
+         JSONArray array = ra.getAllUsers();
          int[] userTypes = new int[array.length()];
          for(int x = 0; x < array.length(); x++){
              try{
@@ -202,8 +214,10 @@ public class UIHandler {
     }
     
     public String[] getLibrary() {
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-        JSONArray results = rA.getLibrary(username);
+        
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryAccess ra =  rf.getRepoAccess();
+        JSONArray results = ra.getLibrary(username);
         
         String[] libraryItems;
         if(results != null || results.length() > 0){
@@ -227,8 +241,10 @@ public class UIHandler {
     }
     
     public int[] getProductIDsByUsername() {
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-        JSONArray results = rA.getLibrary(username);
+        
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryAccess ra =  rf.getRepoAccess();
+        JSONArray results = ra.getLibrary(username);
         
         int[] productIDs;
         if(results != null || results.length() > 0){
@@ -263,8 +279,9 @@ public class UIHandler {
     public void launchProduct(int productID) {
         Launcher launcher = new ProductLauncher();
         
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-        String filePath = rA.getFilePath(productID);
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryAccess ra =  rf.getRepoAccess();
+        String filePath = ra.getFilePath(productID);
         
         launcher.setFileLocation(filePath);
         launcher.play();

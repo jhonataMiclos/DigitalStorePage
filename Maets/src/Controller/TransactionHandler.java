@@ -4,18 +4,22 @@ package Controller;
 import DBHandler.DBWriter;
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.RepositoryWriter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class TransactionHandler {
 
-    private RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+    private RepositoryAccess rA;
     private DBWriter dbWriter;
     private UIHandler uiHandler;
     
     public TransactionHandler( UIHandler uiHandler) {
         dbWriter = new DBWriter();
         this.uiHandler=uiHandler;
+        
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+        rA =  rf.getRepoAccess();
     }
     
     public boolean validateCard(String cardNumber) {
@@ -47,7 +51,9 @@ public class TransactionHandler {
     }
     
     public boolean RemoveFromCart() {
-        return dbWriter.clearCart(uiHandler.getUsername());
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryWriter rw =  rf.getRepoWriter();
+        return rw.clearCart(uiHandler.getUsername());
     }
     
 

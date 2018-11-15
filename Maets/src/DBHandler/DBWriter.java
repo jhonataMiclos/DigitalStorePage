@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author jakec
  */
-public class DBWriter {
+public class DBWriter implements RepositoryWriter{
      private String dbName = "maets";
     private PreparedStatement preparedStatement;
     private Connection c;

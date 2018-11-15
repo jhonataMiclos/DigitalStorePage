@@ -28,8 +28,9 @@ public class StoreListingFactory {
     }
     
     public static List<StoreListing> getAllGames(){
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-         JSONArray array = rA.getAllGames();
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryAccess ra =  rf.getRepoAccess();
+         JSONArray array = ra.getAllGames();
          List<StoreListing> sLArrList = new ArrayList<StoreListing>();
          for(int x = 0; x < array.length(); x++){
              try{
@@ -42,8 +43,9 @@ public class StoreListingFactory {
     }
     
     public static List<StoreListing> getAllMovies(){
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-         JSONArray array = rA.getAllMovies();
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryAccess ra =  rf.getRepoAccess();
+         JSONArray array = ra.getAllMovies();
          List<StoreListing> sLArrList = new ArrayList<StoreListing>();
          MovieStorePageInfoFactory mspif = new MovieStorePageInfoFactory();
          
@@ -58,8 +60,9 @@ public class StoreListingFactory {
     }
     
     public static List<StoreListing> getAllbyPublisher(int id){
-        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
-        JSONArray array = rA.getAllMoviesByPublisher(id);
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
+         RepositoryAccess ra =  rf.getRepoAccess();
+        JSONArray array = ra.getAllMoviesByPublisher(id);
         List<StoreListing> sLArrList = new ArrayList<StoreListing>();
         MovieStorePageInfoFactory mspi = new MovieStorePageInfoFactory();
         for(int x = 0; x < array.length(); x++){
@@ -69,7 +72,7 @@ public class StoreListingFactory {
                 System.out.println("Error : "+e.toString());
             }
         }
-        array = rA.getAllGames();
+        array = ra.getAllGames();
         for(int x = 0; x < array.length(); x++){
             try{
                sLArrList.add(GameStorePageInfoFactory.create(array.getJSONObject(x)));
