@@ -7,7 +7,7 @@ package Publisher;
 
 /**
  *
- * @author jakec
+
  */
 
 import DBHandler.RepositoryAccessMethodFactory;
