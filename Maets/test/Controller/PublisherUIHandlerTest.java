@@ -14,11 +14,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author jakec
+ * @author Dev Mode
  */
-public class PublisherUIHandlerIT {
+public class PublisherUIHandlerTest {
     
-    public PublisherUIHandlerIT() {
+    public PublisherUIHandlerTest() {
     }
     
     @BeforeClass
@@ -37,9 +37,8 @@ public class PublisherUIHandlerIT {
     public void tearDown() {
     }
 
-
     /**
-     * Test of verifyGameDataInput method, of class PublisherUIHandler.
+     * Test of getAllProductListingByPublisher method, of class PublisherUIHandler.
      */
     @Test
     public void testVerifyGameDataInput() {
@@ -50,7 +49,7 @@ public class PublisherUIHandlerIT {
         String genre = "Action";
         String desc = "This is a Game";
         String minSpecs = "Running requirements";
-        String file = "/Users";
+        String file = "/";
         PublisherUIHandler instance = new PublisherUIHandler(1);
         String expResult = "";
         String result = instance.verifyGameDataInput(name, price, ageRating, genre, desc, minSpecs, file);
@@ -86,7 +85,7 @@ public class PublisherUIHandlerIT {
         String genre = "Action";
         String desc = "This is a movie";
         String runtime = "12";
-        String file = "/Users";
+        String file = "/";
         PublisherUIHandler instance = new PublisherUIHandler(1);
         String expResult = "";
         String result = instance.verifyMovieDataInput(name, price, ageRating, genre, desc, runtime, file);
@@ -105,7 +104,7 @@ public class PublisherUIHandlerIT {
         String genre = "Action";
         String desc = "This is a movie";
         String runtime = "12";
-        String file = "/Users";
+        String file = "/";
         PublisherUIHandler instance = new PublisherUIHandler(1);
         String expResult = "\n Game name incorrect";
         String result = instance.verifyMovieDataInput(name, price, ageRating, genre, desc, runtime, file);
@@ -124,7 +123,7 @@ public class PublisherUIHandlerIT {
         String genre = "Action";
         String desc = "This is a movie";
         String runtime = "12";
-        String file = "/Users";
+        String file = "/";
         PublisherUIHandler instance = new PublisherUIHandler(1);
         String expResult = "\n Input valid Price";
         String result = instance.verifyMovieDataInput(name, price, ageRating, genre, desc, runtime, file);
@@ -141,7 +140,7 @@ public class PublisherUIHandlerIT {
         String genre = "Action";
         String desc = "This is a movie";
         String runtime = "12";
-        String file = "/Users";
+        String file = "/";
         PublisherUIHandler instance = new PublisherUIHandler(1);
         String result = instance.verifyMovieDataInput(name, price, ageRating, genre, desc, runtime, file);
         assertEquals(expResult, result);
@@ -160,5 +159,4 @@ public class PublisherUIHandlerIT {
         int result = instance.getID();
         assertEquals(expResult, result);
     }
-    
 }

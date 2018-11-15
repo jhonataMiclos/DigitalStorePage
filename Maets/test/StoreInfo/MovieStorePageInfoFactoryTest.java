@@ -15,11 +15,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author jakec
+ * @author Dev Mode
  */
-public class MovieStorePageInfoFactoryIT {
+public class MovieStorePageInfoFactoryTest {
     
-    public MovieStorePageInfoFactoryIT() {
+    public MovieStorePageInfoFactoryTest() {
     }
     
     @BeforeClass
@@ -41,7 +41,7 @@ public class MovieStorePageInfoFactoryIT {
     /**
      * Test of create method, of class MovieStorePageInfoFactory.
      */
-    @Test
+ @Test
     public void testCreate() throws Exception {
         System.out.println("create");
         JSONObject movieJSON = new JSONObject();

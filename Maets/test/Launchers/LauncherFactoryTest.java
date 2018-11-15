@@ -18,11 +18,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author jakec
+ * @author Dev Mode
  */
-public class LauncherFactoryIT {
+public class LauncherFactoryTest {
     
-    public LauncherFactoryIT() {
+    public LauncherFactoryTest() {
     }
     
     @BeforeClass
@@ -44,7 +44,7 @@ public class LauncherFactoryIT {
     /**
      * Test of makeLauncher method, of class LauncherFactory.
      */
-    @Test
+   @Test
     public void testMakeLauncher() {
         try {
             System.out.println("makeLauncher");
@@ -61,7 +61,8 @@ public class LauncherFactoryIT {
             assertEquals(id, result.getProductID());
             assertEquals(revision, result.getRevisionNumber(), 0.0001);
         } catch (JSONException ex) {
-            Logger.getLogger(LauncherFactoryIT.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LauncherFactoryTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 }

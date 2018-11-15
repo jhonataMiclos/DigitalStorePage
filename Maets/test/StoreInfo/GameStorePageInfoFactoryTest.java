@@ -15,11 +15,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author jakec
+ * @author Dev Mode
  */
-public class GameStorePageInfoFactoryIT {
+public class GameStorePageInfoFactoryTest {
     
-    public GameStorePageInfoFactoryIT() {
+    public GameStorePageInfoFactoryTest() {
     }
     
     @BeforeClass
@@ -41,7 +41,7 @@ public class GameStorePageInfoFactoryIT {
     /**
      * Test of create method, of class GameStorePageInfoFactory.
      */
-    @Test
+      @Test
     public void testCreate() throws Exception {
         System.out.println("create");
         int pubID = 1;
