@@ -313,7 +313,7 @@ public class DBQueryParser implements RepositoryAccess {
     public JSONArray getLibrary(String userName){
         try {
             JSONArray array = new JSONArray();
-            ResultSet resultSet = DBConnector.getInstance().execute("select name from "+dbName+".gamesStoreinfo where productID in (select productID from "+dbName+".carts where userName = '" + userName+"') union select name from "+dbName+".movieStoreinfo where productID in (select productID from "+dbName+".carts where userName = '" + userName+"')");
+            ResultSet resultSet = DBConnector.getInstance().execute("select name from "+dbName+".gamesStoreinfo where productID in (select productID from "+dbName+".history where userName = '" + userName+"') union select name from "+dbName+".movieStoreinfo where productID in (select productID from "+dbName+".history where userName = '" + userName+"')");
             while(resultSet.next()){
                 JSONObject obj = new JSONObject();
                 obj.put("name", resultSet.getString("name"));
@@ -332,7 +332,7 @@ public class DBQueryParser implements RepositoryAccess {
     public JSONArray getProductIDsByUsername(String userName){
         try {
             JSONArray array = new JSONArray();
-            ResultSet resultSet = DBConnector.getInstance().execute("select productID from "+dbName+".carts where userName = '" + userName+"'");
+            ResultSet resultSet = DBConnector.getInstance().execute("select productID from "+dbName+".history where userName = '" + userName+"'");
             while(resultSet.next()){
                 JSONObject obj = new JSONObject();
                 obj.put("productID", resultSet.getInt("productID"));

@@ -37,12 +37,13 @@ public class TransactionHandler {
          {
             try{
              JSONObject currentObj = cart.getJSONObject(x);
-            return dbWriter.insertHistory(uiHandler.getUsername(),currentObj.getInt("productID"));
+            dbWriter.insertHistory(uiHandler.getUsername(),currentObj.getInt("productID"));
             } catch(Exception e){
                  System.out.println("Error s: "+e.toString());
+                 return false;
             }
         }
-        return false;
+        return true;
     }
     
     public boolean RemoveFromCart() {
