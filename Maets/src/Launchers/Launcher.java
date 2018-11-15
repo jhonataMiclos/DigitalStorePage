@@ -5,63 +5,17 @@
  */
 package Launchers;
 
-import DBHandler.DBWriter;
-
 /**
  *
  * @author jakec
  */
-public class Launcher {
-    
-    private String fileLocation;
-    private int productID;
-    private double revisionNumber;
-    private RunProduct rp;
-
-    
-    public String getFileLocation() {
-        return fileLocation;
-    }
-
-    
-    public double getRevisionNumber() {
-        return revisionNumber;
-    }
-
-    
-    public int getProductID() {
-        return productID;
-    }
-
-    
-    public void play() {
-        rp.play();
-    }
-
-    
-    public void setFileLocation(String fileLocation) {
-        this.fileLocation = fileLocation;
-        this.rp = RunnerFactory.getProductRunner(fileLocation); 
-    }
-
-    
-    public void setRevisionNumber(double revisionNumber) {
-        this.revisionNumber  = revisionNumber;
-    }
-
-    
-    public void setProductID(int productID) {
-        this.productID = productID;
-    }
-    
-    
-    public boolean addToRepo(){
-        if(productID >= 0 && fileLocation.length() > 0){
-            DBWriter w = new DBWriter();
-            w.insertNewLauncher(fileLocation, productID);
-            return true;
-        } else {
-            return false;
-        }
-    }
+public interface Launcher {
+    public String getFileLocation();
+    public double getRevisionNumber();
+    public int getProductID();
+    public void play();
+    public void setFileLocation(String fileLocation);
+    public void setRevisionNumber(double revisionNumber);
+    public void setProductID(int productID);
+    public boolean addToRepo();
 }

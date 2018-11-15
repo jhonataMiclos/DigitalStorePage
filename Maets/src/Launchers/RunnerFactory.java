@@ -10,16 +10,18 @@ package Launchers;
  * @author jakec
  */
 class RunnerFactory {
+    
+    public RunnerFactory(){
+        
+    }
 
-    static RunProduct getProductRunner(String fileLocation) {
-        if(fileLocation.endsWith(".exe")){
-            return new RunEXE(fileLocation);
-        } else if(fileLocation.endsWith(".txt")){
+    public RunProduct getProductRunner(String fileLocation) {
+        if(fileLocation.endsWith(".txt")){
             return new RunTXT(fileLocation);
         } else if(fileLocation.endsWith(".jar")){
             return new RunJAR(fileLocation);
         } else {
-            return new RunMP4(fileLocation);
+            return new RunError();
         }
     }
 }

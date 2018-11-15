@@ -4,6 +4,7 @@ import DBHandler.DBWriter;
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
 import Launchers.Launcher;
+import Launchers.ProductLauncher;
 import StoreInfo.StoreListing;
 import StoreInfo.StoreListingFactory;
 import UI.LoginPanel;
@@ -260,7 +261,7 @@ public class UIHandler {
     }
     
     public void launchProduct(int productID) {
-        Launcher launcher = new Launcher();
+        Launcher launcher = new ProductLauncher();
         
         RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
         String filePath = rA.getFilePath(productID);

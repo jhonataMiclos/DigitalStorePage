@@ -20,9 +20,14 @@ import org.json.JSONObject;
  * @author jakec
  */
 public class PublisherProductFactory {
-    public static PublisherProductData makeNewGame(JSONObject info, int id) throws Exception{
+    public PublisherProductFactory(){
+        
+    }
+    
+    public PublisherProductData makeNewGame(JSONObject info, int id) throws Exception{
         try {
-            Launcher launcher = LauncherFactory.makeGameLauncher(info.getJSONObject("Launcher"));
+            LauncherFactory lf= new LauncherFactory();
+            Launcher launcher = lf.makeLauncher(info.getJSONObject("Launcher"));
             StoreListing sL = GameStorePageInfoFactory.getGameInfo(info.getJSONObject("StoreInfo"));
             return new PublisherProductData(sL, launcher, id);
         } catch (JSONException ex) {
@@ -31,9 +36,10 @@ public class PublisherProductFactory {
         }
     }
     
-    public static PublisherProductData makeNewMovie(JSONObject info, int id) throws Exception{
+    public PublisherProductData makeNewMovie(JSONObject info, int id) throws Exception{
         try {
-            Launcher launcher = LauncherFactory.makeGameLauncher(info.getJSONObject("Launcher"));
+            LauncherFactory lf= new LauncherFactory();
+            Launcher launcher = lf.makeLauncher(info.getJSONObject("Launcher"));
             MovieStorePageInfoFactory mspi = new MovieStorePageInfoFactory();
             StoreListing sL = mspi.getMovieInfo(info.getJSONObject("StoreInfo"));
             return new PublisherProductData(sL, launcher, id);

@@ -48,7 +48,8 @@ public class Publisher {
     
     public void addMovie(JSONObject movieDetails){
         try {
-            pPD.add(PublisherProductFactory.makeNewMovie(movieDetails, publisherID));
+            PublisherProductFactory ppf = new PublisherProductFactory();
+            pPD.add(ppf.makeNewMovie(movieDetails, publisherID));
         } catch (Exception ex) {
             Logger.getLogger(Publisher.class.getName()).log(Level.SEVERE, null, ex);
             System.out.print("Error: Movie data formatted incorrectly");
@@ -57,7 +58,8 @@ public class Publisher {
     
     public void addGame(JSONObject gameDetails){
         try {
-            pPD.add(PublisherProductFactory.makeNewGame(gameDetails, publisherID));
+            PublisherProductFactory ppf = new PublisherProductFactory();
+            pPD.add(ppf.makeNewGame(gameDetails, publisherID));
         } catch (Exception ex) {
             Logger.getLogger(Publisher.class.getName()).log(Level.SEVERE, null, ex);
             System.out.print("Error: Movie data formatted incorrectly");

@@ -12,6 +12,7 @@ package Publisher;
 
 import DBHandler.RepositoryAccessMethodFactory;
 import Launchers.Launcher;
+import Launchers.ProductLauncher;
 import StoreInfo.GameStorePageInfo;
 import StoreInfo.MovieStorePageInfo;
 import StoreInfo.StoreListing;
@@ -54,7 +55,7 @@ public class PublisherProductData {
     }
 
     public void setLauncher(String file) {
-        launcher = new Launcher();
+        launcher = new ProductLauncher();
         launcher.setFileLocation(file);
     }
     

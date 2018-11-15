@@ -15,9 +15,14 @@ import org.json.JSONObject;
  * @author jakec
  */
 public class LauncherFactory {
-    public static Launcher makeGameLauncher(JSONObject launcherInfo){
+    
+    public LauncherFactory(){
+        
+    }
+    
+    public Launcher makeLauncher(JSONObject launcherInfo){
         try {
-            Launcher launcher = new Launcher();
+            ProductLauncher launcher = new ProductLauncher();
             launcher.setFileLocation(launcherInfo.getString("fileLocation"));
             launcher.setProductID(launcherInfo.getInt("productID"));
             launcher.setRevisionNumber(launcherInfo.getDouble("revisionNumber"));
