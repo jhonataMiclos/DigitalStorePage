@@ -308,4 +308,59 @@ public class DBQueryParser implements RepositoryAccess {
           return new JSONArray();
       }
     }
+    
+    @Override
+    public JSONArray getLibrary(String userName){
+        try {
+            JSONArray array = new JSONArray();
+            ResultSet resultSet = DBConnector.getInstance().execute("select name from "+dbName+".gamesStoreinfo where productID in (select productID from "+dbName+".carts where userName = '" + userName+"') union select name from "+dbName+".movieStoreinfo where productID in (select productID from "+dbName+".carts where userName = '" + userName+"')");
+            while(resultSet.next()){
+                JSONObject obj = new JSONObject();
+                obj.put("name", resultSet.getString("name"));
+                array.put(obj);   
+            }
+            
+            return array;
+        }
+        catch(Exception e){
+          System.out.println("Error retrieving cartInfo: "+e.toString());
+          return new JSONArray();
+      }
+    }
+    
+    @Override
+    public JSONArray getProductIDsByUsername(String userName){
+        try {
+            JSONArray array = new JSONArray();
+            ResultSet resultSet = DBConnector.getInstance().execute("select productID from "+dbName+".carts where userName = '" + userName+"'");
+            while(resultSet.next()){
+                JSONObject obj = new JSONObject();
+                obj.put("productID", resultSet.getInt("productID"));
+                array.put(obj);   
+            }
+            
+            return array;
+        }
+        catch(Exception e){
+          System.out.println("Error retrieving cartInfo: "+e.toString());
+          return new JSONArray();
+      }
+    }
+
+    @Override
+    public String getFilePath(int productID) {
+        try {
+          ResultSet resultSet = DBConnector.getInstance().execute("select fileLocation from "+dbName+".gamelaunchers where productID = "+productID);
+          if(resultSet.next()){
+              return resultSet.getString("fileLocation)");
+          }
+          return "File location not found";
+      }
+      catch(Exception e){
+          System.out.println("Error retrieving store info: "+e.toString());
+          return "File location not found";
+      }
+    }
+    
+    
 }

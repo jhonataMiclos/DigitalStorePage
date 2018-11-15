@@ -3,6 +3,7 @@ package Controller;
 import DBHandler.DBWriter;
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
+import Launchers.Launcher;
 import StoreInfo.StoreListing;
 import StoreInfo.StoreListingFactory;
 import UI.LoginPanel;
@@ -198,6 +199,55 @@ public class UIHandler {
         return cartItems;
         
     }
+    
+    public String[] getLibrary() {
+        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+        JSONArray results = rA.getLibrary(username);
+        
+        String[] libraryItems;
+        if(results != null || results.length() > 0){
+         libraryItems = new String[results.length()];
+         for(int x =0 ;x<libraryItems.length ;x++)
+         {
+            try{
+             JSONObject currentObj = results.getJSONObject(x);
+             libraryItems[x] = currentObj.getString("name");
+            } catch(Exception e){
+                 System.out.println("Error s: "+e.toString());
+             }
+        }
+        }
+        else{
+             libraryItems = new String[1];
+             libraryItems[0] ="No products";
+         }
+        return libraryItems;
+        
+    }
+    
+    public int[] getProductIDsByUsername() {
+        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+        JSONArray results = rA.getLibrary(username);
+        
+        int[] productIDs;
+        if(results != null || results.length() > 0){
+         productIDs = new int[results.length()];
+         for(int x =0 ;x<productIDs.length ;x++)
+         {
+            try{
+             JSONObject currentObj = results.getJSONObject(x);
+             productIDs[x] = currentObj.getInt("productID");
+            } catch(Exception e){
+                 System.out.println("Error s: "+e.toString());
+             }
+        }
+        }
+        else{
+             productIDs = new int[1];
+             productIDs[0] = -1;
+         }
+        return productIDs;
+    }
 
     private StoreListing getFullProductInfo(String productName) {
         List<StoreListing> listings = StoreListingFactory.getAll();
@@ -207,5 +257,16 @@ public class UIHandler {
             }
         }
         return null;
+    }
+    
+    public void launchProduct(int productID) {
+        Launcher launcher = new Launcher();
+        
+        RepositoryAccess rA = RepositoryAccessMethodFactory.getRepoAccess();
+        String filePath = rA.getFilePath(productID);
+        
+        launcher.setFileLocation(filePath);
+        launcher.play();
+        
     }
 }

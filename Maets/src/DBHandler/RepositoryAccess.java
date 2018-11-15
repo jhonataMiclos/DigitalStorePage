@@ -22,8 +22,10 @@ public interface RepositoryAccess {
     JSONArray getAllGamesByPublisher(int publisherID);
     JSONArray getAllMoviesByPublisher(int publisherID);
     public int getGameID(int publisherID);
-
+    public String getFilePath(int productID);
     public int addProduct(String name, int publisherID);
     public int getPubID(String userName);
     JSONArray getCart(String userName);
+    JSONArray getLibrary(String userName);
+    JSONArray getProductIDsByUsername(String userName);
 }

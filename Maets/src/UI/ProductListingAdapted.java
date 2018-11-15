@@ -27,6 +27,7 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         this.uiHandler = uiHandler;       
         logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
+        libraryB = new CommandJbutton(new DoNothingCommand());
         initComponents();
         
         // Display product info in the table
@@ -38,6 +39,7 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         this.uiHandler = uiHandler;        
         logoutB = new CommandJbutton(new LogoutCommand());
         productPageB = new CommandJbutton(new DoNothingCommand());
+        libraryB = new CommandJbutton(new DoNothingCommand());
         initComponents();
         
         // Display product info in the table
@@ -72,8 +74,6 @@ public class ProductListingAdapted extends javax.swing.JPanel {
                 cartB = new CommandJbutton(new DoNothingCommand());
         productScrollPane = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
-        //logoutB = new javax.swing.JButton();
-        libraryB = new javax.swing.JButton();
         storeLabel = new javax.swing.JLabel();
 
         productTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -125,6 +125,11 @@ public class ProductListingAdapted extends javax.swing.JPanel {
             }
         });
         libraryB.setText("Library");
+        libraryB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                libraryBActionPerformed(evt);
+            }
+        });
 
         storeLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         storeLabel.setText("Store");
@@ -197,6 +202,11 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         // TODO add your handling code here:
     }
     
+    private void libraryBActionPerformed(java.awt.event.ActionEvent evt) {
+        libraryB.setCommand( new NavigateToCommand(new LibraryPanelAdapted(frame,this,uiHandler),frame));
+        libraryB.execute();
+    }
+    
     private void cartBActionPerformed(java.awt.event.ActionEvent evt) {
        cartB.setCommand( new NavigateToCommand(new CheckoutPanel(frame,this,uiHandler),frame));
         cartB.execute();
@@ -205,7 +215,7 @@ public class ProductListingAdapted extends javax.swing.JPanel {
 
     // Variables declaration - do not modify                     
     private CommandJbutton cartB;
-    private javax.swing.JButton libraryB;
+    private CommandJbutton libraryB;
     private CommandJbutton logoutB;
     private CommandJbutton productPageB;
     private javax.swing.JScrollPane productScrollPane;
