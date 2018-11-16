@@ -114,7 +114,7 @@ public class UIHandler {
         
         return result;
     }
-    private String[] getAvarages(JSONArray array){
+    public String[] getAvarages(JSONArray array){
         Map usersAvg = new HashMap<String, Double>();
         Map usersCount = new HashMap<String, Integer>();
         for(int x = 0; x < array.length(); x++){
@@ -139,6 +139,7 @@ public class UIHandler {
         for (Object key: usersAvg.keySet()) {
             usersAvg.put(key,(double)usersAvg.get(key) / (int)usersCount.get(key));
             result[x] = String.format("%s: %f", key,(((double)usersAvg.get(key)/1000)/60));
+            x++;
         }
         return result;
     }

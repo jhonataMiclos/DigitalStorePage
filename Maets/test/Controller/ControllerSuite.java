@@ -17,7 +17,11 @@ import org.junit.runners.Suite;
  * @author Dev Mode
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ Controller.PublisherUIHandlerTest.class})
+
+
+@Suite.SuiteClasses({Controller.ConnectionReplyContextTest.class,Controller.PublisherUIHandlerTest.class, Controller.ConnectionReplyInterceptorTest.class, Controller.LoggingDispatcherTest.class, Controller.PublisherUIHandlerTest.class, Controller.LoggingInterceptorTest.class, Controller.SignUpHandlerTest.class, Controller.UIHandlerTest.class, Controller.LoginHandlerTest.class})
+
+
 public class ControllerSuite {
 
     @BeforeClass

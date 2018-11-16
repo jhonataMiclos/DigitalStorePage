@@ -37,9 +37,7 @@ public class PublisherUIHandlerTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getAllProductListingByPublisher method, of class PublisherUIHandler.
-     */
+    
     @Test
     public void testVerifyGameDataInput() {
         System.out.println("verifyGameDataInput");
@@ -90,11 +88,21 @@ public class PublisherUIHandlerTest {
         String expResult = "";
         String result = instance.verifyMovieDataInput(name, price, ageRating, genre, desc, runtime, file);
         assertEquals(expResult, result);
+        
+    }
+    
+    public void testGetAllProductListingByPublisher() {
+        System.out.println("getAllProductListingByPublisher");
+        int publisherID = 0;
+        PublisherUIHandler instance = null;
+        Object[][] expResult = null;
+        Object[][] result = instance.getAllProductListingByPublisher(publisherID);
+        assertArrayEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of verifyMovieDataInput method, of class PublisherUIHandler.
-     */
+
     @Test
     public void testVerifyNameFailMovieDataInput() {
         System.out.println("verifyMovieDataInput");
@@ -145,8 +153,7 @@ public class PublisherUIHandlerTest {
         String result = instance.verifyMovieDataInput(name, price, ageRating, genre, desc, runtime, file);
         assertEquals(expResult, result);
     }
-    
-    
+
 
     /**
      * Test of getID method, of class PublisherUIHandler.
@@ -159,4 +166,5 @@ public class PublisherUIHandlerTest {
         int result = instance.getID();
         assertEquals(expResult, result);
     }
+
 }
