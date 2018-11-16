@@ -18,13 +18,11 @@ import org.json.JSONObject;
  */
 public class LoginHandler {
     private RepositoryAccess rA;
-    private RepositoryWriter dbWriter;
-    private static String userLoggedIn ="";
     public LoginHandler() {
         
         RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
         rA =  rf.getRepoAccess();
-        dbWriter = rf.getRepoWriter();
+
     }
     public int validateLogin(String userName, String password)
     {
@@ -35,9 +33,9 @@ public class LoginHandler {
            }
            else
            {             
-                ConnectionReplyInterceptor cri = new LoggingInterceptor();
+                ConnectionReplyInterceptor cri = LoggingInterceptor.getInterceptor();
                 
-                LoggingDispatcher dis = new LoggingDispatcher();
+                LoggingDispatcher dis = LoggingDispatcher.getDispatcher();
 
                 ConnectionReplyContext context;  
 
@@ -47,16 +45,14 @@ public class LoginHandler {
 
                 dis.preRemoteReply(context); 
                 
-                userLoggedIn = userName;
+
                 return value;
            }
         }
         
         return -1;
     }
-    public static String getUserLoggedIn(){
-        return userLoggedIn;
-    }
+
     private int getUserLogin(String userName){
         try{
             JSONObject obj = rA.getLoginInfo(userName);

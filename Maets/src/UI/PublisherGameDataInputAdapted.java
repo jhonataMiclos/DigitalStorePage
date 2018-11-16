@@ -37,7 +37,7 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
         this.uiHandler = uiHandler;
         this.handler = handler;
         
-        logoutB = new CommandJbutton(new LogoutCommand());
+        logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
         backB = new CommandJbutton (new DoNothingCommand());
         initComponents();
         
@@ -49,7 +49,7 @@ public class PublisherGameDataInputAdapted extends javax.swing.JPanel {
         this.uiHandler = uiHandler;
         this.handler = handler;
         
-        logoutB = new CommandJbutton(new LogoutCommand());
+        logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
         backB = new CommandJbutton (new DoNothingCommand());
         initComponents();
         

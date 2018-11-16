@@ -25,7 +25,7 @@ public class ProductListingAdapted extends javax.swing.JPanel {
     public ProductListingAdapted(JFrame mainFrame, UIHandler uiHandler) {
         this.frame = mainFrame;
         this.uiHandler = uiHandler;       
-        logoutB = new CommandJbutton(new LogoutCommand());
+        logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
         productPageB = new CommandJbutton(new DoNothingCommand());
         libraryB = new CommandJbutton(new DoNothingCommand());
         initComponents();
@@ -37,7 +37,7 @@ public class ProductListingAdapted extends javax.swing.JPanel {
     public ProductListingAdapted(JFrame frame, JPanel panel, UIHandler uiHandler) {
         this.frame = frame;
         this.uiHandler = uiHandler;        
-        logoutB = new CommandJbutton(new LogoutCommand());
+        logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
         productPageB = new CommandJbutton(new DoNothingCommand());
         libraryB = new CommandJbutton(new DoNothingCommand());
         initComponents();

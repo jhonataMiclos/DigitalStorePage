@@ -13,7 +13,7 @@ import DBHandler.DBWriter;
  */
 public class LoggingInterceptor implements ConnectionReplyInterceptor {
     private DBWriter dbWriter = new DBWriter();
-    static LoggingInterceptor interceptor = new LoggingInterceptor();
+    private static LoggingInterceptor interceptor  ;
     @Override
     public void preRemoteReply(ConnectionReplyContext context) {
         System.out.println("User connected at time - " + context.getStartTime());
@@ -27,8 +27,10 @@ public class LoggingInterceptor implements ConnectionReplyInterceptor {
         System.out.println(context.getUserName());
         dbWriter.insertLogoutTime(context.getUserName(), context.getStartTime());
     }
-     public static LoggingInterceptor getInterceptor(){
-       return interceptor;
-       
-   }
+    public static synchronized LoggingInterceptor getInterceptor(){//Singleton stuff
+      if(interceptor==null){
+          interceptor = new LoggingInterceptor();
+      }
+      return interceptor;
+    }
 }

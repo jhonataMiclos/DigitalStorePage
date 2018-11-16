@@ -16,7 +16,7 @@ public class LoggingDispatcher implements ConnectionReplyInterceptor {
     
     List<ConnectionReplyInterceptor> interceptors = new ArrayList<ConnectionReplyInterceptor>(); 
     
-    static LoggingDispatcher dispatcher = new LoggingDispatcher(); 
+    private static LoggingDispatcher dispatcher  ; 
     
     public void registerLoggingInterceptor(ConnectionReplyInterceptor interceptor){
         interceptors.add(interceptor);
@@ -36,9 +36,11 @@ public class LoggingDispatcher implements ConnectionReplyInterceptor {
         interceptor.postRemoteReply(context);
     }
     
-   public static LoggingDispatcher getDispatcher(){
-       return dispatcher;
-       
-   }
-    
+  
+    public static synchronized LoggingDispatcher getDispatcher(){//Singleton stuff
+      if(dispatcher==null){
+          dispatcher = new LoggingDispatcher();
+      }
+      return dispatcher;
+    }
 }

@@ -62,7 +62,7 @@ public class PublisherMovieDataInput extends javax.swing.JPanel {
         
 
         
-        logoutB = new CommandJbutton(new LogoutCommand());
+        logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
         
         backB.setText("Back");
         backB.addActionListener(new java.awt.event.ActionListener() {

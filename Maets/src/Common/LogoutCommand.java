@@ -19,9 +19,10 @@ import java.util.Date;
  */
 public class LogoutCommand implements Command{
     private DBWriter dbWriter;
-    
-    public LogoutCommand() {
+    private String userName = "";
+    public LogoutCommand(String userName) {
         dbWriter = new DBWriter();
+        this.userName = userName;
     }
     @Override
     public void execute() {
@@ -34,7 +35,7 @@ public class LogoutCommand implements Command{
 
         dis.registerLoggingInterceptor(cri);
 
-        context = new ConnectionReplyContext(new Date(),LoginHandler.getUserLoggedIn()); 
+        context = new ConnectionReplyContext(new Date(),this.userName); 
 
         dis.postRemoteReply(context);
         

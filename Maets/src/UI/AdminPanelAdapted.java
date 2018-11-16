@@ -30,7 +30,7 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
         this.frame = mainFrame;
         this.uiHandler = uiHandler;
         promoteB = new CommandJbutton(new PromoteToAdminCommand());
-        logoutB = new CommandJbutton(new LogoutCommand());
+        logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
         removeB = new CommandJbutton(new RemoveGameCommand());
         initComponents();
         
@@ -43,7 +43,7 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
          this.frame = frame;
          this.uiHandler = uiHandler;
         promoteB = new CommandJbutton(new PromoteToAdminCommand());
-        logoutB = new CommandJbutton(new LogoutCommand());
+        logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
         removeB = new CommandJbutton(new RemoveGameCommand());
         initComponents();
         

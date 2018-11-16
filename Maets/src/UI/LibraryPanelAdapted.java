@@ -33,7 +33,7 @@ public class LibraryPanelAdapted extends javax.swing.JPanel {
     public LibraryPanelAdapted(JFrame mainFrame, UIHandler uiHandler) {
         this.frame = mainFrame;
         this.uiHandler = uiHandler;
-        logoutB = new CommandJbutton(new LogoutCommand());
+        logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
         launchB = new CommandJbutton(new DoNothingCommand());
         backB = new CommandJbutton(new DoNothingCommand());
         initComponents();
@@ -44,7 +44,7 @@ public class LibraryPanelAdapted extends javax.swing.JPanel {
     public LibraryPanelAdapted(JFrame frame, JPanel panel, UIHandler uiHandler) {
         this.frame = frame;
         this.uiHandler = uiHandler;
-        logoutB = new CommandJbutton(new LogoutCommand());
+        logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
         launchB = new CommandJbutton(new DoNothingCommand());
         backB = new CommandJbutton(new DoNothingCommand());
         initComponents();

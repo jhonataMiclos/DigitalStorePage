@@ -32,7 +32,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         this.uiHandler = uiHandler;
         handler = new PublisherUIHandler(1);
         
-        logoutB = new CommandJbutton(new LogoutCommand());
+        logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
         productPageB = new CommandJbutton(new DoNothingCommand());
         
         backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),mainFrame));
@@ -47,7 +47,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         this.uiHandler = uiHandler;
         handler = new PublisherUIHandler(1);
         
-        logoutB = new CommandJbutton(new LogoutCommand());
+        logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
         productPageB = new CommandJbutton(new DoNothingCommand());
         backB = new CommandJbutton (new NavigateToCommand(CareTaker.getInstance().get(1),frame));
         initComponents();
@@ -62,7 +62,7 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         this.uiHandler = uiHandler;
         handler = new PublisherUIHandler(id);
         
-        logoutB = new CommandJbutton(new LogoutCommand());
+        logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
         productPageB = new CommandJbutton(new DoNothingCommand());
         backB = new CommandJbutton (new DoNothingCommand());
         initComponents();

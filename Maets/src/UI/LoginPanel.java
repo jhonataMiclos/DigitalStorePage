@@ -40,7 +40,7 @@ public class LoginPanel extends javax.swing.JPanel {
     LoginPanel(JFrame frame, JPanel panel, UIHandler uiHandler) {
        this.frame = frame;
        this.uiHandler = uiHandler;
-       signUpB= new CommandJbutton(new NavigateToCommand(panel,frame));
+       signUpB= new CommandJbutton(new NavigateToCommand(new SignUpPanel(frame,this,uiHandler),frame));
        loginB= new CommandJbutton(new DoNothingCommand());
        initComponents();
     }
@@ -185,6 +185,7 @@ public class LoginPanel extends javax.swing.JPanel {
                 break;
             case 2:
                 // Display publisher stuff
+                uiHandler.setUsername(usernameText);
                 RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
                 RepositoryAccess ra =  rf.getRepoAccess();
                 int id = ra.getPubID(usernameText);
