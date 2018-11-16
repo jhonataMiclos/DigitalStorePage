@@ -228,7 +228,7 @@ public class UIHandler {
              JSONObject currentObj = results.getJSONObject(x);
              libraryItems[x] = currentObj.getString("name");
             } catch(Exception e){
-                 System.out.println("Error s: "+e.toString());
+                 System.out.println("Error 1s: "+e.toString());
              }
         }
         }
@@ -244,7 +244,7 @@ public class UIHandler {
         
         RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
          RepositoryAccess ra =  rf.getRepoAccess();
-        JSONArray results = ra.getLibrary(username);
+        JSONArray results = ra.getProductIDsByUsername(username);
         
         int[] productIDs;
         if(results != null || results.length() > 0){
@@ -255,7 +255,7 @@ public class UIHandler {
              JSONObject currentObj = results.getJSONObject(x);
              productIDs[x] = currentObj.getInt("productID");
             } catch(Exception e){
-                 System.out.println("Error s: "+e.toString());
+                 System.out.println("Error 2s: "+e.toString());
              }
         }
         }

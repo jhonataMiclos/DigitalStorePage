@@ -12,6 +12,8 @@ import Common.PromoteToAdminCommand;
 import Common.RemoveGameCommand;
 import Controller.UIHandler;
 import Launchers.Launcher;
+import Memento.CareTaker;
+import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -79,7 +81,11 @@ public class LibraryPanelAdapted extends javax.swing.JPanel {
         productDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         backB.setText("Back");
-
+        backB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBActionPerformed(evt);
+            }
+        });
         logoutB.setText("Logout");
         logoutB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +148,10 @@ public class LibraryPanelAdapted extends javax.swing.JPanel {
         uiHandler.launchProduct(selectedProductID);
     }     
 
+    private void backBActionPerformed(ActionEvent evt) {
+        backB.setCommand(new NavigateToCommand(CareTaker.getInstance().get(2),frame));
+        backB.execute();
+    }
 
     // Variables declaration - do not modify                     
     private CommandJbutton backB;
