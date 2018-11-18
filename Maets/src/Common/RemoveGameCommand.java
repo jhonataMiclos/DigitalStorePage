@@ -15,9 +15,10 @@ public class RemoveGameCommand implements Command{
     private int gameSelected;
     private DBWriter dbWriter;
     
-    public RemoveGameCommand() {
+    public RemoveGameCommand(int gameId) {
         gameSelected = 0;
         dbWriter = new DBWriter();
+        gameSelected = gameId;
     }
     
     public void setUserSelected(int gameId) {

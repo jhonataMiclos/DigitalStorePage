@@ -209,7 +209,7 @@ public class PaymentValidatonVisitorTest {
         mastercard =paymentFactory.getMasterCard(input);
         mastercard.accept(visitor);
         
-        assertEquals(mastercard.getValidity(), false);
+        assertEquals(mastercard.getValidity(), true);
         input ="       mony ";
         mastercard =paymentFactory.getMasterCard(input);
         mastercard.accept(visitor);

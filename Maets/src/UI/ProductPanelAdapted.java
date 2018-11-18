@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class ProductPanelAdapted extends javax.swing.JPanel {
 
-    public UIHandler uiHandler;
+    private UIHandler uiHandler;
     private JFrame frame;
     private String productName;
     
@@ -127,8 +127,8 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
     
     private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {   
         
-        LogoutCommand logoutCommand =  (LogoutCommand) logoutB.command;
-        logoutCommand.execute();
+        
+        logoutB.execute();
         logoutB.setCommand(new NavigateToCommand(new LoginPanel(frame,this,uiHandler),frame));
         logoutB.execute();
         // TODO add your handling code here:

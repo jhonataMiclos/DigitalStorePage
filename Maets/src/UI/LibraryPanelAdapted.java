@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  */
 public class LibraryPanelAdapted extends javax.swing.JPanel {
 
-    public UIHandler uiHandler;
+    private UIHandler uiHandler;
     private javax.swing.JFrame frame;
     private int[] productIDs;
     
@@ -135,8 +135,7 @@ public class LibraryPanelAdapted extends javax.swing.JPanel {
     }// </editor-fold>                        
 
     private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        LogoutCommand logoutCommand =  (LogoutCommand) logoutB.command;
-        logoutCommand.execute();
+        logoutB.execute();
         logoutB.setCommand(new NavigateToCommand(new LoginPanel(frame,this,uiHandler),frame));
         logoutB.execute();
     }     

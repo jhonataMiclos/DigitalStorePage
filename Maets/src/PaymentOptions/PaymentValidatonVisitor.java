@@ -14,8 +14,8 @@ public class PaymentValidatonVisitor implements PaymentOptionVisitor{
     @Override
     public void visit(AmericanExpress americanExpress) {
         String cardNumber=americanExpress.getCardNumber();
-        cardNumber.replaceAll("-","");
-        cardNumber.replaceAll(" ","");
+        cardNumber=cardNumber.replaceAll("-","");
+        cardNumber=cardNumber.replaceAll(" ","");
         
         americanExpress.setValidity(cardNumber.matches("^3[47][0-9]{13}$"));
     }
@@ -23,8 +23,8 @@ public class PaymentValidatonVisitor implements PaymentOptionVisitor{
     @Override
     public void visit(Visa visa) {
         String cardNumber=visa.getCardNumber();
-        cardNumber.replaceAll("-","");
-        cardNumber.replaceAll(" ","");
+        cardNumber=cardNumber.replaceAll("-","");
+        cardNumber=cardNumber.replaceAll(" ","");
         
         visa.setValidity(cardNumber.matches("^4[0-9]{12}(?:[0-9]{3})?$"));
     }
@@ -41,8 +41,8 @@ public class PaymentValidatonVisitor implements PaymentOptionVisitor{
     @Override
     public void visit(MasterCard masterCard) {
         String cardNumber=masterCard.getCardNumber();
-        cardNumber.replaceAll("-","");
-        cardNumber.replaceAll(" ","");
+        cardNumber=cardNumber.replaceAll("-","");
+        cardNumber=cardNumber.replaceAll(" ","");
         
         masterCard.setValidity(cardNumber.matches("^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$"));
     }

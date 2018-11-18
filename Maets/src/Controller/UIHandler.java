@@ -27,7 +27,7 @@ public class UIHandler {
     private RepositoryAccess ra;
     private JFrame mainFrame;
     private LoginHandler loginHandler;
-    public JSONArray cart;
+    private JSONArray cart;
     private String username;
 
     public UIHandler() {
@@ -46,7 +46,7 @@ public class UIHandler {
         mainFrame.getContentPane().removeAll();
         mainFrame.repaint();
         LoginPanel loginPanel = new LoginPanel(mainFrame, this);
-        loginPanel.uiHandler = this;
+        loginPanel.setUIHandler(this);
         mainFrame.add(loginPanel);
         mainFrame.setSize(600, 600);
     }
@@ -77,7 +77,9 @@ public class UIHandler {
         DBWriter dbWriter= new DBWriter();
         StoreListing x;
         x = getFullProductInfo(productName);
-        dbWriter.insertIntoCart(username, x.getProductID());
+        if(!x.equals(null)){
+            dbWriter.insertIntoCart(username, x.getProductID());
+        }
         
     }
     public void pullDownCart(){
@@ -144,7 +146,7 @@ public class UIHandler {
         return result;
     }
     private double calcTime(Timestamp start, Timestamp end){
-        double result = end.getTime() - start.getTime();
+        double result =(double)(end.getTime() - start.getTime());
         return result;
     }
     public String[] getAllUserNames() {
@@ -192,7 +194,7 @@ public class UIHandler {
     public Object[][] getCart() {
         pullDownCart();
         Object[][] cartItems;
-        if(cart != null || cart.length() > 0){
+        if(cart != null){
          cartItems = new Object[cart.length()][2];
          for(int x =0 ;x<cart.length();x++)
          {
@@ -221,7 +223,7 @@ public class UIHandler {
         JSONArray results = ra.getLibrary(username);
         
         String[] libraryItems;
-        if(results != null || results.length() > 0){
+        if(results != null){
          libraryItems = new String[results.length()];
          for(int x =0 ;x<libraryItems.length ;x++)
          {
@@ -248,7 +250,7 @@ public class UIHandler {
         JSONArray results = ra.getProductIDsByUsername(username);
         
         int[] productIDs;
-        if(results != null || results.length() > 0){
+        if(results != null){
          productIDs = new int[results.length()];
          for(int x =0 ;x<productIDs.length ;x++)
          {
@@ -287,5 +289,9 @@ public class UIHandler {
         launcher.setFileLocation(filePath);
         launcher.play();
         
+    }
+
+    JSONArray getCartJson() {
+        return cart;
     }
 }

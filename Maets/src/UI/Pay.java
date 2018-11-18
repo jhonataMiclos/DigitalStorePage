@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  * @author Dev Mode
  */
 public class Pay extends javax.swing.JPanel {
-    public UIHandler uiHandler;
+    private UIHandler uiHandler;
     private javax.swing.JFrame frame;
 
     /**
@@ -82,7 +82,7 @@ public class Pay extends javax.swing.JPanel {
 
         jLabel2.setText("Password");
 
-        jPasswordField.setText("jPasswordField2");
+        jPasswordField.setText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

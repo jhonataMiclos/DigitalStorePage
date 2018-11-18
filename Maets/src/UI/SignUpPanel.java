@@ -23,7 +23,7 @@ import org.json.JSONObject;
  */
 public class SignUpPanel extends javax.swing.JPanel {
 
-    public UIHandler uiHandler;
+    private UIHandler uiHandler;
     private SignUpHandler handler = new SignUpHandler();
     private JFrame frame;
     

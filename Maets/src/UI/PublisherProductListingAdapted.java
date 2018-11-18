@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PublisherProductListingAdapted extends javax.swing.JPanel {
     
-    public UIHandler uiHandler;
+    private UIHandler uiHandler;
     private PublisherUIHandler handler;
     private javax.swing.JFrame frame;
     
@@ -237,10 +237,8 @@ public class PublisherProductListingAdapted extends javax.swing.JPanel {
         productPageB = new CommandJbutton(new NavigateToCommand(new ProductPanelAdapted(frame,this,uiHandler,selectedProduct),frame));
         productPageB.execute();
     }
-    private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {   
-        
-        LogoutCommand logoutCommand =  (LogoutCommand) logoutB.command;
-        logoutCommand.execute();
+    private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {
+        logoutB.execute();
         logoutB.setCommand(new NavigateToCommand(new LoginPanel(frame,this,uiHandler),frame));
         logoutB.execute();
         // TODO add your handling code here:

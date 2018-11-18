@@ -25,7 +25,7 @@ public class TransactionHandler {
 
     public boolean AddToLibrary() {
        uiHandler.pullDownCart();
-       JSONArray cart = uiHandler.cart;
+       JSONArray cart = uiHandler.getCartJson();
         for(int x =0 ;x< cart.length();x++)
          {
             try{

@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Common.DoNothingCommand;
 import Common.LogoutCommand;
 import Common.NavigateToCommand;
 import Common.PromoteToAdminCommand;
@@ -20,7 +21,7 @@ import javax.swing.JPanel;
  */
 public class AdminPanelAdapted extends javax.swing.JPanel {
 
-    public UIHandler uiHandler;
+    private UIHandler uiHandler;
     private javax.swing.JFrame frame;
     
     /**
@@ -29,9 +30,9 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
     public AdminPanelAdapted(JFrame mainFrame, UIHandler uiHandler) {
         this.frame = mainFrame;
         this.uiHandler = uiHandler;
-        promoteB = new CommandJbutton(new PromoteToAdminCommand());
+        promoteB = new CommandJbutton(new DoNothingCommand());
         logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
-        removeB = new CommandJbutton(new RemoveGameCommand());
+        removeB = new CommandJbutton(new DoNothingCommand());
         initComponents();
         
         displayAllUsers();
@@ -42,9 +43,9 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
     public AdminPanelAdapted(JFrame frame, JPanel panel, UIHandler uiHandler) {
          this.frame = frame;
          this.uiHandler = uiHandler;
-        promoteB = new CommandJbutton(new PromoteToAdminCommand());
+        promoteB = new CommandJbutton(new DoNothingCommand());
         logoutB = new CommandJbutton(new LogoutCommand(uiHandler.getUsername()));
-        removeB = new CommandJbutton(new RemoveGameCommand());
+        removeB = new CommandJbutton(new DoNothingCommand());
         initComponents();
         
         displayAllUsers();
@@ -203,9 +204,9 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
         String selectedUser = (String) userDropdown.getSelectedItem();
         if (selectedUser == null || selectedUser.isEmpty()) return;
         
-        PromoteToAdminCommand promoteCommand = (PromoteToAdminCommand) promoteB.command;
-        promoteCommand.setUserSelected(selectedUser);
-        promoteCommand.execute();
+        
+        promoteB.setCommand(new PromoteToAdminCommand(selectedUser));
+        promoteB.execute();
         
         userDropdown.removeItem(selectedUser);
     }                                        
@@ -213,9 +214,9 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
         String selectedProductId = (String) productDropdown.getSelectedItem();
         if (selectedProductId == null || selectedProductId.isEmpty()) return;
         
-        RemoveGameCommand removeCommand = (RemoveGameCommand) removeB.command;
-        removeCommand.setUserSelected(Integer.parseInt(selectedProductId));
-        removeCommand.execute();
+        removeB.setCommand(new RemoveGameCommand(Integer.parseInt(selectedProductId)));
+        
+        removeB.execute();
         
         productDropdown.removeItem(selectedProductId);
         System.out.println("Game removed");
@@ -225,8 +226,7 @@ public class AdminPanelAdapted extends javax.swing.JPanel {
     }
     private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {   
         
-        LogoutCommand logoutCommand =  (LogoutCommand) logoutB.command;
-        logoutCommand.execute();
+        logoutB.execute();
         logoutB.setCommand(new NavigateToCommand(new LoginPanel(frame,this,uiHandler),frame));
         logoutB.execute();
         // TODO add your handling code here:

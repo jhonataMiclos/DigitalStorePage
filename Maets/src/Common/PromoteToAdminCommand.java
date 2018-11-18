@@ -16,9 +16,10 @@ public class PromoteToAdminCommand implements Command {
     private String userSelected;
     private DBWriter dbWriter;
     
-    public PromoteToAdminCommand() {
+    public PromoteToAdminCommand(String user) {
         userSelected = "";
         dbWriter = new DBWriter();
+         userSelected = user;
     }
     
     public void setUserSelected(String user) {

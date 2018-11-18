@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class GameStorePageInfo implements StoreListing  {
     
-    public int gameID;
+    private int gameID;
     private int ageRating;
     private String gameName;
     private String description;

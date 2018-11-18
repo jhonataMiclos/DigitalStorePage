@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  */
 public class AdminPanel extends javax.swing.JPanel {
 
-    public UIHandler uiHandler;
+    private UIHandler uiHandler;
     private javax.swing.JFrame frame;
     
     /**

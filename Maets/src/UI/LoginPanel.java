@@ -22,7 +22,7 @@ import javax.swing.JPanel;
  */
 public class LoginPanel extends javax.swing.JPanel {
 
-    public UIHandler uiHandler;
+    private UIHandler uiHandler;
     private LoginHandler handler = new LoginHandler();
     
     /**
@@ -35,6 +35,9 @@ public class LoginPanel extends javax.swing.JPanel {
         loginB= new CommandJbutton(new DoNothingCommand());
         initComponents();
         
+    }
+    public void setUIHandler(UIHandler uiHandler){
+       this.uiHandler =uiHandler;
     }
 
     LoginPanel(JFrame frame, JPanel panel, UIHandler uiHandler) {

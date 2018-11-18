@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Dev Mode
  */
 public class CheckoutPanel extends javax.swing.JPanel {
-    public UIHandler uiHandler;
+    private UIHandler uiHandler;
     private javax.swing.JFrame frame;
     
     CheckoutPanel(JFrame mainFrame, UIHandler uiHandler) {

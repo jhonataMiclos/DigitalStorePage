@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ProductListingAdapted extends javax.swing.JPanel {
 
-    public UIHandler uiHandler;
+    private UIHandler uiHandler;
     private StorePageHandler handler = new StorePageHandler();
     private javax.swing.JFrame frame;
     
@@ -193,10 +193,8 @@ public class ProductListingAdapted extends javax.swing.JPanel {
         productPageB.execute();
     }
 
-    private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {   
-        
-        LogoutCommand logoutCommand =  (LogoutCommand) logoutB.command;
-        logoutCommand.execute();
+    private void logoutBActionPerformed(java.awt.event.ActionEvent evt) {          
+        logoutB.execute();
         logoutB.setCommand(new NavigateToCommand(new LoginPanel(frame,this,uiHandler),frame));
         logoutB.execute();
         // TODO add your handling code here:

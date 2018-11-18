@@ -12,7 +12,7 @@ import javax.swing.JButton;
  */
 public class CommandJbutton extends JButton implements Command {
     
-    public Command command;
+    private Command command;
     
   public CommandJbutton(Command command){
       super();
