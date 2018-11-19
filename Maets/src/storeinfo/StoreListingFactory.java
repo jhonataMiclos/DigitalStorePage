@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package StoreInfo;
+package storeinfo;
 
-import DBHandler.DBQueryParser;
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  *

@@ -5,17 +5,12 @@
  */
 package UI;
 
-import Common.NavigateToCommand;
+import common.NavigateToCommand;
 import Controller.SignUpHandler;
 import Controller.UIHandler;
-import DBHandler.RepositoryAccess;
-import DBHandler.RepositoryAccessMethodFactory;
 import Memento.CareTaker;
 import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  *

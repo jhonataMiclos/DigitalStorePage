@@ -5,6 +5,8 @@
  */
 package StoreInfo;
 
+import storeinfo.StoreListing;
+import storeinfo.MovieStorePageInfoFactory;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.AfterClass;

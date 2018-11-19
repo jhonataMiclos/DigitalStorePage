@@ -5,8 +5,8 @@
  */
 package UI;
 
-import Common.DoNothingCommand;
-import Common.NavigateToCommand;
+import common.DoNothingCommand;
+import common.NavigateToCommand;
 import Controller.UIHandler;
 import Memento.CareTaker;
 import javax.swing.JFrame;

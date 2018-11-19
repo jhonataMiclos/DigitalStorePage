@@ -5,11 +5,10 @@
  */
 package UI;
 
-import Common.DoNothingCommand;
-import Common.LogoutCommand;
-import Common.NavigateToCommand;
+import common.DoNothingCommand;
+import common.LogoutCommand;
+import common.NavigateToCommand;
 import Controller.PublisherUIHandler;
-import Controller.StorePageHandler;
 import Controller.UIHandler;
 import Memento.CareTaker;
 import Memento.Memento;

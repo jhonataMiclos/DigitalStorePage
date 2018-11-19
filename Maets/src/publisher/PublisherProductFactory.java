@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Publisher;
+package publisher;
 
 import Launchers.Launcher;
 import Launchers.LauncherFactory;
-import StoreInfo.GameStorePageInfoFactory;
-import StoreInfo.MovieStorePageInfoFactory;
-import StoreInfo.StoreListing;
+import storeinfo.GameStorePageInfoFactory;
+import storeinfo.MovieStorePageInfoFactory;
+import storeinfo.StoreListing;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONException;

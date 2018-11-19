@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package UI;
-import Common.Command;
+import common.Command;
 import javax.swing.JButton;
 /**
  *

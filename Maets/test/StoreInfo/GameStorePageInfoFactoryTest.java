@@ -5,6 +5,8 @@
  */
 package StoreInfo;
 
+import storeinfo.GameStorePageInfoFactory;
+import storeinfo.StoreListing;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.AfterClass;

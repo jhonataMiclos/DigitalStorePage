@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Publisher;
+package publisher;
 
 /**
  *
@@ -14,9 +14,9 @@ import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
 import Launchers.Launcher;
 import Launchers.ProductLauncher;
-import StoreInfo.GameStorePageInfo;
-import StoreInfo.MovieStorePageInfo;
-import StoreInfo.StoreListing;
+import storeinfo.GameStorePageInfo;
+import storeinfo.MovieStorePageInfo;
+import storeinfo.StoreListing;
 
 public class PublisherProductData {
 

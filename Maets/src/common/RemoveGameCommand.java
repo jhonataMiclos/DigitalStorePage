@@ -3,32 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Common;
+package common;
 
 import DBHandler.DBWriter;
 
 /**
  *
- * @author Vilius
+ * @author jhonata
  */
-public class PromoteToAdminCommand implements Command {
-
-    private String userSelected;
+public class RemoveGameCommand implements Command{
+    private int gameSelected;
     private DBWriter dbWriter;
     
-    public PromoteToAdminCommand(String user) {
-        userSelected = "";
+    public RemoveGameCommand(int gameId) {
+        gameSelected = 0;
         dbWriter = new DBWriter();
-         userSelected = user;
+        gameSelected = gameId;
     }
     
-    public void setUserSelected(String user) {
-        userSelected = user;
+    public void setUserSelected(int gameId) {
+        gameSelected = gameId;
     }
     
     @Override
     public void execute() {
-        dbWriter.promoteUserToAdmin(userSelected);
+        dbWriter.RemoveGame(gameSelected);
     }
+    
     
 }

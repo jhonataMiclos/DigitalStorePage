@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Common;
+package common;
 
 import Controller.ConnectionReplyContext;
 import Controller.ConnectionReplyInterceptor;
 import Controller.LoggingDispatcher;
 import Controller.LoggingInterceptor;
-import Controller.LoginHandler;
 import DBHandler.DBWriter;
 import java.util.Date;
 

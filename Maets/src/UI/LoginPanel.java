@@ -5,13 +5,11 @@
  */
 package UI;
 
-import Common.DoNothingCommand;
-import Common.NavigateToCommand;
+import common.DoNothingCommand;
+import common.NavigateToCommand;
 import Controller.LoginHandler;
 import Controller.UIHandler;
 import DBHandler.RepositoryAccess;
-import Memento.CareTaker;
-import Memento.Memento;
 import DBHandler.RepositoryAccessMethodFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;

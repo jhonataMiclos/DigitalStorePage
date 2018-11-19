@@ -5,10 +5,8 @@
  */
 package Controller;
 
-import DBHandler.DBWriter;
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
-import DBHandler.RepositoryWriter;
 import java.util.Date;
 import org.json.JSONObject;
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package StoreInfo;
+package storeinfo;
 
 import DBHandler.DBWriter;
 import DBHandler.RepositoryAccess;
@@ -15,43 +15,50 @@ import java.util.List;
  *
  * @author jakec
  */
-public class MovieStorePageInfo implements StoreListing {
+public class GameStorePageInfo implements StoreListing  {
     
-    private int movieID;
+    private int gameID;
     private int ageRating;
-    private String movieName;
+    private String gameName;
     private String description;
-    private int runtime;
-    private double price;
+    private String minimumSpecs;
+    private String region;
     private List<String> genres;
+    private double price;
     private int publisherID;
     
-    public MovieStorePageInfo(int movieID){
-        this.movieID = movieID;
+    
+    public GameStorePageInfo(int gameID){
+        this.gameID = gameID;
         genres = new ArrayList<String>();
     }
 
-    public MovieStorePageInfo(String name, double price, int ageRating, String genre, String desc, int runtime) {
-        this.movieName = name;
-        this.price = price;
+    public GameStorePageInfo(String name, Double price, int ageRating, String genre, String desc, String minSpecs) {
         this.ageRating = ageRating;
-        genres = new ArrayList<String>();
-        genres.add(genre);
+        this.genres= new ArrayList<String>();
+        this.genres.add(genre);
         this.description = desc;
-        this.runtime= runtime;
+        this.gameName = name;
+        this.minimumSpecs = minSpecs;
+        this.price= price;
     }
     
     public void setAgeRating(int ageRating){
         this.ageRating = ageRating;
     }
     
-    public void setMovieName(String movieName){
-        this.movieName = movieName;
+    public void setGameName(String gameName){
+        this.gameName = gameName;
     }
     
     public void setDescription(String description){
         this.description = description;
     }
+    
+    public void setMinimumSpecs(String minimumSpecs){
+        this.minimumSpecs = minimumSpecs;
+    }
+    
     
     public void setGenre(String... genre){
         for(String newGenre : genre){
@@ -59,8 +66,8 @@ public class MovieStorePageInfo implements StoreListing {
         }
     }
     
-    public void setRuntime(int runtime){
-        this.runtime = runtime;
+    public void setRegion(String Region){
+        this.region = region;
     }
     
     @Override
@@ -71,15 +78,15 @@ public class MovieStorePageInfo implements StoreListing {
     @Override
     public String displayStorePage() {
         String listing = "";
-        listing += "Name: "+movieName+"<br/>Description: "+description+"<br/>Price: "+
-                price+"<br/>Runtime: "+runtime+"<br/>Age Rating: "+ageRating;
+        listing += "Name: "+gameName+"<br/>Description: "+description+"<br/>Price: "+price+
+                "<br/>Min Specs: "+minimumSpecs+"<br/>Age Rating: "+ageRating;
         return listing;
     }
 
     @Override
     public String displayListing() {
         String listing = "";
-        listing += movieName+"\t"+description+"\t"+price;
+        listing += gameName+"\t"+description+"\t"+price;
         return listing;
     }
 
@@ -91,17 +98,16 @@ public class MovieStorePageInfo implements StoreListing {
 
     @Override
     public String getName() {
-        return movieName;
+        return gameName;
     }
-
     @Override
-    public int getProductID(){
-        return movieID;
+    public int getProductID() {
+        return gameID;
     }
     @Override
     public int addToRepo() {
         DBWriter w = new DBWriter();
-        if(w.insertNewMovie(movieID, movieName, price, ageRating, description, runtime, genres.get(genres.size()-1), publisherID)){
+        if(w.insertNewGame(gameID, gameName, price, ageRating, description, minimumSpecs, genres.get(genres.size()-1), publisherID)){
             
         RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
          RepositoryAccess ra =  rf.getRepoAccess();
@@ -113,6 +119,6 @@ public class MovieStorePageInfo implements StoreListing {
 
     @Override
     public void setID(int id) {
-        this.movieID = id;
-    }
+        this.gameID = id;
+    }    
 }

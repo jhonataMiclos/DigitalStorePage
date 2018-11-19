@@ -6,10 +6,6 @@
 package maets;
 
 import Controller.UIHandler;
-import StoreInfo.StoreListing;
-import StoreInfo.StoreListingFactory;
-import java.util.List;
-import java.util.Scanner;
 
 /**
  *

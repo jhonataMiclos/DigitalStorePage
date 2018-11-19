@@ -1,9 +1,8 @@
 package UI;
 
-import Common.AddToCartCommand;
-import Common.DoNothingCommand;
-import Common.LogoutCommand;
-import Common.NavigateToCommand;
+import common.AddToCartCommand;
+import common.DoNothingCommand;
+import common.NavigateToCommand;
 import Controller.UIHandler;
 import Memento.CareTaker;
 import javax.swing.JFrame;

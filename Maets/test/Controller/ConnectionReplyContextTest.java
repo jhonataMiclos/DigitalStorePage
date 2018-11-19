@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Controller.ConnectionReplyContext;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;

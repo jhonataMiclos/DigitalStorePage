@@ -5,7 +5,12 @@
  */
 package PaymentOptions;
 
-import Common.TransactionCommand;
+import PaymentOptions.AmericanExpress;
+import PaymentOptions.PayPal;
+import PaymentOptions.MasterCard;
+import PaymentOptions.Visa;
+import PaymentOptions.PaymentFactory;
+import common.TransactionCommand;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

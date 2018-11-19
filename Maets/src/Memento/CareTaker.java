@@ -11,7 +11,6 @@ package Memento;
  */
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JPanel;
 
 public class CareTaker {
     private static CareTaker instance;

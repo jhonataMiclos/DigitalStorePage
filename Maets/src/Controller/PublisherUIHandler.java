@@ -5,8 +5,8 @@
  */
 package Controller;
 
-import StoreInfo.StoreListing;
-import StoreInfo.StoreListingFactory;
+import storeinfo.StoreListing;
+import storeinfo.StoreListingFactory;
 import java.io.File;
 import java.util.List;
 

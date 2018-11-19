@@ -5,16 +5,14 @@
  */
 package UI;
 
-import Common.DoNothingCommand;
-import Common.LogoutCommand;
-import Common.NavigateToCommand;
+import common.DoNothingCommand;
+import common.LogoutCommand;
+import common.NavigateToCommand;
 import Controller.PublisherUIHandler;
 import Controller.UIHandler;
 import Memento.CareTaker;
-import Publisher.PublisherProductData;
-import java.awt.event.ActionEvent;
+import publisher.PublisherProductData;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 

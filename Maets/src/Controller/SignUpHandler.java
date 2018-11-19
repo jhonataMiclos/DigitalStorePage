@@ -2,7 +2,6 @@ package Controller;
 
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
-import DBHandler.DBWriter;
 import DBHandler.RepositoryWriter;
 import org.json.JSONObject;
 

@@ -5,9 +5,9 @@
  */
 package UI;
 
-import Common.DoNothingCommand;
-import Common.NavigateToCommand;
-import Common.TransactionCommand;
+import common.DoNothingCommand;
+import common.NavigateToCommand;
+import common.TransactionCommand;
 import Controller.UIHandler;
 import PaymentOptions.AmericanExpress;
 import PaymentOptions.MasterCard;

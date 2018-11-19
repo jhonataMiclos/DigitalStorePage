@@ -5,13 +5,12 @@
  */
 package UI;
 
-import Common.DoNothingCommand;
-import Common.LogoutCommand;
-import Common.NavigateToCommand;
-import Common.PromoteToAdminCommand;
-import Common.RemoveGameCommand;
+import common.DoNothingCommand;
+import common.LogoutCommand;
+import common.NavigateToCommand;
+import common.PromoteToAdminCommand;
+import common.RemoveGameCommand;
 import Controller.UIHandler;
-import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 

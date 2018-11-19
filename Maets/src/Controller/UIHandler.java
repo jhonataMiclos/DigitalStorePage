@@ -5,11 +5,10 @@ import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
 import Launchers.Launcher;
 import Launchers.ProductLauncher;
-import StoreInfo.StoreListing;
-import StoreInfo.StoreListingFactory;
+import storeinfo.StoreListing;
+import storeinfo.StoreListingFactory;
 import UI.LoginPanel;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,7 +76,7 @@ public class UIHandler {
         DBWriter dbWriter= new DBWriter();
         StoreListing x;
         x = getFullProductInfo(productName);
-        if(!x.equals(null)){
+        if(x==null){
             dbWriter.insertIntoCart(username, x.getProductID());
         }
         
