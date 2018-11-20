@@ -6,6 +6,8 @@
 package Launchers;
 
 import DBHandler.DBWriter;
+import DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.RepositoryWriter;
 
 /**
  *
@@ -58,7 +60,8 @@ public class ProductLauncher implements Launcher {
     
     public boolean addToRepo(){
         if(productID >= 0 && fileLocation.length() > 0){
-            DBWriter w = new DBWriter();
+            RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory(); 
+            RepositoryWriter w = rf.getRepoWriter();
             w.insertNewLauncher(fileLocation, productID);
             return true;
         } else {

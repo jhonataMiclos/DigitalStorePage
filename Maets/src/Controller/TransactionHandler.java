@@ -11,14 +11,13 @@ import org.json.JSONObject;
 public class TransactionHandler {
 
     private RepositoryAccess rA;
-    private DBWriter dbWriter;
+    private RepositoryWriter dbWriter;
     private UIHandler uiHandler;
     
     public TransactionHandler( UIHandler uiHandler) {
-        dbWriter = new DBWriter();
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory(); 
+        dbWriter = rf.getRepoWriter();
         this.uiHandler=uiHandler;
-        
-        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
         rA =  rf.getRepoAccess();
     }
     

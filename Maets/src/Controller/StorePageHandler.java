@@ -16,7 +16,8 @@ import java.util.List;
 public class StorePageHandler {
     
     public Object[][] getAllProductListing() {
-        List<StoreListing> storeListingList = StoreListingFactory.getAll();
+        StoreListingFactory sLF = new StoreListingFactory();
+        List<StoreListing> storeListingList = sLF.getAll();
         Object[][] storeListingArr = new Object[storeListingList.size()][3];
         
         for (int i = 0; i < storeListingArr.length; i++) {

@@ -10,6 +10,8 @@ import Controller.ConnectionReplyInterceptor;
 import Controller.LoggingDispatcher;
 import Controller.LoggingInterceptor;
 import DBHandler.DBWriter;
+import DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.RepositoryWriter;
 import java.util.Date;
 
 /**
@@ -17,10 +19,11 @@ import java.util.Date;
  * @author jhonata
  */
 public class LogoutCommand implements Command{
-    private DBWriter dbWriter;
+    private RepositoryWriter dbWriter;
     private String userName = "";
     public LogoutCommand(String userName) {
-        dbWriter = new DBWriter();
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory(); 
+        dbWriter = rf.getRepoWriter();
         this.userName = userName;
     }
     @Override

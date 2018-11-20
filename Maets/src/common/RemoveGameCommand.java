@@ -5,7 +5,8 @@
  */
 package common;
 
-import DBHandler.DBWriter;
+import DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.RepositoryWriter;
 
 /**
  *
@@ -13,11 +14,12 @@ import DBHandler.DBWriter;
  */
 public class RemoveGameCommand implements Command{
     private int gameSelected;
-    private DBWriter dbWriter;
+    private RepositoryWriter dbWriter;
     
     public RemoveGameCommand(int gameId) {
         gameSelected = 0;
-        dbWriter = new DBWriter();
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory(); 
+        dbWriter = rf.getRepoWriter();
         gameSelected = gameId;
     }
     

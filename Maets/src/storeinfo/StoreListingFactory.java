@@ -17,7 +17,7 @@ import org.json.JSONArray;
  */
 public class StoreListingFactory {
     
-    public static List<StoreListing> getAll(){
+    public List<StoreListing> getAll(){
          List<StoreListing> allList = getAllGames();
          List<StoreListing> movieList = getAllMovies();
          allList.addAll(movieList);
@@ -25,7 +25,7 @@ public class StoreListingFactory {
          return allList;
     }
     
-    public static List<StoreListing> getAllGames(){
+    public List<StoreListing> getAllGames(){
         RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
          RepositoryAccess ra =  rf.getRepoAccess();
          JSONArray array = ra.getAllGames();
@@ -40,7 +40,7 @@ public class StoreListingFactory {
          return sLArrList;
     }
     
-    public static List<StoreListing> getAllMovies(){
+    public List<StoreListing> getAllMovies(){
         RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
          RepositoryAccess ra =  rf.getRepoAccess();
          JSONArray array = ra.getAllMovies();
@@ -57,7 +57,7 @@ public class StoreListingFactory {
          return sLArrList;
     }
     
-    public static List<StoreListing> getAllbyPublisher(int id){
+    public List<StoreListing> getAllbyPublisher(int id){
         RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
          RepositoryAccess ra =  rf.getRepoAccess();
         JSONArray array = ra.getAllMoviesByPublisher(id);

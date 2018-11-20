@@ -23,7 +23,8 @@ public class PublisherUIHandler {
     }
     
     public Object[][] getAllProductListingByPublisher(int publisherID) {
-        List<StoreListing> storeListingList = StoreListingFactory.getAllbyPublisher(publisherID);
+        StoreListingFactory sLF = new StoreListingFactory();
+        List<StoreListing> storeListingList = sLF.getAllbyPublisher(publisherID);
         Object[][] storeListingArr = new Object[storeListingList.size()][3];
 
         for (int i = 0; i < storeListingArr.length; i++) {

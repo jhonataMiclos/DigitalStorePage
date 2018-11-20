@@ -8,6 +8,7 @@ package storeinfo;
 import DBHandler.DBWriter;
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.RepositoryWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,10 +107,10 @@ public class GameStorePageInfo implements StoreListing  {
     }
     @Override
     public int addToRepo() {
-        DBWriter w = new DBWriter();
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory(); 
+        RepositoryWriter w = rf.getRepoWriter();
         if(w.insertNewGame(gameID, gameName, price, ageRating, description, minimumSpecs, genres.get(genres.size()-1), publisherID)){
             
-        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory();
          RepositoryAccess ra =  rf.getRepoAccess();
             return ra.getGameID(publisherID);
         } else{

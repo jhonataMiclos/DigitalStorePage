@@ -6,14 +6,22 @@
 package Controller;
 
 import DBHandler.DBWriter;
+import DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.RepositoryWriter;
 
 /**
  *
  * @author jhonata
  */
 public class LoggingInterceptor implements ConnectionReplyInterceptor {
-    private DBWriter dbWriter = new DBWriter();
+    private RepositoryWriter dbWriter;
     private static LoggingInterceptor interceptor  ;
+    
+    public LoggingInterceptor(){
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory(); 
+        dbWriter = rf.getRepoWriter();
+    }
+    
     @Override
     public void preRemoteReply(ConnectionReplyContext context) {
         System.out.println("User connected at time - " + context.getStartTime());

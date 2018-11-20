@@ -5,7 +5,8 @@
  */
 package common;
 
-import DBHandler.DBWriter;
+import DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.RepositoryWriter;
 
 /**
  *
@@ -14,12 +15,13 @@ import DBHandler.DBWriter;
 public class PromoteToAdminCommand implements Command {
 
     private String userSelected;
-    private DBWriter dbWriter;
+    private RepositoryWriter dbWriter;
     
     public PromoteToAdminCommand(String user) {
         userSelected = "";
-        dbWriter = new DBWriter();
-         userSelected = user;
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory(); 
+        dbWriter = rf.getRepoWriter();
+        userSelected = user;
     }
     
     public void setUserSelected(String user) {

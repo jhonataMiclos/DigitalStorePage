@@ -3,6 +3,7 @@ package Controller;
 import DBHandler.DBWriter;
 import DBHandler.RepositoryAccess;
 import DBHandler.RepositoryAccessMethodFactory;
+import DBHandler.RepositoryWriter;
 import Launchers.Launcher;
 import Launchers.ProductLauncher;
 import storeinfo.StoreListing;
@@ -51,7 +52,8 @@ public class UIHandler {
     }
     
     public String getProductInfo(String productName) {
-        List<StoreListing> listings = StoreListingFactory.getAll();
+        StoreListingFactory sLF = new StoreListingFactory();
+        List<StoreListing> listings = sLF.getAll();
         for (StoreListing listing : listings) {
             if (listing.getName().equals(productName)) {
                 return listing.displayStorePage();
@@ -62,7 +64,8 @@ public class UIHandler {
     }
     public int[] getAllGames(){
         
-        List<StoreListing> listings = StoreListingFactory.getAll();
+        StoreListingFactory sLF = new StoreListingFactory();
+        List<StoreListing> listings = sLF.getAll();
         int[]  results = new int[listings.size()];
         int x = 0;
         for (StoreListing listing : listings) {
@@ -73,7 +76,8 @@ public class UIHandler {
     }
     
     public void addToCart(String productName) {
-        DBWriter dbWriter= new DBWriter();
+        RepositoryAccessMethodFactory rf = new RepositoryAccessMethodFactory(); 
+        RepositoryWriter dbWriter = rf.getRepoWriter();
         StoreListing x;
         x = getFullProductInfo(productName);
         if(x==null){
@@ -269,7 +273,8 @@ public class UIHandler {
     }
 
     private StoreListing getFullProductInfo(String productName) {
-        List<StoreListing> listings = StoreListingFactory.getAll();
+        StoreListingFactory sLF = new StoreListingFactory();
+        List<StoreListing> listings = sLF.getAll();
         for (StoreListing listing : listings) {
             if (listing.getName().equals(productName)) {
                 return listing;
