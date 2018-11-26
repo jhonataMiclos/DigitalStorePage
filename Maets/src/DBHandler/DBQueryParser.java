@@ -350,9 +350,10 @@ public class DBQueryParser implements RepositoryAccess {
     @Override
     public String getFilePath(int productID) {
         try {
-          ResultSet resultSet = DBConnector.getInstance().execute("select fileLocation from "+dbName+".gamelaunchers where productID = "+productID);
+          System.out.println(productID);
+          ResultSet resultSet = DBConnector.getInstance().execute("select fileLocation from "+dbName+".gameLaunchers where productID = "+productID);
           if(resultSet.next()){
-              return resultSet.getString("fileLocation)");
+              return resultSet.getString("fileLocation");
           }
           return "File location not found";
       }

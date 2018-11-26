@@ -277,6 +277,7 @@ public class UIHandler {
         List<StoreListing> listings = sLF.getAll();
         for (StoreListing listing : listings) {
             if (listing.getName().equals(productName)) {
+                System.out.println("Product ID error "+listing.getProductID());
                 return listing;
             }
         }

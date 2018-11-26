@@ -139,8 +139,7 @@ public class LibraryPanelAdapted extends javax.swing.JPanel {
     
     private void launchBActionPerformed(java.awt.event.ActionEvent evt) {
         int selectedProduct = productDropdown.getSelectedIndex();
-        int selectedProductID = productIDs[selectedProduct];
-        
+        int selectedProductID = productIDs[selectedProduct+1];
         uiHandler.launchProduct(selectedProductID);
     }     
 

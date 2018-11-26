@@ -16,9 +16,10 @@ class RunnerFactory {
     }
 
     public RunProduct getProductRunner(String fileLocation) {
-        if(fileLocation.endsWith(".txt")){
+        System.out.println("file: "+fileLocation);
+        if(fileLocation.contains(".txt")){
             return new RunTXT(fileLocation);
-        } else if(fileLocation.endsWith(".jar")){
+        } else if(fileLocation.contains(".jar")){
             return new RunJAR(fileLocation);
         } else {
             return new RunError();

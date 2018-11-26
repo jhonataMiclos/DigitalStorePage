@@ -25,7 +25,7 @@ public class RunTXT implements RunProduct {
 
     @Override
     public void play() {
-        String input = null;
+        String input = "";
 
         try {
             // FileReader reads text files in the default encoding.
@@ -36,8 +36,10 @@ public class RunTXT implements RunProduct {
             BufferedReader bufferedReader = 
                 new BufferedReader(fileReader);
 
-            while((input += bufferedReader.readLine()) != null) {
-            }   
+            String ln = "";
+            while((ln = bufferedReader.readLine()) != null) {
+		input += ln;
+            }     
 
             // Always close files.
             bufferedReader.close(); 

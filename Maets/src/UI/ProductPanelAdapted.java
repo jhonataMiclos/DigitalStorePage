@@ -135,8 +135,8 @@ public class ProductPanelAdapted extends javax.swing.JPanel {
     
     private void cartBActionPerformed(java.awt.event.ActionEvent evt) {                                      
         cartB.execute();
-        cartB.setCommand(new NavigateToCommand(new ProductListingAdapted(frame,this,uiHandler),frame));
-        cartB.execute();
+        //cartB.setCommand(new NavigateToCommand(new ProductListingAdapted(frame,this,uiHandler),frame));
+        //cartB.execute();
     }      
 
     // Variables declaration - do not modify    

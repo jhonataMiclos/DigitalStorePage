@@ -175,6 +175,7 @@ public class DBWriter implements RepositoryWriter{
              return true;
             } catch (SQLException ex) {
              Logger.getLogger(DBWriter.class.getName()).log(Level.SEVERE, null, ex);
+             System.out.println(ex.toString());
              return false;
          }
     }
