@@ -200,13 +200,15 @@ public class ProductListingAdapted extends javax.swing.JPanel {
     }
     
     private void libraryBActionPerformed(java.awt.event.ActionEvent evt) {
+        CareTaker.getInstance().add(new Memento(this));
         libraryB.setCommand( new NavigateToCommand(new LibraryPanelAdapted(frame,this,uiHandler),frame));
         libraryB.execute();
     }
     
     private void cartBActionPerformed(java.awt.event.ActionEvent evt) {
+        CareTaker.getInstance().add(new Memento(this));
        cartB.setCommand( new NavigateToCommand(new CheckoutPanel(frame,this,uiHandler),frame));
-        cartB.execute();
+       cartB.execute();
     }
 
 

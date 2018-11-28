@@ -80,7 +80,7 @@ public class UIHandler {
         RepositoryWriter dbWriter = rf.getRepoWriter();
         StoreListing x;
         x = getFullProductInfo(productName);
-        if(x==null){
+        if(x!=null){
             dbWriter.insertIntoCart(username, x.getProductID());
         }
         
