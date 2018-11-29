@@ -38,7 +38,7 @@ public class RunTXT implements RunProduct {
 
             String ln = "";
             while((ln = bufferedReader.readLine()) != null) {
-		input += ln;
+		input += "\n"+ln;
             }     
 
             // Always close files.
